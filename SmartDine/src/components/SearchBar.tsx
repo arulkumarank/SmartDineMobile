@@ -1,24 +1,33 @@
+// src/components/SearchBox.tsx
 import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface Props {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
+  onClear?: () => void;
 }
 
-export default function SearchBar({ value, onChangeText, placeholder }: Props) {
+export default function SearchBox({ value, onChangeText, placeholder, onClear }: Props) {
   return (
     <View style={styles.container}>
-      <Icon name="magnify" size={22} color="#666" />
+      <Icon name="magnify" size={24} color="#ff8a00" />
+
       <TextInput
         style={styles.input}
-        placeholder={placeholder || "Search..."}
+        placeholder={placeholder || "Search restaurants or cuisines..."}
         value={value}
         onChangeText={onChangeText}
-        placeholderTextColor="#aaa"
+        placeholderTextColor="#999"
       />
+
+      {value.length > 0 && (
+        <TouchableOpacity onPress={onClear}>
+          <Icon name="close-circle" size={22} color="#999" />
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -26,16 +35,21 @@ export default function SearchBar({ value, onChangeText, placeholder }: Props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "#f2f2f2",
-    paddingHorizontal: 10,
-    paddingVertical: 12,
-    borderRadius: 12,
+    backgroundColor: "#fff",
+    padding: 14,
+    borderRadius: 16,
     alignItems: "center",
-    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+    marginBottom: 24,
   },
   input: {
-    marginLeft: 10,
     flex: 1,
-    fontSize: 15,
+    marginLeft: 12,
+    fontSize: 16,
+    color: "#333",
   },
 });
