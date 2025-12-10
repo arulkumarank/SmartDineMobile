@@ -20,7 +20,7 @@ export default function Home({ navigation }: any) {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [foods, setFoods] = useState<Food[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [searched, setSearched] = useState(false);
 
   // Animation values
@@ -28,15 +28,23 @@ export default function Home({ navigation }: any) {
 
   // Load random food items on mount
   useEffect(() => {
+    console.log('Home: Loading foods on mount...');
     loadRandomFoods();
   }, []);
 
   const loadRandomFoods = async () => {
+    console.log('Home: Fetching foods from API...');
+    setLoading(true);
     try {
       const response = await foodsAPI.getAll();
+      console.log('Home: API Response:', response);
+      console.log('Home: Foods count:', response.foods?.length || 0);
       setFoods(response.foods || []);
     } catch (error) {
-      console.error('Failed to load foods:', error);
+      console.error('Home: Failed to load foods:', error);
+      setFoods([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -58,7 +66,8 @@ export default function Home({ navigation }: any) {
       setAnswer(response.answer);
 
       // Reload foods to show recommendations
-      await loadRandomFoods();
+      const foodsResponse = await foodsAPI.getAll();
+      setFoods(foodsResponse.foods || []);
     } catch (error: any) {
       console.error('AI error:', error);
       setAnswer('Sorry, could not get recommendations at this time.');
@@ -109,6 +118,7 @@ export default function Home({ navigation }: any) {
           </View>
         </Animated.View>
 
+        {/* AI Message - Only show after search */}
         {searched && answer && (
           <View style={styles.messageContainer}>
             <Text style={styles.message}>
@@ -118,22 +128,58 @@ export default function Home({ navigation }: any) {
           </View>
         )}
 
+        {/* Food Cards Section */}
         <View style={styles.foodsContainer}>
-          {!searched && (
-            <Text style={styles.sectionTitle}>Discover Food</Text>
+          {/* Section Title */}
+          <Text style={styles.sectionTitle}>
+            {searched ? 'Recommended For You' : 'Discover Food'}
+          </Text>
+
+          {/* Loading State */}
+          {loading && (
+            <ActivityIndicator
+              size="large"
+              color="#ff6b00"
+              style={styles.loader}
+            />
           )}
-          {foods.length > 0 ? (
-            foods.map((item, index) => (
-              <FoodCard
-                key={index}
-                food={item}
-                onPress={() => navigation.navigate('Restaurant', item)}
-              />
-            ))
-          ) : (
-            <Text style={styles.emptyText}>
-              No food available at the moment
-            </Text>
+
+          {/* Food Cards */}
+          {!loading && foods.length > 0 && (
+            <>
+              {foods.map((item, index) => (
+                <FoodCard
+                  key={index}
+                  food={item}
+                  onPress={() => {
+                    // Navigate to Restaurant screen with enriched data
+                    const restaurantData = {
+                      name: item.restaurant,
+                      cuisine: item.cuisine || 'Food & Dining',
+                      rating: item.rating || 4.5,
+                      image: item.image || 'https://source.unsplash.com/600x400/?restaurant',
+                      location: {
+                        address: `${item.restaurant} - Visit us today!`,
+                        latitude: 0,
+                        longitude: 0,
+                      },
+                    };
+                    navigation.navigate('Restaurant', restaurantData);
+                  }}
+                />
+              ))}
+            </>
+          )}
+
+          {/* Empty State */}
+          {!loading && foods.length === 0 && (
+            <View style={styles.emptyState}>
+              <Icon name="food-off" size={64} color="#ddd" />
+              <Text style={styles.emptyText}>No food available</Text>
+              <Text style={styles.emptySubtext}>
+                Check your internet connection
+              </Text>
+            </View>
           )}
         </View>
       </ScrollView>
@@ -213,11 +259,26 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     letterSpacing: -0.5,
   },
+  loader: {
+    marginTop: 40,
+    marginBottom: 40,
+  },
+  emptyState: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 60,
+  },
   emptyText: {
-    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: '600',
     color: '#999',
-    fontSize: 15,
-    marginTop: 60,
-    fontStyle: 'italic',
+    marginTop: 16,
+    textAlign: 'center',
+  },
+  emptySubtext: {
+    fontSize: 14,
+    color: '#bbb',
+    marginTop: 8,
+    textAlign: 'center',
   },
 });

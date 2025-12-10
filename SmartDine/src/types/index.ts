@@ -46,6 +46,7 @@ export interface Food {
     price: number;
     cuisine?: string;
     image?: string;
+    rating?: number;
     nutritional_info?: NutritionalInfo;
     tags?: string[];
     allergens?: string[];

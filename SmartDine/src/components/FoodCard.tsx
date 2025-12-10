@@ -6,9 +6,10 @@ import type { Food } from '../types';
 interface Props {
     food: Food;
     onPress: () => void;
+    compact?: boolean; // For 2-column grid layout
 }
 
-export default function FoodCard({ food, onPress }: Props) {
+export default function FoodCard({ food, onPress, compact = false }: Props) {
     const renderNutritionBadges = () => {
         const badges = [];
 
@@ -31,28 +32,31 @@ export default function FoodCard({ food, onPress }: Props) {
     const badges = renderNutritionBadges();
 
     return (
-        <TouchableOpacity style={styles.card} onPress={onPress}>
+        <TouchableOpacity style={[styles.card, compact && styles.cardCompact]} onPress={onPress}>
             <Image
                 source={{ uri: food.image || 'https://source.unsplash.com/600x400/?food' }}
-                style={styles.image}
+                style={compact ? styles.imageCompact : styles.image}
             />
 
-            <View style={styles.info}>
-                <Text style={styles.foodName}>{food.name}</Text>
-                <Text style={styles.restaurant}>{food.restaurant}</Text>
+            <View style={compact ? styles.infoCompact : styles.info}>
+                <Text style={compact ? styles.foodNameCompact : styles.foodName} numberOfLines={1}>
+                    {food.name}
+                </Text>
+                <Text style={compact ? styles.restaurantCompact : styles.restaurant} numberOfLines={1}>
+                    {food.restaurant}
+                </Text>
 
                 <View style={styles.row}>
-                    <Text style={styles.price}>${food.price.toFixed(2)}</Text>
-                    {food.cuisine && (
-                        <Text style={styles.cuisine}>{food.cuisine}</Text>
-                    )}
+                    <Text style={compact ? styles.priceCompact : styles.price}>
+                        ${typeof food.price === 'number' ? food.price.toFixed(2) : food.price}
+                    </Text>
                 </View>
 
-                {badges.length > 0 && (
+                {!compact && badges.length > 0 && (
                     <View style={styles.badgesContainer}>
-                        {badges.map((badge, index) => (
+                        {badges.slice(0, 2).map((badge, index) => (
                             <View key={index} style={styles.badge}>
-                                <Icon name="check-circle" size={14} color="#ff6b00" />
+                                <Icon name="check-circle" size={12} color="#ff6b00" />
                                 <Text style={styles.badgeText}>{badge}</Text>
                             </View>
                         ))}
@@ -66,7 +70,10 @@ export default function FoodCard({ food, onPress }: Props) {
 const styles = StyleSheet.create({
     card: {
         backgroundColor: '#fff',
-        borderRadius: 15,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderBottomLeftRadius: 8,
+        borderBottomRightRadius: 8,
         marginBottom: 20,
         overflow: 'hidden',
         elevation: 5,
@@ -75,12 +82,27 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowOffset: { width: 0, height: 3 },
     },
+    cardCompact: {
+        marginBottom: 0,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+        borderBottomLeftRadius: 6,
+        borderBottomRightRadius: 6,
+        elevation: 3,
+    },
     image: {
         width: '100%',
         height: 180,
     },
+    imageCompact: {
+        width: '100%',
+        height: 120,
+    },
     info: {
         padding: 14,
+    },
+    infoCompact: {
+        padding: 10,
     },
     foodName: {
         fontSize: 18,
@@ -88,10 +110,21 @@ const styles = StyleSheet.create({
         color: '#222',
         marginBottom: 4,
     },
+    foodNameCompact: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: '#222',
+        marginBottom: 3,
+    },
     restaurant: {
         fontSize: 15,
         color: '#666',
         marginBottom: 8,
+    },
+    restaurantCompact: {
+        fontSize: 12,
+        color: '#666',
+        marginBottom: 6,
     },
     row: {
         flexDirection: 'row',
@@ -104,6 +137,11 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         color: '#ff6b00',
     },
+    priceCompact: {
+        fontSize: 15,
+        fontWeight: '700',
+        color: '#ff6b00',
+    },
     cuisine: {
         fontSize: 14,
         color: '#888',
@@ -112,19 +150,19 @@ const styles = StyleSheet.create({
     badgesContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 8,
+        gap: 6,
     },
     badge: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff5ed',
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 8,
-        gap: 4,
+        paddingHorizontal: 6,
+        paddingVertical: 3,
+        borderRadius: 6,
+        gap: 3,
     },
     badgeText: {
-        fontSize: 12,
+        fontSize: 10,
         color: '#ff6b00',
         fontWeight: '500',
     },

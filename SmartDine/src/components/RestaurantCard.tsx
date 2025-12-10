@@ -38,10 +38,13 @@ export default function RestaurantCard({
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#fff",
-    borderRadius: 15,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
     marginBottom: 15,
-    overflow: "hidden",
+    overflow: 'hidden',
     elevation: 5,
   },
   image: {
