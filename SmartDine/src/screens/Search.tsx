@@ -16,9 +16,11 @@ export default function Search({ navigation }: any) {
   async function loadRestaurants() {
     try {
       const res = await axios.get("http://10.164.233.54:8000/restaurants");
-      setRestaurants(res.data);
+      // Backend returns {restaurants: [...], count: n}
+      setRestaurants(res.data.restaurants || []);
     } catch (error) {
       console.log("API ERROR:", error);
+      setRestaurants([]);
     }
   }
 
@@ -61,12 +63,12 @@ export default function Search({ navigation }: any) {
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 15, backgroundColor: "#fff" },
   searchBox: {
-    flexDirection: "row",
-    backgroundColor: "#f2f2f2",
-    padding: 12,
-    borderRadius: 12,
-    alignItems: "center",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    elevation: 4,
   },
+
   input: { marginLeft: 10, flex: 1 },
   result: {
     paddingVertical: 12,

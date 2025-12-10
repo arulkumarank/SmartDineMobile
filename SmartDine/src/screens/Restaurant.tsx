@@ -1,82 +1,125 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity } from "react-native";
+import React from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const Restaurant = ({ route }: any) => {
+export default function Restaurant({ route, navigation }: any) {
+  const restaurant = route?.params || {
+    name: 'Restaurant Name',
+    cuisine: 'Cuisine',
+    rating: 4.5,
+    image: 'https://source.unsplash.com/600x400/?restaurant',
+    location: {
+      address: '123 Main St',
+      latitude: 0,
+      longitude: 0,
+    },
+  };
 
-  const restaurant = route?.params;
-
-  const menu = [
-    { id: 1, name: "Chicken Biryani", price: 180, img: "https://i.imgur.com/Vla3j8Z.jpg" },
-    { id: 2, name: "Paneer Butter Masala", price: 160, img: "https://i.imgur.com/uf7aQZR.jpg" },
-    { id: 3, name: "Veg Noodles", price: 120, img: "https://i.imgur.com/Dxr4R2N.jpg" },
-  ];
+  const handleAddressClick = () => {
+    if (restaurant.location) {
+      // Navigate to Map screen with restaurant location
+      navigation.navigate('Map', { restaurant });
+    }
+  };
 
   return (
     <ScrollView style={styles.container}>
-      
       <Image
-        source={{ uri: restaurant?.image || "https://source.unsplash.com/600x300/?restaurant" }}
+        source={{ uri: restaurant.image }}
         style={styles.coverImage}
       />
 
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>{restaurant?.name || "Restaurant"}</Text>
-        <Text style={styles.sub}>{restaurant?.rating || "4.2 ⭐"} · 30 mins</Text>
-        <Text style={styles.address}>Near your location</Text>
-      </View>
+      <View style={styles.content}>
+        <Text style={styles.title}>{restaurant.name}</Text>
 
-      <Text style={styles.menuTitle}>Recommended Dishes</Text>
-
-      {menu.map(item => (
-        <View key={item.id} style={styles.menuCard}>
-          <Image source={{ uri: item.img }} style={styles.foodImg} />
-          <View style={styles.details}>
-            <Text style={styles.foodName}>{item.name}</Text>
-            <Text style={styles.price}>₹ {item.price}</Text>
-          </View>
-
-          <TouchableOpacity style={styles.addBtn}>
-            <Text style={styles.addTxt}>ADD</Text>
-          </TouchableOpacity>
+        <View style={styles.row}>
+          <Icon name="star" size={20} color="#ff6b00" />
+          <Text style={styles.rating}>{restaurant.rating}</Text>
+          <Text style={styles.cuisine}> • {restaurant.cuisine}</Text>
         </View>
-      ))}
 
+        {restaurant.location && (
+          <TouchableOpacity
+            style={styles.addressContainer}
+            onPress={handleAddressClick}>
+            <Icon name="map-marker" size={20} color="#ff6b00" />
+            <Text style={styles.address}>{restaurant.location.address}</Text>
+            <Icon name="chevron-right" size={20} color="#888" />
+          </TouchableOpacity>
+        )}
+
+        <Text style={styles.menuTitle}>Menu</Text>
+        <Text style={styles.menuNote}>
+          Menu items will be displayed here
+        </Text>
+      </View>
     </ScrollView>
   );
-};
-
-export default Restaurant;
+}
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff" },
-  coverImage: { width: "100%", height: 200 },
-  infoContainer: { padding: 15 },
-  title: { fontSize: 24, fontWeight: "700" },
-  sub: { fontSize: 14, color: "#666", marginTop: 4 },
-  address: { color: "#999", marginTop: 4 },
+  container: {
+    flex: 1,
+    backgroundColor: '#fafafa',
+  },
+  coverImage: {
+    width: '100%',
+    height: 250,
+  },
+  content: {
+    padding: 20,
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#222',
+    marginBottom: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  rating: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: '#222',
+    marginLeft: 5,
+  },
+  cuisine: {
+    fontSize: 17,
+    color: '#666',
+  },
+  addressContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 20,
+    gap: 10,
+  },
+  address: {
+    flex: 1,
+    fontSize: 16,
+    color: '#333',
+  },
   menuTitle: {
-    marginTop: 10,
-    fontSize: 20,
-    fontWeight: "700",
-    padding: 15,
+    fontSize: 22,
+    fontWeight: '700',
+    color: '#222',
+    marginBottom: 15,
   },
-  menuCard: {
-    flexDirection: "row",
-    padding: 15,
-    alignItems: "center",
-    borderBottomColor: "#eee",
-    borderBottomWidth: 1,
+  menuNote: {
+    fontSize: 16,
+    color: '#666',
+    fontStyle: 'italic',
   },
-  foodImg: { width: 70, height: 70, borderRadius: 10 },
-  details: { flex: 1, marginLeft: 10 },
-  foodName: { fontSize: 16, fontWeight: "600" },
-  price: { marginTop: 5, fontSize: 14, color: "#444" },
-  addBtn: {
-    paddingVertical: 6,
-    paddingHorizontal: 15,
-    borderWidth: 1,
-    borderColor: "#ff8a00",
-    borderRadius: 8,
-  },
-  addTxt: { color: "#ff8a00", fontWeight: "700" },
 });

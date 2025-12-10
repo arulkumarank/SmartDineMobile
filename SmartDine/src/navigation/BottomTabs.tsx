@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import Cart from '../screens/Cart';
+import Map from '../screens/Map';
 import Profile from '../screens/Profile';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -13,29 +13,28 @@ export default function BottomTabs() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "#ffffff",
-          height: 60,
+          backgroundColor: '#fff',
+          height: 65,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
-          elevation: 15,
+          elevation: 20,
         },
-        tabBarActiveTintColor: "#ff8a00",
-        tabBarInactiveTintColor: "#888",
-      }}
-    >
-      <Tab.Screen 
-        name="Home" 
+        tabBarActiveTintColor: '#ff6b00',
+        tabBarInactiveTintColor: '#888',
+      }}>
+      <Tab.Screen
+        name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="silverware-fork-knife" color={color} size={26} />
           ),
-          tabBarLabel: "Discover"
+          tabBarLabel: 'Discover',
         }}
       />
 
-      <Tab.Screen 
-        name="Search" 
+      <Tab.Screen
+        name="Search"
         component={Search}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -44,18 +43,18 @@ export default function BottomTabs() {
         }}
       />
 
-      <Tab.Screen 
-        name="Cart" 
-        component={Cart}
+      <Tab.Screen
+        name="Map"
+        component={Map}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="cart-outline" color={color} size={26} />
+            <Icon name="map-marker" color={color} size={26} />
           ),
         }}
       />
 
-      <Tab.Screen 
-        name="Profile" 
+      <Tab.Screen
+        name="Profile"
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (

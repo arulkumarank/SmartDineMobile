@@ -7,7 +7,6 @@ interface Props {
   rating: number;
   image: string;
   cuisine: string;
-  deliveryTime: string;
   onPress: () => void;
 }
 
@@ -16,7 +15,6 @@ export default function RestaurantCard({
   rating,
   image,
   cuisine,
-  deliveryTime,
   onPress,
 }: Props) {
   return (
@@ -33,7 +31,6 @@ export default function RestaurantCard({
 
         <Text style={styles.sub}>{cuisine}</Text>
 
-        <Text style={styles.delivery}>{deliveryTime}</Text>
       </View>
     </TouchableOpacity>
   );
