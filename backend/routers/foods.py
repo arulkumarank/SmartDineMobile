@@ -144,3 +144,129 @@ async def get_food_by_id(food_id: str):
         return {"error": "Food not found"}
     
     return food
+
+
+@router.post("/detail")
+async def get_food_detail(food_name: str, restaurant: str):
+    """
+    Generate detailed food information with AI-powered taste profile and description
+    
+    Args:
+        food_name: Name of the food item
+        restaurant: Restaurant name
+        
+    Returns:
+        Detailed food information including taste profile, texture, description,
+        recommended sides, cooking style, and best time to eat
+    """
+    import requests
+    from dotenv import load_dotenv
+    import os
+    import json
+    
+    load_dotenv()
+    
+    # Get the food from database
+    restaurants = list(restaurants_collection.find({}, {"_id": 0}))
+    food_item = None
+    
+    for r in restaurants:
+        if r.get("name") == restaurant and "menu" in r:
+            for menu_item in r["menu"]:
+                if menu_item.get("name") == food_name:
+                    food_item = {
+                        **menu_item,
+                        "restaurant": r.get("name"),
+                        "cuisine": r.get("cuisine"),
+                        "rating": r.get("rating")
+                    }
+                    break
+            if food_item:
+                break
+    
+    if not food_item:
+        return {"error": "Food not found"}
+    
+    # Generate AI description
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    
+    headers = {
+        "Authorization": f"Bearer {groq_api_key}",
+        "Content-Type": "application/json"
+    }
+    
+    prompt = f"""
+You are a food expert. Describe {food_name} from {restaurant} in detail.
+
+Provide a JSON response with:
+{{
+    "taste_profile": {{
+        "spiciness": "mild/medium/hot",
+        "sweetness": "none/subtle/sweet",
+        "texture": "crispy/soft/creamy/juicy",
+        "richness": "light/moderate/rich"
+    }},
+    "description": "2-3 sentence natural description of the dish, its flavors, and what makes it special",
+    "cooking_style": "how it's prepared (grilled/fried/baked/steamed etc.)",
+    "recommended_sides": ["side1", "side2"],
+    "best_time": "breakfast/lunch/dinner/anytime",
+    "why_popular": "one sentence on why people love this dish"
+}}
+
+Cuisine type: {food_item.get('cuisine', 'unknown')}
+Known info: {food_item.get('diet', '')}, {food_item.get('spicy', '')}
+
+Be concise and appetizing. Return only valid JSON.
+"""
+    
+    payload = {
+        "model": "llama-3.1-8b-instant",
+        "messages": [
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.7
+    }
+    
+    try:
+        response = requests.post(url, headers=headers, json=payload, timeout=10)
+        result = response.json()
+        
+        if "choices" in result:
+            ai_response = result["choices"][0]["message"]["content"]
+            # Try to extract JSON from response
+            try:
+                # Find JSON in the response
+                start = ai_response.find('{')
+                end = ai_response.rfind('}') + 1
+                if start != -1 and end > start:
+                    ai_data = json.loads(ai_response[start:end])
+                else:
+                    ai_data = {}
+            except:
+                ai_data = {}
+        else:
+            ai_data = {}
+    except:
+        ai_data = {}
+    
+    # Combine database info with AI-generated details
+    return {
+        "name": food_item.get("name"),
+        "restaurant": food_item.get("restaurant"),
+        "cuisine": food_item.get("cuisine"),
+        "price": food_item.get("price"),
+        "image": food_item.get("image"),
+        "rating": food_item.get("rating", 4.0),
+        "nutritional_info": food_item.get("nutritional_info", {}),
+        "diet": food_item.get("diet"),
+        "spicy": food_item.get("spicy"),
+        # AI-generated details
+        "taste_profile": ai_data.get("taste_profile", {}),
+        "description": ai_data.get("description", "A delicious dish that's sure to satisfy your cravings."),
+        "cooking_style": ai_data.get("cooking_style", "Traditionally prepared"),
+        "recommended_sides": ai_data.get("recommended_sides", []),
+        "best_time": ai_data.get("best_time", "anytime"),
+        "why_popular": ai_data.get("why_popular", "A customer favorite!")
+    }
+

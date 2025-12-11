@@ -7,7 +7,8 @@ import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
 
-export default function Map({ navigation }: any) {
+export default function Map({ navigation, route }: any) {
+    const selectedRestaurant = route?.params?.restaurant; // Get selected restaurant from navigation
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -32,8 +33,16 @@ export default function Map({ navigation }: any) {
 
             setRestaurants(restaurantsWithLocation);
 
-            // Calculate center of all restaurants
-            if (restaurantsWithLocation.length > 0) {
+            // If we have a selected restaurant, center on it
+            if (selectedRestaurant?.location) {
+                setRegion({
+                    latitude: selectedRestaurant.location.latitude,
+                    longitude: selectedRestaurant.location.longitude,
+                    latitudeDelta: 0.05, // Zoomed in more for selected restaurant
+                    longitudeDelta: 0.05,
+                });
+            } else if (restaurantsWithLocation.length > 0) {
+                // Calculate center of all restaurants
                 const avgLat = restaurantsWithLocation.reduce((sum, r) => sum + (r.location?.latitude || 0), 0) / restaurantsWithLocation.length;
                 const avgLng = restaurantsWithLocation.reduce((sum, r) => sum + (r.location?.longitude || 0), 0) / restaurantsWithLocation.length;
 
@@ -85,10 +94,12 @@ export default function Map({ navigation }: any) {
 
     return (
         <View style={styles.container}>
-            {/* Header */}
+            {/* Header - Shows selected restaurant name if available */}
             <View style={styles.header}>
                 <Icon name="map-marker-radius" size={28} color="#ff6b00" />
-                <Text style={styles.headerTitle}>Nearby Restaurants</Text>
+                <Text style={styles.headerTitle}>
+                    {selectedRestaurant ? selectedRestaurant.name : 'Nearby Restaurants'}
+                </Text>
             </View>
 
             {/* Map */}
@@ -99,47 +110,73 @@ export default function Map({ navigation }: any) {
                 showsUserLocation={true}
                 showsMyLocationButton={true}
             >
-                {restaurants.map((restaurant, index) => (
-                    <Marker
-                        key={index}
-                        coordinate={{
-                            latitude: restaurant.location?.latitude || 0,
-                            longitude: restaurant.location?.longitude || 0,
-                        }}
-                        onPress={() => handleMarkerPress(restaurant)}
-                    >
-                        <View style={styles.markerContainer}>
-                            <View style={styles.marker}>
-                                <Icon name="silverware-fork-knife" size={20} color="#fff" />
-                            </View>
-                            <View style={styles.markerArrow} />
-                        </View>
+                {restaurants.map((restaurant, index) => {
+                    const isSelected = selectedRestaurant && restaurant.name === selectedRestaurant.name;
 
-                        <Callout
-                            style={styles.calloutContainer}
-                            onPress={() => handleViewDetails(restaurant)}
+                    return (
+                        <Marker
+                            key={index}
+                            coordinate={{
+                                latitude: restaurant.location?.latitude || 0,
+                                longitude: restaurant.location?.longitude || 0,
+                            }}
+                            onPress={() => handleMarkerPress(restaurant)}
                         >
-                            <View style={styles.callout}>
-                                <Text style={styles.calloutTitle}>{restaurant.name}</Text>
-                                <View style={styles.calloutDetails}>
-                                    <Icon name="food" size={14} color="#666" />
-                                    <Text style={styles.calloutCuisine}>{restaurant.cuisine}</Text>
+                            <View style={styles.markerContainer}>
+                                <View style={[
+                                    styles.marker,
+                                    isSelected && styles.markerSelected
+                                ]}>
+                                    <Icon
+                                        name="silverware-fork-knife"
+                                        size={isSelected ? 30 : 20}
+                                        color="#fff"
+                                    />
                                 </View>
-                                <View style={styles.calloutDetails}>
-                                    <Icon name="star" size={14} color="#ffd700" />
-                                    <Text style={styles.calloutRating}>{restaurant.rating?.toFixed(1) || 'N/A'}</Text>
+                                <View style={[
+                                    styles.markerArrow,
+                                    isSelected && styles.markerArrowSelected
+                                ]} />
+                                {/* Restaurant Name Label */}
+                                <View style={[
+                                    styles.markerLabel,
+                                    isSelected && styles.markerLabelSelected
+                                ]}>
+                                    <Text style={[
+                                        styles.markerLabelText,
+                                        isSelected && styles.markerLabelTextSelected
+                                    ]} numberOfLines={1}>
+                                        {restaurant.name}
+                                    </Text>
                                 </View>
-                                <TouchableOpacity
-                                    style={styles.viewButton}
-                                    onPress={() => handleViewDetails(restaurant)}
-                                >
-                                    <Text style={styles.viewButtonText}>View Details</Text>
-                                    <Icon name="arrow-right" size={16} color="#fff" />
-                                </TouchableOpacity>
                             </View>
-                        </Callout>
-                    </Marker>
-                ))}
+
+                            <Callout
+                                style={styles.calloutContainer}
+                                onPress={() => handleViewDetails(restaurant)}
+                            >
+                                <View style={styles.callout}>
+                                    <Text style={styles.calloutTitle}>{restaurant.name}</Text>
+                                    <View style={styles.calloutDetails}>
+                                        <Icon name="food" size={14} color="#666" />
+                                        <Text style={styles.calloutCuisine}>{restaurant.cuisine}</Text>
+                                    </View>
+                                    <View style={styles.calloutDetails}>
+                                        <Icon name="star" size={14} color="#ffd700" />
+                                        <Text style={styles.calloutRating}>{restaurant.rating?.toFixed(1) || 'N/A'}</Text>
+                                    </View>
+                                    <TouchableOpacity
+                                        style={styles.viewButton}
+                                        onPress={() => handleViewDetails(restaurant)}
+                                    >
+                                        <Text style={styles.viewButtonText}>View Details</Text>
+                                        <Icon name="arrow-right" size={16} color="#fff" />
+                                    </TouchableOpacity>
+                                </View>
+                            </Callout>
+                        </Marker>
+                    );
+                })}
             </MapView>
 
             {/* Restaurant Count Badge */}
@@ -237,6 +274,15 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 3 },
         elevation: 8,
     },
+    markerSelected: {
+        width: 60,  // 50% larger
+        height: 60,
+        borderRadius: 30,
+        borderWidth: 4,
+        shadowOpacity: 0.4,
+        shadowRadius: 10,
+        elevation: 12,
+    },
     markerArrow: {
         width: 0,
         height: 0,
@@ -249,6 +295,45 @@ const styles = StyleSheet.create({
         borderRightColor: 'transparent',
         borderTopColor: '#fff',
         marginTop: -2,
+    },
+    markerArrowSelected: {
+        borderLeftWidth: 9,
+        borderRightWidth: 9,
+        borderTopWidth: 12,
+    },
+    markerLabel: {
+        backgroundColor: '#fff',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 8,
+        marginTop: 4,
+        shadowColor: '#000',
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        shadowOffset: { width: 0, height: 2 },
+        elevation: 6,
+        maxWidth: 120,
+    },
+    markerLabelSelected: {
+        backgroundColor: '#ff6b00',
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        borderRadius: 10,
+        maxWidth: 150,
+        shadowOpacity: 0.3,
+        shadowRadius: 6,
+        elevation: 8,
+    },
+    markerLabelText: {
+        fontSize: 11,
+        fontWeight: '700',
+        color: '#1a1a1a',
+        textAlign: 'center',
+    },
+    markerLabelTextSelected: {
+        fontSize: 13,
+        fontWeight: '800',
+        color: '#fff',
     },
     calloutContainer: {
         width: 200,

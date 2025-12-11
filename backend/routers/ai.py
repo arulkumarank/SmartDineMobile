@@ -31,6 +31,18 @@ def ask_question(data: Question, current_user: dict = Depends(get_current_user))
         {"_id": 0}
     )
     
+    # Get user's recent search history (last 5 searches)
+    search_history = list(search_history_collection.find(
+        {"user_id": current_user["username"]},
+        {"_id": 0, "query": 1}
+    ).sort("timestamp", -1).limit(5))
+    
+    # Build search history context
+    search_context = ""
+    if search_history:
+        queries = [s["query"] for s in search_history]
+        search_context = f"\nRecent searches: {', '.join(queries)}\nGive preference to foods similar to these past searches."
+    
     # Build user preferences string
     user_preferences = ""
     if user_profile:
@@ -38,6 +50,7 @@ def ask_question(data: Question, current_user: dict = Depends(get_current_user))
 Taste Preference: {user_profile.get('taste_preference', 'Not specified')}
 Cuisine Preference: {user_profile.get('cuisine_preference', 'Not specified')}
 Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) or 'None'}
+{search_context}
 """
     
     prompt = f"""

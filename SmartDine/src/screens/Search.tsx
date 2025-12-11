@@ -285,6 +285,6 @@ const styles = StyleSheet.create({
   resultsScroll: { flex: 1, marginTop: 8 },
   resultsCount: { fontSize: 18, fontWeight: '700', color: '#333', paddingHorizontal: 20, marginBottom: 16 },
   foodsGrid: { paddingHorizontal: 10, paddingBottom: 20 },
-  foodCardWrapper: { flex: 1, padding: 6 },
+  foodCardWrapper: { width: 150, padding: 6, marginRight: 8 },
   restaurantsList: { paddingHorizontal: 20, paddingBottom: 20 },
 });
