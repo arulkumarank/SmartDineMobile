@@ -74,6 +74,67 @@ async def get_foods(
     return {"foods": filtered_foods, "count": len(filtered_foods)}
 
 
+@router.get("/featured")
+async def get_featured_foods():
+    """Get featured food items: highest protein, fiber, best value, and spiciest"""
+    
+    # Get all restaurants
+    restaurants = list(restaurants_collection.find({}, {"_id": 0}))
+    
+    # Extract all food items
+    all_foods = []
+    for restaurant in restaurants:
+        if "menu" in restaurant and restaurant["menu"]:
+            for menu_item in restaurant["menu"]:
+                food_item = {
+                    "name": menu_item.get("name", "Unknown"),
+                    "restaurant": restaurant.get("name", "Unknown Restaurant"),
+                    "price": menu_item.get("price", 0),
+                    "image": menu_item.get("image", restaurant.get("image")),
+                    "cuisine": restaurant.get("cuisine", ""),
+                    "rating": restaurant.get("rating", 4.0),
+                    "nutritional_info": menu_item.get("nutritional_info", {}),
+                    "is_vegetarian": menu_item.get("diet") == "veg" or menu_item.get("is_vegetarian", False),
+                    "spicy": menu_item.get("spicy"),
+                    "diet": menu_item.get("diet"),
+                    "tags": menu_item.get("tags", []),
+                }
+                all_foods.append(food_item)
+    
+    # Find featured items
+    
+    # Highest protein (top 3)
+    highest_protein = sorted(
+        all_foods, 
+        key=lambda x: x.get("nutritional_info", {}).get("protein", 0), 
+        reverse=True
+    )[:3]
+    
+    # Highest fiber (top 3)
+    highest_fiber = sorted(
+        all_foods, 
+        key=lambda x: x.get("nutritional_info", {}).get("fiber", 0), 
+        reverse=True
+    )[:3]
+    
+    # Best value - lowest price (top 5)
+    best_value = sorted(
+        all_foods, 
+        key=lambda x: x.get("price", 999), 
+        reverse=False
+    )[:5]
+    
+    # Spiciest items
+    spiciest = [f for f in all_foods if f.get("spicy") == "hot"][:5]
+    
+    return {
+        "highest_protein": highest_protein,
+        "highest_fiber": highest_fiber,
+        "best_value": best_value,
+        "spiciest": spiciest
+    }
+
+
 @router.get("/{food_id}")
 async def get_food_by_id(food_id: str):
     """Get food details by ID"""

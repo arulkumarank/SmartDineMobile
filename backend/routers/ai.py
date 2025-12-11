@@ -31,49 +31,130 @@ def ask_question(data: Question, current_user: dict = Depends(get_current_user))
         {"_id": 0}
     )
     
-    # Build personalized prompt
-    user_info = ""
+    # Build user preferences string
+    user_preferences = ""
     if user_profile:
-        user_info = f"""
-User Profile:
-- Name: {user_profile.get('name', 'Guest')}
-- Taste Preference: {user_profile.get('taste_preference', 'Not specified')}
-- Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) or 'None'}
+        user_preferences = f"""
+Taste Preference: {user_profile.get('taste_preference', 'Not specified')}
+Cuisine Preference: {user_profile.get('cuisine_preference', 'Not specified')}
+Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) or 'None'}
 """
     
     prompt = f"""
-You are SmartDine AI - a personalized food recommendation assistant.
+You are SmartDine AI.
 
-{user_info}
+Your purpose:
+Recommend food and restaurants using the user's message, their taste preferences, cuisine preferences, and the full SmartDine database.
 
-User Query: "{data.question}"
+User message:
+"{data.question}"
 
-Restaurant & Food Database:
+User profile preferences (taste, cuisine, diet, mood):
+{user_preferences if user_preferences else "Not Available"}
+
+Database of restaurants and menus:
 {docs}
 
-Your task:
-1. Analyze the user's query for:
-   - Nutritional keywords (high protein, high fiber, low carb, healthy, etc.)
-   - Cuisine preferences
-   - Mood/occasion
-   - Price sensitivity
-   
-2. Consider the user's taste preference and dietary restrictions
+---------------------------------------
+OUTPUT RULES
+---------------------------------------
 
-3. Recommend SPECIFIC FOOD ITEMS with details:
-   - Food name
-   - Restaurant name
-   - Price
-   - Why it matches (nutrition, taste, preference)
-   - Nutritional highlights if relevant
+1️⃣ SHORT, SIMPLE, SHINING FIRST LINE  
+Generate exactly ONE short sentence like examples below:
 
-4. If query mentions nutrition (protein, fiber, healthy):
-   - Prioritize foods meeting those nutritional requirements
-   - Mention nutritional benefits
+Examples:
+• "Here are foods that match your taste."
+• "Here are foods that match your craving."
+• "Here are foods that match your mood."
+• "Here are foods that match your preference."
+• "Here are foods that match what you searched for."
 
-5. Format response clearly with bullet points or numbered list
+Do NOT mention user name.
+Do NOT mention 'according to your preference'.
+Do NOT mention SmartDine.
+Keep it friendly and clean.
 
-Give 3-5 specific food recommendations.
+2️⃣ JSON OUTPUT FOR THE APP  
+After the sentence, output a clean JSON object with TWO arrays:
+
+{{
+  "foods": [
+      {{ 
+        "name": "",
+        "restaurant": "",
+        "price": "",
+        "spicy": "",
+        "diet": "",
+        "image": ""
+      }}
+  ],
+  "restaurants": [
+      {{
+        "name": "",
+        "cuisine": "",
+        "rating": "",
+        "image": "",
+        "location_link": ""
+      }}
+  ]
+}}
+
+3️⃣ MATCHING LOGIC  
+Use these rules to find food matches:
+- match taste words: spicy, crispy, sweet, tangy, creamy, juicy, mild, hot  
+- match nutrition words: protein, healthy, low calorie  
+- match cooking styles: fried, grilled, biryani, pizza  
+- match ingredients: chicken, paneer, rice, noodles  
+- match cuisine: Indian, Chinese, Italian, Fast Food, Japanese, Mexican  
+
+If user has profile preferences:
+- boost foods that match taste preference  
+- boost restaurants that match cuisine preference  
+
+4️⃣ RESTAURANT MAP LINK  
+For "location_link", generate a working Google Maps query:
+Example:
+https://www.google.com/maps/search/?api=1&query=Spice+Symphony+Chennai
+
+Never leave it empty.
+
+5️⃣ SURPRISE ME MODE  
+If user message contains:
+- "surprise me"
+- "something new"
+- "give me something different"
+
+Choose a dish:
+- not previously suggested to this user
+- from any cuisine
+- preferably unique or uncommon  
+Return JSON normally.
+
+6️⃣ TYPOS & SPELLING MISTAKES  
+If the user types a wrong spelling:
+- try to understand intent
+- match with closest cuisine or dish  
+Never return empty.
+
+7️⃣ FOOD DETAIL PAGE SUPPORT  
+If user clicks a food card and asks "tell me more":
+Provide:
+- taste profile (spicy/mild/creamy/juicy/etc.)
+- texture (crispy/soft/fluffy/thick/etc.)
+- recommended sides
+- cooking style
+- best time to eat
+- description in natural language  
+Still return in the same format:  
+Short sentence + JSON (foods contains only that one dish)
+
+8️⃣ NEVER INVENT RESTAURANT NAMES  
+You may invent descriptive text,
+BUT **food items MUST exist** from menus in the database.
+
+---------------------------------------
+
+Now generate the response using the above rules.
 """
     
     payload = {
