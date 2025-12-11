@@ -188,6 +188,44 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/arm64-v8a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# rnsvg_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:10 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/rnsvg.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# rnsvg_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:10 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/RNSVGImageShadowNode.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/RNSVGImageState.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/RNSVGLayoutableShadowNode.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnsvg/RNSVGShadowNodes.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# rnsvg_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/CMakeLists.txt:11 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/*cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/ComponentDescriptors.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/EventEmitters.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/Props.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/ShadowNodes.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/States.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-svg/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnsvg/rnsvgJSI-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/arm64-v8a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # react_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-vector-icons/android/build/generated/source/codegen/jni/*.cpp")
 set(OLD_GLOB

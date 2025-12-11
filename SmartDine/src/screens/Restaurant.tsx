@@ -98,7 +98,11 @@ export default function Restaurant({ route, navigation }: any) {
           <View style={styles.menuGrid}>
             {menuItems.map((item, index) => (
               <View key={index} style={styles.menuCardWrapper}>
-                <FoodCard food={item} onPress={() => { }} compact />
+                <FoodCard
+                  food={item}
+                  onPress={() => navigation.navigate('FoodDetail', { food: item })}
+                  compact
+                />
               </View>
             ))}
           </View>

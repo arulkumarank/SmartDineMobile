@@ -49,6 +49,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/x86_64/RNMapsSpecs_autolinked_build/cmake_install.cmake")
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/x86_64/safeareacontext_autolinked_build/cmake_install.cmake")
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/x86_64/rnscreens_autolinked_build/cmake_install.cmake")
+  include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/x86_64/rnsvg_autolinked_build/cmake_install.cmake")
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/x86_64/RNVectorIconsSpec_autolinked_build/cmake_install.cmake")
 
 endif()

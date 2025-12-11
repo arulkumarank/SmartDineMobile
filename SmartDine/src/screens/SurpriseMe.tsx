@@ -9,11 +9,13 @@ import {
     Animated,
     Dimensions,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI } from '../services/api';
 import type { Food } from '../types';
 
 const { width } = Dimensions.get('window');
+const SURPRISE_STORAGE_KEY = '@surprise_last_loaded';
 
 export default function SurpriseMe({ navigation }: any) {
     const [food, setFood] = useState<any>(null);
@@ -22,10 +24,30 @@ export default function SurpriseMe({ navigation }: any) {
     const scaleAnim = useState(new Animated.Value(0))[0];
     const confettiAnim = useState(new Animated.Value(0))[0];
 
-    // Auto-fetch on mount
+    // Auto-fetch on mount if not loaded today
     useEffect(() => {
-        getRandomFood();
+        checkAndLoadSurprise();
     }, []);
+
+    const checkAndLoadSurprise = async () => {
+        try {
+            const lastLoaded = await AsyncStorage.getItem(SURPRISE_STORAGE_KEY);
+            const today = new Date().toDateString();
+
+            if (lastLoaded !== today) {
+                // Not loaded today, fetch new surprise
+                await getRandomFood();
+                await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, today);
+            } else {
+                // Already loaded today, show message
+                console.log('Surprise already loaded today');
+            }
+        } catch (error) {
+            console.error('Error checking last load date:', error);
+            // On error, just load anyway
+            getRandomFood();
+        }
+    };
 
     const getRandomFood = async () => {
         setLoading(true);
@@ -74,6 +96,13 @@ export default function SurpriseMe({ navigation }: any) {
         }
     };
 
+    const handleRefresh = async () => {
+        // Manual refresh - update last loaded date and fetch new
+        const today = new Date().toDateString();
+        await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, today);
+        await getRandomFood();
+    };
+
     return (
         <View style={styles.container}>
             {/* Celebratory Background */}
@@ -114,6 +143,15 @@ export default function SurpriseMe({ navigation }: any) {
                     <View style={styles.loadingContainer}>
                         <ActivityIndicator size="large" color="#ff6b00" />
                         <Text style={styles.loadingText}>Creating magic...</Text>
+                    </View>
+                )}
+
+                {!loading && !food && (
+                    <View style={styles.emptyState}>
+                        <Icon name="calendar-check" size={80} color="#ddd" />
+                        <Text style={styles.emptyText}>You've already received your</Text>
+                        <Text style={styles.emptyText}>surprise for today!</Text>
+                        <Text style={styles.emptyHint}>Come back tomorrow or tap refresh ↻</Text>
                     </View>
                 )}
 
@@ -195,15 +233,16 @@ export default function SurpriseMe({ navigation }: any) {
                         </View>
                     </Animated.View>
                 )}
-
-                {/* Instruction Text */}
-                <View style={styles.instructionContainer}>
-                    <Icon name="gesture-tap" size={24} color="#ff6b00" />
-                    <Text style={styles.instructionText}>
-                        Tap the ✨ tab again for another surprise!
-                    </Text>
-                </View>
             </View>
+
+            {/* Refresh Button - Bottom Right */}
+            <TouchableOpacity
+                style={styles.refreshButton}
+                onPress={handleRefresh}
+                disabled={loading}
+            >
+                <Icon name="refresh" size={24} color="#fff" />
+            </TouchableOpacity>
         </View>
     );
 }
@@ -265,6 +304,24 @@ const styles = StyleSheet.create({
         marginTop: 16,
         fontSize: 16,
         color: '#666',
+        fontWeight: '600',
+    },
+    emptyState: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        opacity: 0.7,
+    },
+    emptyText: {
+        fontSize: 18,
+        color: '#888',
+        marginTop: 16,
+        textAlign: 'center',
+    },
+    emptyHint: {
+        fontSize: 14,
+        color: '#ff6b00',
+        marginTop: 12,
         fontWeight: '600',
     },
     foodCard: {
@@ -388,16 +445,20 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         color: '#fff',
     },
-    instructionContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    refreshButton: {
+        position: 'absolute',
+        bottom: 30,
+        right: 20,
+        backgroundColor: '#ff6b00',
+        width: 56,
+        height: 56,
+        borderRadius: 28,
         justifyContent: 'center',
-        marginTop: 24,
-        gap: 8,
-    },
-    instructionText: {
-        fontSize: 14,
-        color: '#888',
-        fontWeight: '600',
+        alignItems: 'center',
+        shadowColor: '#ff6b00',
+        shadowOpacity: 0.5,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 10,
     },
 });
