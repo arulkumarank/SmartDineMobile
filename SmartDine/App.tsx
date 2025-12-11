@@ -9,6 +9,7 @@ import Signup from './src/screens/Signup';
 import BottomTabs from './src/navigation/BottomTabs';
 import Restaurant from './src/screens/Restaurant';
 import Map from './src/screens/Map';
+import FoodDetail from './src/screens/FoodDetail';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,11 @@ function AppNavigator() {
             name="Map"
             component={Map}
             options={{ headerShown: true, title: 'Location' }}
+          />
+          <Stack.Screen
+            name="FoodDetail"
+            component={FoodDetail}
+            options={{ headerShown: true, title: 'Food Details' }}
           />
         </Stack.Navigator>
       ) : (
