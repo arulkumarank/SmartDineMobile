@@ -18,15 +18,23 @@ async def get_profile(current_user: dict = Depends(get_current_user)):
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not found")
     
-    return profile
+    # Return with new fields, defaulting to empty arrays if not present
+    return {
+        "name": profile.get("name", ""),
+        "email": profile.get("email", ""),
+        "taste_preference": profile.get("taste_preference"),
+        "taste_preferences": profile.get("taste_preferences", []),
+        "cuisine_preferences": profile.get("cuisine_preferences", []),
+        "dietary_restrictions": profile.get("dietary_restrictions", []),
+    }
 
 
 @router.put("")
 async def update_profile(
     profile_update: UserProfileUpdate,
-    current_user: dict = Depends(get_current_user)
+    current_user: dict = Depends(get_current_user),
 ):
-    """Update user profile"""
+    """Update user profile with new preference fields"""
     update_data = profile_update.dict(exclude_unset=True)
     
     if not update_data:
@@ -35,6 +43,7 @@ async def update_profile(
             detail="No fields to update"
         )
     
+    # Update in database
     result = userdetails_collection.update_one(
         {"username": current_user["username"]},
         {"$set": update_data}
@@ -43,7 +52,19 @@ async def update_profile(
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Profile not found")
     
-    return {"message": "Profile updated successfully"}
+    # Return updated profile
+    updated_user = userdetails_collection.find_one({"username": current_user["username"]})
+    if not updated_user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    return {
+        "name": updated_user.get("name", ""),
+        "email": updated_user.get("email", ""),
+        "taste_preference": updated_user.get("taste_preference"),
+        "taste_preferences": updated_user.get("taste_preferences", []),
+        "cuisine_preferences": updated_user.get("cuisine_preferences", []),
+        "dietary_restrictions": updated_user.get("dietary_restrictions", []),
+    }
 
 
 @router.get("/history")

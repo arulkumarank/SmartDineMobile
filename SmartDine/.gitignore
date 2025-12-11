@@ -1,73 +1,228 @@
-# node modules
-node_modules/
+# ===================================
+# SMARTDINE - React Native .gitignore
+# ===================================
 
-# logs
+# ============ Node ============
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+jspm_packages/
+
+# ============ React Native ============
+# Metro bundler cache
+.metro-health-check*
+.metro
+
+# Expo
+.expo/
+.expo-shared/
+.expo-go/
+web-build/
+
+# ============ Environment Variables ============
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.staging
+
+# Keep example env for reference
+!.env.example
+
+# ============ Build Output ============
+# Android
+android/app/build/
+android/build/
+android/.gradle/
+android/app/.cxx/
+android/captures/
+android/app/release/
+android/app/debug/
+*.apk
+*.aab
+
+# iOS
+ios/build/
+ios/Pods/
+ios/*.xcworkspace
+!ios/*.xcworkspace/contents.xcworkspacedata
+ios/DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# General build
+build/
+dist/
+out/
+*.bundle
+*.map
+
+# ============ OS Files ============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ============ IDE & Editors ============
+# VSCode
+.vscode/
+.vscode-test/
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ, etc)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# ============ Android Studio ============
+.gradle/
+local.properties
+captures/
+.externalNativeBuild
+.cxx/
+*.jks
+*.keystore
+
+# ============ Xcode ============
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+xcuserdata/
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# CocoaPods
+ios/Pods/
+Podfile.lock
+
+# ============ Testing ============
+coverage/
+.nyc_output/
+junit.xml
+test-results/
+**/__tests__/coverage/
+
+# ============ TypeScript ============
+*.tsbuildinfo
+.tsbuildinfo
+
+# ============ Logs ============
+*.log
+logs/
+*.log.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Metro cache
-.expo/
-.expo-shared/
-.expo-go/
-.expo/web-build/
+# ============ Temporary Files ============
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.cache/
 
-# Build directories
-android/app/build/
-android/build/
-android/app/.cxx/
-ios/build/
-build/
-dist/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Xcode
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-xcuserdata/
-DerivedData/
-*.xcworkspace
-
-# Android Studio
-.idea/
-.gradle/
-local.properties
-
-# typings
-*.tsbuildinfo
-
-# dotenv
-.env
-.env.local
-.env.production
-
-# fastlane
+# ============ Fastlane ============
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+fastlane/test_output
+fastlane/.env
 
-# bundler
-*.bundle
-*.map
+# ============ Buck ============
+buck-out/
+.buckd/
+.buckconfig.local
+*.keystore
+!debug.keystore
 
-# lock files (optional, if you like clean install)
+# ============ Firebase / Google Services ============
+# Keep these secure - never commit!
+google-services.json
+GoogleService-Info.plist
+firebase-debug.log
+
+# ============ API Keys & Secrets ============
+# Never commit these!
+secrets.json
+.secrets
+*.pem
+*.p12
+*.key
+*.cert
+
+# ============ Documentation Build ============
+docs/_build/
+site/
+
+# ============ Misc ============
+.watchmanconfig
+.eslintcache
+.stylelintcache
+
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# Optional: Lock files (uncomment if you want to ignore)
 # yarn.lock
 # package-lock.json
 
-# Buck
-buck-out/
-.buckconfig.local
+# ============ SmartDine Specific ============
+# Backup files
+*.backup
+*.bak
 
-# JetBrains
-*.iml
+# Extra documentation (keep only README.md)
+RESTART_GUIDE.md
+GITIGNORE_UPDATE.md
+ENV_CONFIG.md
+GOOGLE_MAPS_SETUP.md
 
-# VS Code
-.vscode/
+# Local configuration overrides
+config.local.js
+config.local.ts
 
-# firebase/google config (keep safe)
-google-services.json
-GoogleService-Info.plist
+# ============ Keep These Files ============
+# Example configurations
+!.env.example
+!config.example.js
+!google-services.example.json
+
+# Documentation
+!README.md
+!CONTRIBUTING.md
+!LICENSE
+!CHANGELOG.md

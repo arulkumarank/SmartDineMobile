@@ -48,7 +48,7 @@ export default function FoodCard({ food, onPress, compact = false }: Props) {
 
                 <View style={styles.row}>
                     <Text style={compact ? styles.priceCompact : styles.price}>
-                        ${typeof food.price === 'number' ? food.price.toFixed(2) : food.price}
+                        ₹{typeof food.price === 'number' ? food.price.toFixed(0) : food.price}
                     </Text>
                 </View>
 

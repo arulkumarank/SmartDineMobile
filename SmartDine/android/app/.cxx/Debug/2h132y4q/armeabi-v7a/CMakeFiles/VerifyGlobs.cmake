@@ -37,6 +37,56 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/RNCConfigSpec-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/ComponentDescriptors.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/EventEmitters.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/Props.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/RNCConfigSpecJSI-generated.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/ShadowNodes.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-config/android/build/generated/source/codegen/jni/react/renderer/components/RNCConfigSpec/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/RNMapsSpecs-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/*.cpp")
+set(OLD_GLOB
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/ComponentDescriptors.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/EventEmitters.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/Props.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/RNMapsSpecsJSI-generated.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/ShadowNodes.cpp"
+  "D:/DeltaForge/SmartDine/node_modules/react-native-maps/android/src/main/jni/react/renderer/components/RNMapsSpecs/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # LIB_CUSTOM_SRCS at D:/DeltaForge/SmartDine/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:12 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "D:/DeltaForge/SmartDine/node_modules/react-native-safe-area-context/android/src/main/jni/*.cpp")
 set(OLD_GLOB

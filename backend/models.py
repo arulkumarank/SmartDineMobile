@@ -28,14 +28,18 @@ class TokenData(BaseModel):
 class UserProfile(BaseModel):
     name: str
     email: EmailStr
-    taste_preference: Optional[str] = None  # modern, comfort, traditional
+    taste_preference: Optional[str] = None  # Legacy: modern, comfort, traditional
+    taste_preferences: Optional[List[str]] = []  # New: spicy, sweet, sour, savory, mild
+    cuisine_preferences: Optional[List[str]] = []  # italian, indian, mexican, chinese, etc.
     dietary_restrictions: Optional[List[str]] = []  # vegetarian, gluten-free, etc.
 
 
 class UserProfileUpdate(BaseModel):
     name: Optional[str] = None
     email: Optional[EmailStr] = None
-    taste_preference: Optional[str] = None
+    taste_preference: Optional[str] = None  # Legacy
+    taste_preferences: Optional[List[str]] = None  # New
+    cuisine_preferences: Optional[List[str]] = None  # New
     dietary_restrictions: Optional[List[str]] = None
 
 

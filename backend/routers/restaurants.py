@@ -8,6 +8,17 @@ router = APIRouter(prefix="/restaurants", tags=["restaurants"])
 def get_restaurants():
     """Get all restaurants with location data for map display"""
     try:
-        return {"restaurants": docs, "count": len(docs)}
+        # Filter restaurants that have valid location data
+        restaurants_with_location = [
+            doc for doc in docs 
+            if doc.get('location') and 
+               doc['location'].get('latitude') and 
+               doc['location'].get('longitude')
+        ]
+        return {
+            "restaurants": restaurants_with_location, 
+            "count": len(restaurants_with_location)
+        }
     except Exception as e:
-        return {"error": str(e), "restaurants": []}
+        return {"error": str(e), "restaurants": [], "count": 0}
+
