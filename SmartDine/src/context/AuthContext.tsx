@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios, { AxiosError } from 'axios';
 import { authAPI } from '../services/api';
 import type { User, LoginCredentials, SignupData } from '../types';
 
@@ -41,20 +42,37 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const login = async (credentials: LoginCredentials) => {
         try {
-            await authAPI.login(credentials);
+            console.log('Logging in user:', credentials.username);
+            const authResponse = await authAPI.login(credentials);
+            console.log('Login successful, fetching user data...');
+
             const userData = await authAPI.getMe();
+            console.log('User data fetched:', userData);
             setUser(userData);
         } catch (error) {
+            console.error('Login error:', error);
+            if (axios.isAxiosError(error)) {
+                console.error('Error response:', error.response?.data);
+            }
             throw error;
         }
     };
 
     const signup = async (data: SignupData) => {
         try {
-            await authAPI.signup(data);
+            console.log('Starting signup for:', data.username);
+            const signupResponse = await authAPI.signup(data);
+            console.log('Signup response:', signupResponse);
+
             // Auto login after signup
+            console.log('Attempting auto-login...');
             await login({ username: data.username, password: data.password });
+            console.log('Auto-login successful');
         } catch (error) {
+            console.error('Signup error:', error);
+            if (axios.isAxiosError(error)) {
+                console.error('Error response:', error.response?.data);
+            }
             throw error;
         }
     };

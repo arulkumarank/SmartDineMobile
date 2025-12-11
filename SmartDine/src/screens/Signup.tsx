@@ -8,6 +8,7 @@ import {
     Alert,
     ActivityIndicator,
 } from 'react-native';
+import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 export default function Signup({ navigation }: any) {
@@ -33,10 +34,22 @@ export default function Signup({ navigation }: any) {
             await signup({ username, email, password });
             // Navigation will happen automatically via AuthContext
         } catch (error: any) {
-            Alert.alert(
-                'Signup Failed',
-                error.response?.data?.detail || 'Could not create account',
-            );
+            let errorMessage = 'Could not create account';
+
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    // Server responded with error
+                    errorMessage = error.response.data?.detail || 'Account creation failed';
+                } else if (error.request) {
+                    // No response from server
+                    errorMessage = 'Cannot connect to server. Please check your internet connection.';
+                } else {
+                    // Other axios errors
+                    errorMessage = 'Network error occurred';
+                }
+            }
+
+            Alert.alert('Signup Failed', errorMessage);
         } finally {
             setLoading(false);
         }

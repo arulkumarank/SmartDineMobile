@@ -26,6 +26,7 @@ class TokenData(BaseModel):
 
 # User Profile Models
 class UserProfile(BaseModel):
+    username: Optional[str] = None
     name: str
     email: EmailStr
     taste_preference: Optional[str] = None  # Legacy: modern, comfort, traditional

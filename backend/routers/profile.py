@@ -20,6 +20,7 @@ async def get_profile(current_user: dict = Depends(get_current_user)):
     
     # Return with new fields, defaulting to empty arrays if not present
     return {
+        "username": profile.get("username"),
         "name": profile.get("name", ""),
         "email": profile.get("email", ""),
         "taste_preference": profile.get("taste_preference"),
@@ -58,6 +59,7 @@ async def update_profile(
         raise HTTPException(status_code=404, detail="User not found")
 
     return {
+        "username": updated_user.get("username"),
         "name": updated_user.get("name", ""),
         "email": updated_user.get("email", ""),
         "taste_preference": updated_user.get("taste_preference"),

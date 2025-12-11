@@ -8,6 +8,7 @@ import {
     Alert,
     ActivityIndicator,
 } from 'react-native';
+import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login({ navigation }: any) {
@@ -27,10 +28,22 @@ export default function Login({ navigation }: any) {
             await login({ username, password });
             // Navigation will happen automatically via AuthContext
         } catch (error: any) {
-            Alert.alert(
-                'Login Failed',
-                error.response?.data?.detail || 'Invalid credentials',
-            );
+            let errorMessage = 'Invalid credentials';
+
+            if (axios.isAxiosError(error)) {
+                if (error.response) {
+                    // Server responded with error
+                    errorMessage = error.response.data?.detail || 'Login failed';
+                } else if (error.request) {
+                    // No response from server
+                    errorMessage = 'Cannot connect to server. Please check your internet connection.';
+                } else {
+                    // Other axios errors
+                    errorMessage = 'Network error occurred';
+                }
+            }
+
+            Alert.alert('Login Failed', errorMessage);
         } finally {
             setLoading(false);
         }

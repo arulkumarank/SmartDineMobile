@@ -4,14 +4,17 @@
 export interface User {
     username: string;
     email: string;
+    created_at?: string;  // Optional - returned by backend but not always used
 }
 
 export interface UserProfile {
-    username: string;
+    username?: string;  // Optional - backend doesn't return this
     name: string;
     email: string;
-    taste_preference: string; // modern, comfort, traditional
-    dietary_restrictions: string[];
+    taste_preference?: string | null; // modern, comfort, traditional (legacy)
+    taste_preferences?: string[]; // spicy, sweet, sour, savory, mild
+    cuisine_preferences?: string[]; // italian, indian, mexican, chinese, etc.
+    dietary_restrictions?: string[]; // vegetarian, gluten-free, etc.
 }
 
 export interface LoginCredentials {
