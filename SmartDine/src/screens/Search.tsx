@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   StyleSheet,
@@ -22,6 +22,7 @@ type FilterState = {
 };
 
 export default function Search({ navigation }: any) {
+  const scrollViewRef = useRef<ScrollView>(null);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<{ foods: Food[]; restaurants: Restaurant[] }>({ foods: [], restaurants: [] });
   const [loading, setLoading] = useState(false);
@@ -133,23 +134,31 @@ export default function Search({ navigation }: any) {
     }));
   };
 
+  const handleSearchFocus = () => {
+    // Scroll to top when search box is focused
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
+
   const showFoods = query.length > 0 || filters.taste.length > 0;
 
   return (
     <View style={styles.container}>
-      {/* Fixed Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Search</Text>
-        <Text style={styles.subtitle}>{showFoods ? 'Find foods' : 'Browse restaurants'}</Text>
-      </View>
+      {/* Fixed Header with Search */}
+      <View style={styles.stickyHeader}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Search</Text>
+          <Text style={styles.subtitle}>{showFoods ? 'Find foods' : 'Browse restaurants'}</Text>
+        </View>
 
-      {/* Search Bar */}
-      <View style={styles.searchSection}>
-        <SearchBar
-          value={query}
-          onChangeText={setQuery}
-          placeholder="Search restaurants or foods..."
-        />
+        {/* Search Bar - Stays sticky */}
+        <View style={styles.searchSection}>
+          <SearchBar
+            value={query}
+            onChangeText={setQuery}
+            placeholder="Search restaurants or foods..."
+            onFocus={handleSearchFocus}
+          />
+        </View>
       </View>
 
       {/* Filter Toggle - Expandable */}
@@ -215,7 +224,7 @@ export default function Search({ navigation }: any) {
       )}
 
       {/* Results */}
-      <ScrollView style={styles.resultsScroll} showsVerticalScrollIndicator={false}>
+      <ScrollView ref={scrollViewRef} style={styles.resultsScroll} showsVerticalScrollIndicator={false}>
         <Text style={styles.resultsCount}>
           {showFoods ? `${results.foods.length} Foods` : `${results.restaurants.length} Restaurants`}
         </Text>
@@ -268,6 +277,15 @@ export default function Search({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f8f9fa' },
+  stickyHeader: {
+    backgroundColor: '#fff',
+    zIndex: 10,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 4 }
+  },
   header: { paddingTop: 60, paddingHorizontal: 20, paddingBottom: 16, backgroundColor: '#fff', borderBottomLeftRadius: 25, borderBottomRightRadius: 25 },
   title: { fontSize: 28, fontWeight: '800', color: '#1a1a1a', marginBottom: 4 },
   subtitle: { fontSize: 15, color: '#666' },

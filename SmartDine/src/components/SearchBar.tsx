@@ -7,9 +7,10 @@ interface Props {
   onChangeText: (text: string) => void;
   onSubmit?: () => void;
   placeholder?: string;
+  onFocus?: () => void;
 }
 
-export default function SearchBar({ value, onChangeText, placeholder, onSubmit }: Props) {
+export default function SearchBar({ value, onChangeText, placeholder, onSubmit, onFocus }: Props) {
   return (
     <View
       style={{
@@ -41,6 +42,7 @@ export default function SearchBar({ value, onChangeText, placeholder, onSubmit }
         onChangeText={onChangeText}
         returnKeyType="search"
         onSubmitEditing={onSubmit}
+        onFocus={onFocus}
       />
     </View>
   );
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 10,
     elevation: 4,
-    flex:1
+    flex: 1
   },
   input: {
     marginLeft: 10,
