@@ -53,11 +53,36 @@ export default function Home({ navigation }: any) {
       const aiRes = await aiAPI.ask(question);
       console.log('AI Response:', aiRes);
 
-      // Extract only the first descriptive paragraph (before recommendations)
+      // Extract crisp AI response (just the first sentence)
       const fullText = aiRes.answer || '';
-      const lines = fullText.split('\n');
-      const descText = lines.slice(0, 3).join(' ').replace(/\*\*/g, '').trim();
-      setAiText(descText);
+      const sentences = fullText.split('.');
+      const crispText = sentences[0] + '.' || '';
+      setAiText(crispText.replace(/\*\*/g, '').trim());
+
+      // Parse AI response to extract food names
+      const foodNames: string[] = [];
+      const restaurantNames: string[] = [];
+
+      // Extract food names from AI response (look for quoted items or bullet points)
+      const responseLines = fullText.split('\n');
+      responseLines.forEach(line => {
+        // Match patterns like "Butter Chicken" or - Butter Chicken
+        const quotedMatch = line.match(/["']([^"']+)["']/g);
+        const bulletMatch = line.match(/^[•\-*]\s*(.+?)(?:\s*\(|$)/);
+
+        if (quotedMatch) {
+          quotedMatch.forEach(match => {
+            const name = match.replace(/["']/g, '').trim();
+            if (name.length > 3) foodNames.push(name);
+          });
+        }
+        if (bulletMatch) {
+          const name = bulletMatch[1].trim();
+          if (name.length > 3) foodNames.push(name);
+        }
+      });
+
+      console.log('AI suggested foods:', foodNames);
 
       // Get all data
       const [foodsRes, restaurantsRes] = await Promise.all([
@@ -65,56 +90,76 @@ export default function Home({ navigation }: any) {
         restaurantsAPI.getAll()
       ]);
 
-      console.log('Foods Response:', foodsRes);
-      console.log('Restaurants Response:', restaurantsRes);
-
-      // Filter foods - match any part of the query
-      const queryLower = question.toLowerCase();
       const allFoods = foodsRes.foods || [];
       const allRestaurants = restaurantsRes.restaurants || [];
 
-      // Try to find matching foods based on query keywords
-      const queryWords = queryLower.split(' ').filter(word => word.length > 2);
+      // Match foods based on AI suggestions
+      let matchedFoods: Food[] = [];
 
-      let matchedFoods = allFoods.filter((f: Food) => {
-        const nameMatch = f.name.toLowerCase().includes(queryLower);
-        const restaurantMatch = f.restaurant.toLowerCase().includes(queryLower);
-        const cuisineMatch = f.cuisine && f.cuisine.toLowerCase().includes(queryLower);
-
-        // Check if any query word matches
-        const wordMatch = queryWords.some(word =>
-          f.name.toLowerCase().includes(word) ||
-          f.restaurant.toLowerCase().includes(word) ||
-          (f.cuisine && f.cuisine.toLowerCase().includes(word)) ||
-          (f.tags && f.tags.some(tag => tag.toLowerCase().includes(word)))
+      if (foodNames.length > 0) {
+        // Try to find exact or partial matches with AI-suggested names
+        matchedFoods = allFoods.filter((f: Food) =>
+          foodNames.some(aiName =>
+            f.name.toLowerCase().includes(aiName.toLowerCase()) ||
+            aiName.toLowerCase().includes(f.name.toLowerCase())
+          )
         );
-
-        return nameMatch || restaurantMatch || cuisineMatch || wordMatch;
-      });
-
-      // If no matches found, show all foods (AI will still provide relevant context)
-      if (matchedFoods.length === 0) {
-        console.log('No exact matches found, showing all available foods');
-        matchedFoods = allFoods;
       }
 
-      const matchedRestaurants = allRestaurants.filter((r: Restaurant) =>
-        r.name.toLowerCase().includes(queryLower) ||
-        r.cuisine.toLowerCase().includes(queryLower) ||
-        queryWords.some(word =>
-          r.name.toLowerCase().includes(word) ||
-          r.cuisine.toLowerCase().includes(word)
-        )
-      );
+      // Fallback: if no AI matches, use semantic matching with query
+      if (matchedFoods.length === 0) {
+        const queryLower = question.toLowerCase();
+        const queryWords = queryLower.split(' ').filter(word => word.length > 2);
 
-      console.log('Matched Foods:', matchedFoods.length);
-      console.log('Matched Restaurants:', matchedRestaurants.length);
+        matchedFoods = allFoods.filter((f: Food) => {
+          const nameMatch = f.name.toLowerCase().includes(queryLower);
+          const cuisineMatch = f.cuisine && f.cuisine.toLowerCase().includes(queryLower);
+          const wordMatch = queryWords.some(word =>
+            f.name.toLowerCase().includes(word) ||
+            (f.cuisine && f.cuisine.toLowerCase().includes(word))
+          );
+          return nameMatch || cuisineMatch || wordMatch;
+        });
+      }
+
+      // If still no matches, show top rated items
+      if (matchedFoods.length === 0) {
+        console.log('Using fallback: showing top rated foods');
+        matchedFoods = allFoods.sort((a: Food, b: Food) => (b.rating || 0) - (a.rating || 0));
+      }
+
+      console.log('Final matched foods:', matchedFoods.length);
 
       setSuggestedFoods(matchedFoods.slice(0, 10));
-      setSuggestedRestaurants(matchedRestaurants.slice(0, 3));
-    } catch (error) {
-      console.error('AI error:', error);
-      setAiText('Could not get recommendations. Please try again.');
+      setSuggestedRestaurants(allRestaurants.slice(0, 3));
+    } catch (error: any) {
+      console.error('AI/Search error:', error);
+      console.error('Error response:', error.response?.data);
+      console.error('Error status:', error.response?.status);
+
+      // Set appropriate error message
+      if (error.response?.status === 401) {
+        setAiText('Please log in again to get AI recommendations.');
+      } else if (error.response?.status === 500) {
+        setAiText('AI is temporarily unavailable. Showing popular foods instead.');
+      } else if (!error.response) {
+        setAiText('Network error. Showing popular foods instead.');
+      } else {
+        setAiText('Could not get AI recommendations. Showing popular items.');
+      }
+
+      // ALWAYS show fallback foods when AI fails
+      try {
+        const foodsRes = await foodsAPI.getAll();
+        const allFoods = foodsRes.foods || [];
+        console.log('Fallback: showing', allFoods.length, 'foods');
+
+        // Show top foods as fallback (already sets suggestedFoods above)
+        setSuggestedFoods(allFoods.slice(0, 10));
+      } catch (fallbackError) {
+        console.error('Fallback loading failed:', fallbackError);
+        setAiText('Unable to load recommendations. Please check connection.');
+      }
     } finally {
       setLoading(false);
     }

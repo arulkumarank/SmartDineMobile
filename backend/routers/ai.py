@@ -12,13 +12,41 @@ load_dotenv()
 
 router = APIRouter(prefix="/ai", tags=["ai"])
 
-groq_api_key = os.getenv("GROQ_API_KEY")
+# Load both API keys
+groq_api_key_1 = os.getenv("GROQ_API_KEY")
+groq_api_key_2 = os.getenv("GROQ_API_KEY_2")
 url = "https://api.groq.com/openai/v1/chat/completions"
 
-headers = {
-    "Authorization": f"Bearer {groq_api_key}",
-    "Content-Type": "application/json"
-}
+# Track which key to use (simple counter-based rotation)
+request_counter = 0
+
+def get_api_key():
+    """Alternate between two API keys to distribute load"""
+    global request_counter
+    request_counter += 1
+    
+    # If second key exists, alternate between keys
+    if groq_api_key_2:
+        if request_counter % 2 == 0:
+            print(f"🔑 Using API Key 2")
+            return groq_api_key_2
+        else:
+            print(f"🔑 Using API Key 1")
+            return groq_api_key_1
+    else:
+        print(f"🔑 Using single API Key")
+        return groq_api_key_1
+
+def get_headers(api_key):
+    """Get headers with specified API key"""
+    return {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+
+# Vector search feature flag
+USE_VECTOR_SEARCH = os.getenv("USE_VECTOR_SEARCH", "false").lower() == "true"
 
 
 @router.post("/ask")
@@ -53,122 +81,63 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
 {search_context}
 """
     
+    # Get food database - with vector search if enabled
+    docs = ""
+    search_method = "Full Database"
+    
+    try:
+        if USE_VECTOR_SEARCH:
+            # NEW: Use vector search to get only relevant foods
+            try:
+                from services.vector_search import search_foods
+                docs = search_foods(data.question, k=5)
+                search_method = "Vector Search (5 foods)"
+                print(f"✅ Using vector search for query: '{data.question}'")
+            except ImportError as e:
+                print(f"⚠️ Vector search not available: {e}, falling back to full DB")
+                docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in docs])
+            except Exception as e:
+                print(f"⚠️ Vector search failed: {e}, falling back to full DB")
+                docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in docs])
+        
+        # OLD: Use full database (fallback or default)
+        if not docs or not USE_VECTOR_SEARCH:
+            all_docs = list(docs)
+            docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in all_docs])
+            search_method = f"Full Database ({len(all_docs)} foods)"
+            print(f"📚 Using full database")
+            
+    except Exception as e:
+        print(f"❌ Error getting food database: {e}, using fallback")
+        # Ultimate fallback - get from MongoDB directly
+        all_docs = list(docs)
+        docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in all_docs])
+        search_method = "Fallback"
+    
+    print(f"🔍 Search method used: {search_method}")
+    
     prompt = f"""
-You are SmartDine AI.
+You are SmartDine AI. Recommend food from database.
 
-Your purpose:
-Recommend food and restaurants using the user's message, their taste preferences, cuisine preferences, and the full SmartDine database.
+USER QUERY: {data.question}
 
-User message:
-"{data.question}"
-
-User profile preferences (taste, cuisine, diet, mood):
-{user_preferences if user_preferences else "Not Available"}
-
-Database of restaurants and menus:
+FOOD DATABASE:
 {docs}
 
----------------------------------------
-OUTPUT RULES
----------------------------------------
+RULES:
+- Match query to taste/style/nutrition  
+- Return 3-5 foods from database only
+- Use EXACT food names
 
-1️⃣ SHORT, SIMPLE, SHINING FIRST LINE  
-Generate exactly ONE short sentence like examples below:
+OUTPUT:
+One crisp sentence (max 12 words) with food names in "quotes".
 
-Examples:
-• "Here are foods that match your taste."
-• "Here are foods that match your craving."
-• "Here are foods that match your mood."
-• "Here are foods that match your preference."
-• "Here are foods that match what you searched for."
-
-Do NOT mention user name.
-Do NOT mention 'according to your preference'.
-Do NOT mention SmartDine.
-Keep it friendly and clean.
-
-2️⃣ JSON OUTPUT FOR THE APP  
-After the sentence, output a clean JSON object with TWO arrays:
-
-{{
-  "foods": [
-      {{ 
-        "name": "",
-        "restaurant": "",
-        "price": "",
-        "spicy": "",
-        "diet": "",
-        "image": ""
-      }}
-  ],
-  "restaurants": [
-      {{
-        "name": "",
-        "cuisine": "",
-        "rating": "",
-        "image": "",
-        "location_link": ""
-      }}
-  ]
-}}
-
-3️⃣ MATCHING LOGIC  
-Use these rules to find food matches:
-- match taste words: spicy, crispy, sweet, tangy, creamy, juicy, mild, hot  
-- match nutrition words: protein, healthy, low calorie  
-- match cooking styles: fried, grilled, biryani, pizza  
-- match ingredients: chicken, paneer, rice, noodles  
-- match cuisine: Indian, Chinese, Italian, Fast Food, Japanese, Mexican  
-
-If user has profile preferences:
-- boost foods that match taste preference  
-- boost restaurants that match cuisine preference  
-
-4️⃣ RESTAURANT MAP LINK  
-For "location_link", generate a working Google Maps query:
-Example:
-https://www.google.com/maps/search/?api=1&query=Spice+Symphony+Chennai
-
-Never leave it empty.
-
-5️⃣ SURPRISE ME MODE  
-If user message contains:
-- "surprise me"
-- "something new"
-- "give me something different"
-
-Choose a dish:
-- not previously suggested to this user
-- from any cuisine
-- preferably unique or uncommon  
-Return JSON normally.
-
-6️⃣ TYPOS & SPELLING MISTAKES  
-If the user types a wrong spelling:
-- try to understand intent
-- match with closest cuisine or dish  
-Never return empty.
-
-7️⃣ FOOD DETAIL PAGE SUPPORT  
-If user clicks a food card and asks "tell me more":
-Provide:
-- taste profile (spicy/mild/creamy/juicy/etc.)
-- texture (crispy/soft/fluffy/thick/etc.)
-- recommended sides
-- cooking style
-- best time to eat
-- description in natural language  
-Still return in the same format:  
-Short sentence + JSON (foods contains only that one dish)
-
-8️⃣ NEVER INVENT RESTAURANT NAMES  
-You may invent descriptive text,
-BUT **food items MUST exist** from menus in the database.
-
----------------------------------------
-
-Now generate the response using the above rules.
-"""
+EXAMPLES:
+"Spicy delights: \"Chicken Biryani\", \"Chilli Chicken\", \"Paneer Tikka\"."
+"Comfort foods: \"Butter Chicken\", \"Dal Makhani\", \"Garlic Naan\"."
+"Healthy picks: \"Grilled Salad\", \"Quinoa Bowl\", \"Fruit Yogurt\"."
+"Feeling sick: mild taste foods from database."
+Generate now."""
     
     payload = {
         "model": "llama-3.1-8b-instant",
@@ -178,14 +147,26 @@ Now generate the response using the above rules.
         "temperature": 0.6
     }
 
+    # Get API key and headers
+    api_key = get_api_key()
+    headers = get_headers(api_key)
+
     try:
         response = requests.post(url, headers=headers, json=payload, timeout=10)
+        print(f"✅ GROQ API Status: {response.status_code}")
+        
         result = response.json()
+        print(f"✅ GROQ API Response keys: {result.keys()}")
 
         if "choices" not in result:
+            print(f"❌ No 'choices' in response. Full response: {result}")
+            if "error" in result:
+                error_msg = result.get("error", {}).get("message", "Unknown error")
+                return {"answer": f"AI service error: {error_msg}"}
             return {"answer": "Sorry, AI is unavailable at the moment."}
 
         answer = result["choices"][0]["message"]["content"]
+        print(f"✅ AI Answer generated: {answer[:100]}...")
 
         # Save AI response
         response_collection.insert_one({
@@ -204,5 +185,14 @@ Now generate the response using the above rules.
 
         return {"answer": answer}
     
+    except requests.exceptions.Timeout:
+        print("❌ GROQ API timeout")
+        return {"answer": "AI service is taking too long. Please try again."}
+    except requests.exceptions.RequestException as e:
+        print(f"❌ GROQ API request error: {str(e)}")
+        return {"answer": f"AI service connection error: {str(e)}"}
     except Exception as e:
-        return {"answer": f"Error: {str(e)}"}
+        print(f"❌ Unexpected error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return {"answer": f"Unexpected error: {str(e)}"}

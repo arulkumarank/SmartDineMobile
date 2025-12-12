@@ -59,6 +59,52 @@ export default function Search({ navigation }: any) {
     }
   };
 
+  // Fuzzy search helper - allows typos using Levenshtein distance
+  const fuzzyMatch = (str: string, query: string): boolean => {
+    if (!str || !query) return false;
+
+    const strLower = str.toLowerCase();
+    const queryLower = query.toLowerCase();
+
+    // Exact or substring match
+    if (strLower.includes(queryLower)) return true;
+
+    // Levenshtein distance for typo tolerance
+    const getDistance = (a: string, b: string): number => {
+      const matrix: number[][] = [];
+
+      for (let i = 0; i <= b.length; i++) {
+        matrix[i] = [i];
+      }
+
+      for (let j = 0; j <= a.length; j++) {
+        matrix[0][j] = j;
+      }
+
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i - 1) === a.charAt(j - 1)) {
+            matrix[i][j] = matrix[i - 1][j - 1];
+          } else {
+            matrix[i][j] = Math.min(
+              matrix[i - 1][j - 1] + 1,
+              matrix[i][j - 1] + 1,
+              matrix[i - 1][j] + 1
+            );
+          }
+        }
+      }
+
+      return matrix[b.length][a.length];
+    };
+
+    // Allow 1-2 character difference based on query length
+    const maxDistance = queryLower.length <= 4 ? 1 : 2;
+    const distance = getDistance(strLower, queryLower);
+
+    return distance <= maxDistance;
+  };
+
   const applyFilters = () => {
     setLoading(true);
     Promise.all([foodsAPI.getAll(), restaurantsAPI.getAll()])
@@ -70,13 +116,15 @@ export default function Search({ navigation }: any) {
         let filteredRestaurants = restaurantsRes.restaurants || [];
 
         if (query) {
+          // Use fuzzy matching for typo tolerance
           filteredFoods = filteredFoods.filter(f =>
-            f.name.toLowerCase().includes(query.toLowerCase()) ||
-            f.restaurant.toLowerCase().includes(query.toLowerCase())
+            fuzzyMatch(f.name, query) ||
+            fuzzyMatch(f.restaurant, query) ||
+            fuzzyMatch(f.cuisine || '', query)
           );
           filteredRestaurants = filteredRestaurants.filter(r =>
-            r.name.toLowerCase().includes(query.toLowerCase()) ||
-            r.cuisine.toLowerCase().includes(query.toLowerCase())
+            fuzzyMatch(r.name, query) ||
+            fuzzyMatch(r.cuisine, query)
           );
         }
 
