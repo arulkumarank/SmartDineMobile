@@ -124,20 +124,24 @@ USER QUERY: {data.question}
 FOOD DATABASE:
 {docs}
 
+OUTPUT (JSON only):
+{{
+  "message": "Here are foods for your mood",
+  "foods": ["Food1", "Food2", "Food3"]
+}}
+
+MESSAGE EXAMPLES (NO food names):
+- "Here are foods perfect for your mood"
+- "These traditional dishes will delight you  "
+- "Here are foods matching your taste"
+- "These foods will enhance your mood"
+- "Perfect picks for feeling sick"
+
 RULES:
-- Match query to taste/style/nutrition  
-- Return 3-5 foods from database only
-- Use EXACT food names
+- message: Short, NO food names
+- foods: 3-5 EXACT names from database
 
-OUTPUT:
-One crisp sentence (max 12 words) with food names in "quotes".
-
-EXAMPLES:
-"Spicy delights: \"Chicken Biryani\", \"Chilli Chicken\", \"Paneer Tikka\"."
-"Comfort foods: \"Butter Chicken\", \"Dal Makhani\", \"Garlic Naan\"."
-"Healthy picks: \"Grilled Salad\", \"Quinoa Bowl\", \"Fruit Yogurt\"."
-"Feeling sick: mild taste foods from database."
-Generate now."""
+Generate JSON."""
     
     payload = {
         "model": "llama-3.1-8b-instant",
@@ -166,13 +170,26 @@ Generate now."""
             return {"answer": "Sorry, AI is unavailable at the moment."}
 
         answer = result["choices"][0]["message"]["content"]
-        print(f"✅ AI Answer generated: {answer[:100]}...")
+        print(f"✅ AI Answer: {answer[:100]}...")
+
+        # Parse JSON response
+        try:
+            import json
+            parsed = json.loads(answer)
+            message = parsed.get("message", answer)
+            foods = parsed.get("foods", [])
+            print(f"✅ Parsed - Message: {message}, Foods: {foods}")
+        except:
+            message = answer
+            foods = []
+            print(f"⚠️  Not JSON, using raw")
 
         # Save AI response
         response_collection.insert_one({
             "username": current_user["username"],
             "question": data.question,
-            "answer": answer,
+            "answer": message,
+            "foods": foods,
             "timestamp": datetime.utcnow()
         })
         
@@ -183,7 +200,7 @@ Generate now."""
             "timestamp": datetime.utcnow()
         })
 
-        return {"answer": answer}
+        return {"answer": message, "foods": foods}
     
     except requests.exceptions.Timeout:
         print("❌ GROQ API timeout")

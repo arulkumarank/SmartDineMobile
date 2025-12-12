@@ -87,6 +87,7 @@ export interface RestaurantsResponse {
 
 export interface AIResponse {
     answer: string;
+    foods?: string[];
 }
 
 export interface SearchHistoryItem {

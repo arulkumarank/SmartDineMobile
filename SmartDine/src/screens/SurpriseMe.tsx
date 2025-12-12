@@ -24,70 +24,67 @@ export default function SurpriseMe({ navigation }: any) {
     const scaleAnim = useState(new Animated.Value(0))[0];
     const confettiAnim = useState(new Animated.Value(0))[0];
 
-    // Auto-fetch on mount if not loaded today
+    // Auto-fetch on mount
     useEffect(() => {
         checkAndLoadSurprise();
     }, []);
 
     const checkAndLoadSurprise = async () => {
         try {
-            const lastLoaded = await AsyncStorage.getItem(SURPRISE_STORAGE_KEY);
+            const dataStr = await AsyncStorage.getItem(SURPRISE_STORAGE_KEY);
             const today = new Date().toDateString();
 
-            if (lastLoaded !== today) {
-                // Not loaded today, fetch new surprise
-                await getRandomFood();
-                await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, today);
-            } else {
-                // Already loaded today, show message
-                console.log('Surprise already loaded today');
+            if (dataStr) {
+                const data = JSON.parse(dataStr);
+                if (data.date === today && data.food) {
+                    // Loaded today! Restore food
+                    console.log('Restoring saved surprise:', data.food.name);
+                    setFood(data.food);
+                    animateEntry();
+                    return;
+                }
             }
+
+            // Not loaded today or data missing, fetch new
+            await getRandomFood();
         } catch (error) {
-            console.error('Error checking last load date:', error);
-            // On error, just load anyway
+            console.error('Error loading surprise:', error);
             getRandomFood();
         }
+    };
+
+    const animateEntry = () => {
+        Animated.parallel([
+            Animated.timing(fadeAnim, { toValue: 1, duration: 600, useNativeDriver: true }),
+            Animated.spring(scaleAnim, { toValue: 1, tension: 40, friction: 7, useNativeDriver: true }),
+            Animated.timing(confettiAnim, { toValue: 1, duration: 1000, useNativeDriver: true }),
+        ]).start();
     };
 
     const getRandomFood = async () => {
         setLoading(true);
 
         try {
-            // Get all foods first
             const response = await foodsAPI.getAll();
             const foods = response.foods || [];
 
             if (foods.length > 0) {
                 const randomIndex = Math.floor(Math.random() * foods.length);
                 const randomFood = foods[randomIndex];
-
-                // Get detailed info from API
                 const details = await foodsAPI.getDetail(randomFood.name, randomFood.restaurant);
+
                 setFood(details);
 
-                // Celebration animations
+                // Save to storage
+                const today = new Date().toDateString();
+                const savePayload = JSON.stringify({ date: today, food: details });
+                await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, savePayload);
+
+                // Reset animations before playing
                 fadeAnim.setValue(0);
                 scaleAnim.setValue(0);
                 confettiAnim.setValue(0);
-
-                Animated.parallel([
-                    Animated.timing(fadeAnim, {
-                        toValue: 1,
-                        duration: 600,
-                        useNativeDriver: true,
-                    }),
-                    Animated.spring(scaleAnim, {
-                        toValue: 1,
-                        tension: 40,
-                        friction: 7,
-                        useNativeDriver: true,
-                    }),
-                    Animated.timing(confettiAnim, {
-                        toValue: 1,
-                        duration: 1000,
-                        useNativeDriver: true,
-                    }),
-                ]).start();
+                animateEntry();
             }
         } catch (error) {
             console.error('Failed to get random food:', error);
@@ -97,9 +94,9 @@ export default function SurpriseMe({ navigation }: any) {
     };
 
     const handleRefresh = async () => {
-        // Manual refresh - update last loaded date and fetch new
-        const today = new Date().toDateString();
-        await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, today);
+        // Clear storage to force new fetch
+        await AsyncStorage.removeItem(SURPRISE_STORAGE_KEY);
+        setFood(null); // Reset UI
         await getRandomFood();
     };
 

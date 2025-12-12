@@ -1,0 +1,4158 @@
+[
+  {
+    "name": "Spice Symphony",
+    "cuisine": "North Indian",
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-d10b82359733?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.063918,
+      "longitude": 80.239342,
+      "address": "T. Nagar, Chennai - 600017"
+    },
+    "menu": [
+      {
+        "name": "Butter Chicken",
+        "price": 440,
+        "image": "https://images.unsplash.com/photo-3306ff672fb9?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 3,
+          "calories": 428,
+          "carbs": 32,
+          "fat": 12
+        },
+        "tags": [
+          "vegan",
+          "dessert"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Gajar Halwa",
+        "price": 201,
+        "image": "https://images.unsplash.com/photo-c4ee3a32e12e?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 7,
+          "calories": 366,
+          "carbs": 41,
+          "fat": 18
+        },
+        "tags": [
+          "side",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Garlic Naan",
+        "price": 76,
+        "image": "https://images.unsplash.com/photo-b3cfa092fafc?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 9,
+          "fiber": 3,
+          "calories": 447,
+          "carbs": 73,
+          "fat": 12
+        },
+        "tags": [
+          "side",
+          "bread",
+          "soup",
+          "appetizer"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Gulab Jamun",
+        "price": 81,
+        "image": "https://images.unsplash.com/photo-553766104a76?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 29,
+          "fiber": 5,
+          "calories": 378,
+          "carbs": 26,
+          "fat": 12
+        },
+        "tags": [
+          "breakfast",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Cheesecake",
+        "price": 437,
+        "image": "https://images.unsplash.com/photo-8e80b9f5f261?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 1,
+          "calories": 382,
+          "carbs": 37,
+          "fat": 8
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "bread"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Bombay Brasserie",
+    "cuisine": "North Indian",
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-67f99e276e33?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.06869,
+      "longitude": 80.235473,
+      "address": "Mount Road (Anna Salai), Chennai - 600002"
+    },
+    "menu": [
+      {
+        "name": "Aloo Gobi",
+        "price": 416,
+        "image": "https://images.unsplash.com/photo-1d57f3c30c25?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 13,
+          "fiber": 7,
+          "calories": 570,
+          "carbs": 74,
+          "fat": 29
+        },
+        "tags": [
+          "main",
+          "gluten-free"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Gulab Jamun",
+        "price": 518,
+        "image": "https://images.unsplash.com/photo-b5f2dd26e147?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 39,
+          "fiber": 4,
+          "calories": 495,
+          "carbs": 34,
+          "fat": 17
+        },
+        "tags": [
+          "side",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Chicken Biryani",
+        "price": 577,
+        "image": "https://images.unsplash.com/photo-ca93f6423743?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 11,
+          "fiber": 5,
+          "calories": 333,
+          "carbs": 68,
+          "fat": 27
+        },
+        "tags": [
+          "main",
+          "soup",
+          "rice",
+          "sweet"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Garlic Naan",
+        "price": 533,
+        "image": "https://images.unsplash.com/photo-cc47c97aa162?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 15,
+          "fiber": 1,
+          "calories": 424,
+          "carbs": 63,
+          "fat": 18
+        },
+        "tags": [
+          "side",
+          "bread",
+          "gluten-free",
+          "breakfast"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Red Velvet Cake",
+        "price": 182,
+        "image": "https://images.unsplash.com/photo-dc92fc0f7ebf?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 348,
+          "carbs": 48,
+          "fat": 13
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "vegan"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      }
+    ]
+  },
+  {
+    "name": "Tandoor Flames",
+    "cuisine": "North Indian",
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-1dda7a546865?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.046716,
+      "longitude": 80.25301,
+      "address": "Nungambakkam, Chennai - 600034"
+    },
+    "menu": [
+      {
+        "name": "Butter Chicken",
+        "price": 50,
+        "image": "https://images.unsplash.com/photo-90b206751fc3?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 26,
+          "fiber": 6,
+          "calories": 716,
+          "carbs": 17,
+          "fat": 27
+        },
+        "tags": [
+          "traditional",
+          "rice"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Paneer Tikka",
+        "price": 126,
+        "image": "https://images.unsplash.com/photo-05d934f468d2?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 14,
+          "fiber": 7,
+          "calories": 677,
+          "carbs": 32,
+          "fat": 9
+        },
+        "tags": [
+          "popular",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Aloo Gobi",
+        "price": 176,
+        "image": "https://images.unsplash.com/photo-6c520b5ce362?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 21,
+          "fiber": 2,
+          "calories": 537,
+          "carbs": 27,
+          "fat": 18
+        },
+        "tags": [
+          "breakfast",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      },
+      {
+        "name": "Chicken Biryani",
+        "price": 131,
+        "image": "https://images.unsplash.com/photo-338acd715bc0?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 1,
+          "calories": 520,
+          "carbs": 12,
+          "fat": 10
+        },
+        "tags": [
+          "main",
+          "gluten-free",
+          "rice",
+          "sweet"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Chicken Biryani",
+        "price": 261,
+        "image": "https://images.unsplash.com/photo-a0a57579c186?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 21,
+          "fiber": 2,
+          "calories": 701,
+          "carbs": 44,
+          "fat": 14
+        },
+        "tags": [
+          "main",
+          "dessert",
+          "rice",
+          "salad"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Vanilla Creme Brulee",
+        "price": 74,
+        "image": "https://images.unsplash.com/photo-8f5fbd3b8127?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 3,
+          "calories": 341,
+          "carbs": 40,
+          "fat": 10
+        },
+        "tags": [
+          "appetizer",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "Kerala Cafe",
+    "cuisine": "South Indian",
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-3b35339b50ae?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.043045,
+      "longitude": 80.268032,
+      "address": "Mylapore, Chennai - 600004"
+    },
+    "menu": [
+      {
+        "name": "Filter Coffee",
+        "price": 213,
+        "image": "https://images.unsplash.com/photo-0d4659144bcc?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 2,
+          "calories": 404,
+          "carbs": 68,
+          "fat": 8
+        },
+        "tags": [
+          "vegan",
+          "breakfast"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_vegan": true
+      },
+      {
+        "name": "Sambar",
+        "price": 176,
+        "image": "https://images.unsplash.com/photo-06f7ebebf803?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 28,
+          "fiber": 2,
+          "calories": 533,
+          "carbs": 54,
+          "fat": 26
+        },
+        "tags": [
+          "dessert",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Sambar",
+        "price": 360,
+        "image": "https://images.unsplash.com/photo-19a8a6ae32a0?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 6,
+          "calories": 200,
+          "carbs": 36,
+          "fat": 7
+        },
+        "tags": [
+          "bread",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Medu Vada",
+        "price": 114,
+        "image": "https://images.unsplash.com/photo-89adec0d04b4?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 24,
+          "fiber": 3,
+          "calories": 682,
+          "carbs": 25,
+          "fat": 24
+        },
+        "tags": [
+          "bread",
+          "appetizer",
+          "traditional",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      },
+      {
+        "name": "Rava Dosa",
+        "price": 52,
+        "image": "https://images.unsplash.com/photo-32e93ebf7fc9?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 26,
+          "fiber": 1,
+          "calories": 485,
+          "carbs": 26,
+          "fat": 25
+        },
+        "tags": [
+          "comfort",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 567,
+        "image": "https://images.unsplash.com/photo-cd2a5b8e2794?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 1,
+          "calories": 341,
+          "carbs": 50,
+          "fat": 13
+        },
+        "tags": [
+          "popular",
+          "dessert",
+          "breakfast",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      }
+    ]
+  },
+  {
+    "name": "Dosa Corner",
+    "cuisine": "South Indian",
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-8d1fa68d39bf?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.051311,
+      "longitude": 80.235333,
+      "address": "Teynampet, Chennai - 600018"
+    },
+    "menu": [
+      {
+        "name": "Sambar",
+        "price": 453,
+        "image": "https://images.unsplash.com/photo-574992d3d58b?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 31,
+          "fiber": 6,
+          "calories": 417,
+          "carbs": 36,
+          "fat": 11
+        },
+        "tags": [
+          "vegan",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_gluten_free": true,
+        "is_vegan": true
+      },
+      {
+        "name": "Paper Masala Dosa",
+        "price": 451,
+        "image": "https://images.unsplash.com/photo-95a24e4c649c?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 16,
+          "fiber": 2,
+          "calories": 382,
+          "carbs": 27,
+          "fat": 19
+        },
+        "tags": [
+          "salad",
+          "appetizer"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      },
+      {
+        "name": "Rava Dosa",
+        "price": 341,
+        "image": "https://images.unsplash.com/photo-da9c526cceb6?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 25,
+          "fiber": 1,
+          "calories": 302,
+          "carbs": 11,
+          "fat": 12
+        },
+        "tags": [
+          "main",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Masala Dosa",
+        "price": 126,
+        "image": "https://images.unsplash.com/photo-8a7d2685678c?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 14,
+          "fiber": 2,
+          "calories": 720,
+          "carbs": 77,
+          "fat": 15
+        },
+        "tags": [
+          "noodles",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Rava Dosa",
+        "price": 288,
+        "image": "https://images.unsplash.com/photo-6c998d9775c4?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 15,
+          "fiber": 2,
+          "calories": 740,
+          "carbs": 48,
+          "fat": 10
+        },
+        "tags": [
+          "main",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_vegan": false
+      },
+      {
+        "name": "Cheesecake",
+        "price": 170,
+        "image": "https://images.unsplash.com/photo-ccd3c2cb6476?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 0,
+          "calories": 341,
+          "carbs": 48,
+          "fat": 10
+        },
+        "tags": [
+          "breakfast",
+          "dessert",
+          "popular",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      }
+    ]
+  },
+  {
+    "name": "Dragon Wok",
+    "cuisine": "Chinese",
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-7078fd0ae6b3?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.029397,
+      "longitude": 80.232344,
+      "address": "Guindy, Chennai - 600032"
+    },
+    "menu": [
+      {
+        "name": "Veg Spring Rolls",
+        "price": 348,
+        "image": "https://images.unsplash.com/photo-27d82d8eb912?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 24,
+          "fiber": 2,
+          "calories": 688,
+          "carbs": 60,
+          "fat": 19
+        },
+        "tags": [
+          "side",
+          "bread",
+          "gluten-free",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Honey Chilli Potato",
+        "price": 595,
+        "image": "https://images.unsplash.com/photo-da611f4a9ca4?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 15,
+          "fiber": 7,
+          "calories": 514,
+          "carbs": 36,
+          "fat": 28
+        },
+        "tags": [
+          "rice",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Szechwan Fried Rice",
+        "price": 288,
+        "image": "https://images.unsplash.com/photo-e4dc6fbf3cbc?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 380,
+          "carbs": 30,
+          "fat": 20
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Chicken Manchurian",
+        "price": 422,
+        "image": "https://images.unsplash.com/photo-35d730542c71?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 4,
+          "calories": 512,
+          "carbs": 61,
+          "fat": 16
+        },
+        "tags": [
+          "traditional",
+          "dessert"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Chicken Manchurian",
+        "price": 533,
+        "image": "https://images.unsplash.com/photo-7732fa510e9f?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 27,
+          "fiber": 2,
+          "calories": 558,
+          "carbs": 41,
+          "fat": 17
+        },
+        "tags": [
+          "popular",
+          "fried"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 231,
+        "image": "https://images.unsplash.com/photo-0ea4e3fbccb6?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 3,
+          "calories": 444,
+          "carbs": 47,
+          "fat": 13
+        },
+        "tags": [
+          "salad",
+          "dessert",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      }
+    ]
+  },
+  {
+    "name": "The Chinese Wok",
+    "cuisine": "Chinese",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-7099b3e574b2?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.041788,
+      "longitude": 80.255371,
+      "address": "Anna Nagar, Chennai - 600040"
+    },
+    "menu": [
+      {
+        "name": "Honey Chilli Potato",
+        "price": 123,
+        "image": "https://images.unsplash.com/photo-8c5544290512?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 38,
+          "fiber": 1,
+          "calories": 470,
+          "carbs": 4,
+          "fat": 28
+        },
+        "tags": [
+          "breakfast",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Fried Rice",
+        "price": 550,
+        "image": "https://images.unsplash.com/photo-8ce45af0328d?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 0,
+          "calories": 506,
+          "carbs": 37,
+          "fat": 15
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Chilli Chicken",
+        "price": 114,
+        "image": "https://images.unsplash.com/photo-02a0187f8d68?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 16,
+          "fiber": 8,
+          "calories": 449,
+          "carbs": 55,
+          "fat": 8
+        },
+        "tags": [
+          "side",
+          "noodles"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Szechwan Fried Rice",
+        "price": 315,
+        "image": "https://images.unsplash.com/photo-8758577cf3a6?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 417,
+          "carbs": 49,
+          "fat": 23
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_gluten_free": false
+      },
+      {
+        "name": "Chicken Manchurian",
+        "price": 86,
+        "image": "https://images.unsplash.com/photo-b5bc91691a34?w=600",
+        "diet": "non-veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 25,
+          "fiber": 0,
+          "calories": 502,
+          "carbs": 50,
+          "fat": 6
+        },
+        "tags": [
+          "vegan",
+          "bread"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Red Velvet Cake",
+        "price": 505,
+        "image": "https://images.unsplash.com/photo-d5bdb9b100c8?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 1,
+          "calories": 317,
+          "carbs": 39,
+          "fat": 20
+        },
+        "tags": [
+          "breakfast",
+          "dessert",
+          "rice",
+          "popular"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "Pasta Paradise",
+    "cuisine": "Italian",
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-7d786b54c8d8?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.036178,
+      "longitude": 80.23276,
+      "address": "Kodambakkam, Chennai - 600024"
+    },
+    "menu": [
+      {
+        "name": "Pesto Pasta",
+        "price": 517,
+        "image": "https://images.unsplash.com/photo-2d62678f7dc5?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 25,
+          "fiber": 0,
+          "calories": 695,
+          "carbs": 53,
+          "fat": 27
+        },
+        "tags": [
+          "dessert",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Tiramisu",
+        "price": 599,
+        "image": "https://images.unsplash.com/photo-9312cf604e86?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 4,
+          "calories": 733,
+          "carbs": 15,
+          "fat": 23
+        },
+        "tags": [
+          "salad",
+          "dessert"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Tiramisu",
+        "price": 587,
+        "image": "https://images.unsplash.com/photo-9658b2dddde8?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 2,
+          "calories": 633,
+          "carbs": 80,
+          "fat": 34
+        },
+        "tags": [
+          "side",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Pesto Pasta",
+        "price": 541,
+        "image": "https://images.unsplash.com/photo-170d22620e7b?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 4,
+          "fiber": 0,
+          "calories": 704,
+          "carbs": 37,
+          "fat": 15
+        },
+        "tags": [
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_vegan": true
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 428,
+        "image": "https://images.unsplash.com/photo-7c34146bb1bb?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 3,
+          "calories": 379,
+          "carbs": 43,
+          "fat": 16
+        },
+        "tags": [
+          "popular",
+          "fried",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      }
+    ]
+  },
+  {
+    "name": "Pizza Corner",
+    "cuisine": "Italian",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-3cc6b95d4a49?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.023038,
+      "longitude": 80.199304,
+      "address": "Velachery, Chennai - 600042"
+    },
+    "menu": [
+      {
+        "name": "Tiramisu",
+        "price": 285,
+        "image": "https://images.unsplash.com/photo-dd9f2b4e07bb?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 5,
+          "calories": 609,
+          "carbs": 37,
+          "fat": 13
+        },
+        "tags": [
+          "gluten-free",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Caprese Salad",
+        "price": 75,
+        "image": "https://images.unsplash.com/photo-1ef85535b4f6?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 3,
+          "calories": 320,
+          "carbs": 20,
+          "fat": 14
+        },
+        "tags": [
+          "main",
+          "gluten-free",
+          "healthy",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      },
+      {
+        "name": "Tiramisu",
+        "price": 435,
+        "image": "https://images.unsplash.com/photo-89284f0efaf0?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 7,
+          "calories": 632,
+          "carbs": 19,
+          "fat": 13
+        },
+        "tags": [
+          "main",
+          "traditional"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Pesto Pasta",
+        "price": 90,
+        "image": "https://images.unsplash.com/photo-5bf722b575e4?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 34,
+          "fiber": 3,
+          "calories": 452,
+          "carbs": 8,
+          "fat": 26
+        },
+        "tags": [
+          "breakfast",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 198,
+        "image": "https://images.unsplash.com/photo-69347b169e13?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 0,
+          "calories": 383,
+          "carbs": 35,
+          "fat": 22
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "vegan"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      }
+    ]
+  },
+  {
+    "name": "Pizza Paradise",
+    "cuisine": "Italian",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-50c50ec8b12b?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.012292,
+      "longitude": 80.226778,
+      "address": "Chromepet, Chennai - 600044"
+    },
+    "menu": [
+      {
+        "name": "Lasagna",
+        "price": 560,
+        "image": "https://images.unsplash.com/photo-ad000f937ee0?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 4,
+          "calories": 592,
+          "carbs": 58,
+          "fat": 17
+        },
+        "tags": [
+          "bread",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Pasta Alfredo",
+        "price": 566,
+        "image": "https://images.unsplash.com/photo-331ffdc960fa?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 34,
+          "fiber": 1,
+          "calories": 532,
+          "carbs": 28,
+          "fat": 26
+        },
+        "tags": [
+          "bread",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Margherita Pizza",
+        "price": 593,
+        "image": "https://images.unsplash.com/photo-8d9935ba8350?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 34,
+          "fiber": 4,
+          "calories": 383,
+          "carbs": 20,
+          "fat": 13
+        },
+        "tags": [
+          "high-protein",
+          "soup"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Caprese Salad",
+        "price": 55,
+        "image": "https://images.unsplash.com/photo-4ef2481e7fd8?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 5,
+          "calories": 244,
+          "carbs": 42,
+          "fat": 15
+        },
+        "tags": [
+          "popular",
+          "main",
+          "healthy",
+          "vegan"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_gluten_free": false,
+        "is_vegan": true
+      },
+      {
+        "name": "Vanilla Creme Brulee",
+        "price": 153,
+        "image": "https://images.unsplash.com/photo-4b03732d5846?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 4,
+          "fiber": 2,
+          "calories": 439,
+          "carbs": 35,
+          "fat": 9
+        },
+        "tags": [
+          "gluten-free",
+          "dessert"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "The Fitness Kitchen",
+    "cuisine": "Healthy",
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-8b378489dba9?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.014976,
+      "longitude": 80.22186,
+      "address": "Perungudi (OMR), Chennai - 600096"
+    },
+    "menu": [
+      {
+        "name": "Grilled Chicken Salad",
+        "price": 290,
+        "image": "https://images.unsplash.com/photo-799d6697c14b?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 26,
+          "fiber": 2,
+          "calories": 464,
+          "carbs": 10,
+          "fat": 30
+        },
+        "tags": [
+          "breakfast",
+          "main",
+          "noodles",
+          "healthy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Smoothie Bowl",
+        "price": 394,
+        "image": "https://images.unsplash.com/photo-f4ecb42ca6f4?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 22,
+          "fiber": 5,
+          "calories": 349,
+          "carbs": 34,
+          "fat": 12
+        },
+        "tags": [
+          "breakfast",
+          "main",
+          "traditional",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_vegan": true
+      },
+      {
+        "name": "Quinoa Power Bowl",
+        "price": 53,
+        "image": "https://images.unsplash.com/photo-36b985d2678b?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 15,
+          "fiber": 3,
+          "calories": 290,
+          "carbs": 30,
+          "fat": 18
+        },
+        "tags": [
+          "main",
+          "appetizer",
+          "healthy",
+          "gluten-free"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_vegan": true
+      },
+      {
+        "name": "Smoothie Bowl",
+        "price": 162,
+        "image": "https://images.unsplash.com/photo-261710a3a5d2?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 21,
+          "fiber": 4,
+          "calories": 216,
+          "carbs": 28,
+          "fat": 16
+        },
+        "tags": [
+          "popular",
+          "main",
+          "appetizer",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_vegan": false
+      },
+      {
+        "name": "Red Velvet Cake",
+        "price": 513,
+        "image": "https://images.unsplash.com/photo-71f99dd53ae3?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 0,
+          "calories": 383,
+          "carbs": 35,
+          "fat": 9
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "side"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      }
+    ]
+  },
+  {
+    "name": "Burger Hub",
+    "cuisine": "Fast Food",
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-ee4bb75c2e8d?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.080207,
+      "longitude": 80.268881,
+      "address": "Royapettah, Chennai - 600014"
+    },
+    "menu": [
+      {
+        "name": "Classic Beef Burger",
+        "price": 547,
+        "image": "https://images.unsplash.com/photo-713f9572b79e?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 1,
+          "calories": 255,
+          "carbs": 65,
+          "fat": 29
+        },
+        "tags": [
+          "noodles",
+          "spicy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Classic Beef Burger",
+        "price": 317,
+        "image": "https://images.unsplash.com/photo-9b4a830c2392?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 0,
+          "calories": 438,
+          "carbs": 26,
+          "fat": 23
+        },
+        "tags": [
+          "breakfast",
+          "fried"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Classic Beef Burger",
+        "price": 461,
+        "image": "https://images.unsplash.com/photo-e4597c2a86bf?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 14,
+          "fiber": 5,
+          "calories": 457,
+          "carbs": 36,
+          "fat": 32
+        },
+        "tags": [
+          "bread",
+          "main"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Fries",
+        "price": 316,
+        "image": "https://images.unsplash.com/photo-4a16f4398476?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 16,
+          "fiber": 0,
+          "calories": 617,
+          "carbs": 52,
+          "fat": 25
+        },
+        "tags": [
+          "popular",
+          "appetizer",
+          "traditional",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Double Chicken Burger",
+        "price": 468,
+        "image": "https://images.unsplash.com/photo-c42b991da291?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 23,
+          "fiber": 0,
+          "calories": 588,
+          "carbs": 25,
+          "fat": 30
+        },
+        "tags": [
+          "dessert",
+          "fried"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 453,
+        "image": "https://images.unsplash.com/photo-318f55a1592d?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 2,
+          "calories": 497,
+          "carbs": 35,
+          "fat": 17
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "side"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      }
+    ]
+  },
+  {
+    "name": "The Burger Hub",
+    "cuisine": "Fast Food",
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1a89b7e19a44?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.035623,
+      "longitude": 80.252769,
+      "address": "Mogappair, Chennai - 600037"
+    },
+    "menu": [
+      {
+        "name": "Crispy Paneer Burger",
+        "price": 499,
+        "image": "https://images.unsplash.com/photo-6106c1a30095?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 15,
+          "fiber": 2,
+          "calories": 422,
+          "carbs": 25,
+          "fat": 16
+        },
+        "tags": [
+          "traditional",
+          "comfort"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      },
+      {
+        "name": "Crispy Paneer Burger",
+        "price": 156,
+        "image": "https://images.unsplash.com/photo-9cc829a83479?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 18,
+          "fiber": 8,
+          "calories": 632,
+          "carbs": 47,
+          "fat": 10
+        },
+        "tags": [
+          "side",
+          "bread"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Fries",
+        "price": 510,
+        "image": "https://images.unsplash.com/photo-ca51a5771047?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 36,
+          "fiber": 4,
+          "calories": 399,
+          "carbs": 22,
+          "fat": 13
+        },
+        "tags": [
+          "bread",
+          "high-protein",
+          "appetizer",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Veggie Burger",
+        "price": 479,
+        "image": "https://images.unsplash.com/photo-f2da8ed9ec84?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 1,
+          "calories": 541,
+          "carbs": 41,
+          "fat": 18
+        },
+        "tags": [
+          "dessert",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Cheesecake",
+        "price": 257,
+        "image": "https://images.unsplash.com/photo-7d5eabf34733?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 1,
+          "calories": 302,
+          "carbs": 44,
+          "fat": 12
+        },
+        "tags": [
+          "popular",
+          "salad",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      }
+    ]
+  },
+  {
+    "name": "Sushi Station",
+    "cuisine": "Japanese",
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-3ea8631404df?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.02825,
+      "longitude": 80.279592,
+      "address": "Adyar, Chennai - 600020"
+    },
+    "menu": [
+      {
+        "name": "Mochi Ice Cream",
+        "price": 386,
+        "image": "https://images.unsplash.com/photo-721f61ab1a63?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 1,
+          "calories": 388,
+          "carbs": 31,
+          "fat": 25
+        },
+        "tags": [
+          "popular",
+          "fried",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_gluten_free": false
+      },
+      {
+        "name": "California Roll",
+        "price": 264,
+        "image": "https://images.unsplash.com/photo-6eb4c82044c3?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 9,
+          "calories": 400,
+          "carbs": 15,
+          "fat": 10
+        },
+        "tags": [
+          "side",
+          "bread",
+          "appetizer",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Salmon Sashimi",
+        "price": 308,
+        "image": "https://images.unsplash.com/photo-88f6f677a5e2?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 35,
+          "fiber": 3,
+          "calories": 454,
+          "carbs": 12,
+          "fat": 24
+        },
+        "tags": [
+          "popular",
+          "soup"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Salmon Sashimi",
+        "price": 314,
+        "image": "https://images.unsplash.com/photo-e523d53581fc?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 37,
+          "fiber": 3,
+          "calories": 347,
+          "carbs": 8,
+          "fat": 13
+        },
+        "tags": [
+          "gluten-free",
+          "rice"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.9
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 67,
+        "image": "https://images.unsplash.com/photo-e7a6296f7cf3?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 4,
+          "fiber": 3,
+          "calories": 305,
+          "carbs": 40,
+          "fat": 11
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "main"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_gluten_free": true
+      }
+    ]
+  },
+  {
+    "name": "Taco Fiesta",
+    "cuisine": "Mexican",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-8ba7a31f0c52?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.06225,
+      "longitude": 80.252462,
+      "address": "Nandanam, Chennai - 600035"
+    },
+    "menu": [
+      {
+        "name": "Chicken Tacos",
+        "price": 215,
+        "image": "https://images.unsplash.com/photo-51dabde5b95f?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 27,
+          "fiber": 5,
+          "calories": 701,
+          "carbs": 57,
+          "fat": 8
+        },
+        "tags": [
+          "breakfast",
+          "dessert"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Salsa & Chips",
+        "price": 241,
+        "image": "https://images.unsplash.com/photo-be445ad31f6d?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 4,
+          "calories": 477,
+          "carbs": 14,
+          "fat": 16
+        },
+        "tags": [
+          "main",
+          "appetizer"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Churros",
+        "price": 246,
+        "image": "https://images.unsplash.com/photo-b9f47813e092?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 4,
+          "calories": 278,
+          "carbs": 31,
+          "fat": 12
+        },
+        "tags": [
+          "dessert",
+          "noodles"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_vegan": true
+      },
+      {
+        "name": "Salsa & Chips",
+        "price": 447,
+        "image": "https://images.unsplash.com/photo-3f5e64d7923f?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 7,
+          "calories": 479,
+          "carbs": 65,
+          "fat": 7
+        },
+        "tags": [
+          "salad",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Macaron Assortment",
+        "price": 515,
+        "image": "https://images.unsplash.com/photo-e2c2502ba2d4?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 0,
+          "calories": 317,
+          "carbs": 35,
+          "fat": 12
+        },
+        "tags": [
+          "breakfast",
+          "traditional"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "BBQ Nation",
+    "cuisine": "Barbecue",
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-9c4b1b9cebdc?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.038943,
+      "longitude": 80.251415,
+      "address": "Velachery Main Road, Chennai - 600042"
+    },
+    "menu": [
+      {
+        "name": "BBQ Ribs",
+        "price": 579,
+        "image": "https://images.unsplash.com/photo-e86c93f1b989?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 26,
+          "fiber": 8,
+          "calories": 391,
+          "carbs": 68,
+          "fat": 27
+        },
+        "tags": [
+          "side",
+          "appetizer"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Smoked Paneer",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-e287971dea04?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 7,
+          "calories": 601,
+          "carbs": 47,
+          "fat": 30
+        },
+        "tags": [
+          "side",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Grilled Chicken Skewers",
+        "price": 428,
+        "image": "https://images.unsplash.com/photo-abc60d28a0ec?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 29,
+          "fiber": 6,
+          "calories": 267,
+          "carbs": 5,
+          "fat": 9
+        },
+        "tags": [
+          "breakfast",
+          "vegan"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Corn on the Cob",
+        "price": 537,
+        "image": "https://images.unsplash.com/photo-58130f494810?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 4,
+          "calories": 467,
+          "carbs": 42,
+          "fat": 15
+        },
+        "tags": [
+          "breakfast",
+          "traditional"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Grilled Chicken Skewers",
+        "price": 103,
+        "image": "https://images.unsplash.com/photo-1358508f856d?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 39,
+          "fiber": 5,
+          "calories": 366,
+          "carbs": 22,
+          "fat": 8
+        },
+        "tags": [
+          "appetizer",
+          "healthy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 587,
+        "image": "https://images.unsplash.com/photo-61b165799a80?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 0,
+          "calories": 335,
+          "carbs": 37,
+          "fat": 23
+        },
+        "tags": [
+          "salad",
+          "dessert",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Thai Pavilion",
+    "cuisine": "Thai",
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-1397ce5367a1?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.009912,
+      "longitude": 80.214612,
+      "address": "Tiruvanmiyur, Chennai - 600041"
+    },
+    "menu": [
+      {
+        "name": "Pad Thai",
+        "price": 590,
+        "image": "https://images.unsplash.com/photo-42791d5fd593?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 8,
+          "calories": 253,
+          "carbs": 18,
+          "fat": 36
+        },
+        "tags": [
+          "bread",
+          "main",
+          "gluten-free",
+          "noodles"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_vegan": false
+      },
+      {
+        "name": "Mango Sticky Rice",
+        "price": 369,
+        "image": "https://images.unsplash.com/photo-87abd5bdd8b8?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 406,
+          "carbs": 39,
+          "fat": 16
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Mango Sticky Rice",
+        "price": 468,
+        "image": "https://images.unsplash.com/photo-12f4ed820563?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 0,
+          "calories": 358,
+          "carbs": 35,
+          "fat": 22
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Thai Spring Rolls",
+        "price": 517,
+        "image": "https://images.unsplash.com/photo-8a75dc83dc3e?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 19,
+          "fiber": 3,
+          "calories": 708,
+          "carbs": 35,
+          "fat": 30
+        },
+        "tags": [
+          "side",
+          "bread",
+          "main",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Cheesecake",
+        "price": 187,
+        "image": "https://images.unsplash.com/photo-db1638acbb0b?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 390,
+          "carbs": 36,
+          "fat": 12
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "gluten-free"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      }
+    ]
+  },
+  {
+    "name": "Biryani House",
+    "cuisine": "Mughlai",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-f10c212ff214?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.085001,
+      "longitude": 80.263155,
+      "address": "Perambur, Chennai - 600011"
+    },
+    "menu": [
+      {
+        "name": "Shahi Tukda",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-4fb24786ee52?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 0,
+          "calories": 677,
+          "carbs": 75,
+          "fat": 28
+        },
+        "tags": [
+          "soup",
+          "comfort"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Chicken Dum Biryani",
+        "price": 490,
+        "image": "https://images.unsplash.com/photo-3a8453a9474b?w=600",
+        "diet": "non-veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 6,
+          "calories": 377,
+          "carbs": 50,
+          "fat": 6
+        },
+        "tags": [
+          "main",
+          "dessert",
+          "rice",
+          "healthy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Kebab Platter",
+        "price": 331,
+        "image": "https://images.unsplash.com/photo-e247ba38300e?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 28,
+          "fiber": 2,
+          "calories": 349,
+          "carbs": 22,
+          "fat": 11
+        },
+        "tags": [
+          "breakfast",
+          "salad"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Kebab Platter",
+        "price": 121,
+        "image": "https://images.unsplash.com/photo-baf255812643?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 38,
+          "fiber": 2,
+          "calories": 376,
+          "carbs": 12,
+          "fat": 14
+        },
+        "tags": [
+          "side",
+          "healthy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Hyderabadi Mutton Biryani",
+        "price": 94,
+        "image": "https://images.unsplash.com/photo-a15b251aa3ff?w=600",
+        "diet": "non-veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 29,
+          "fiber": 5,
+          "calories": 441,
+          "carbs": 35,
+          "fat": 15
+        },
+        "tags": [
+          "salad",
+          "main",
+          "rice",
+          "high-protein"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 454,
+        "image": "https://images.unsplash.com/photo-38b940f56495?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 3,
+          "calories": 318,
+          "carbs": 31,
+          "fat": 14
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "main"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      }
+    ]
+  },
+  {
+    "name": "Royal Mughal",
+    "cuisine": "Mughlai",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-0d2c42296fbf?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.020038,
+      "longitude": 80.232609,
+      "address": "Egmore, Chennai - 600008"
+    },
+    "menu": [
+      {
+        "name": "Korma",
+        "price": 386,
+        "image": "https://images.unsplash.com/photo-91f67ca746ef?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 2,
+          "calories": 695,
+          "carbs": 33,
+          "fat": 22
+        },
+        "tags": [
+          "bread",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Pulao",
+        "price": 493,
+        "image": "https://images.unsplash.com/photo-a08d7d7120c8?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 4,
+          "calories": 587,
+          "carbs": 54,
+          "fat": 32
+        },
+        "tags": [
+          "vegan",
+          "main",
+          "noodles",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_vegan": true
+      },
+      {
+        "name": "Chicken Dum Biryani",
+        "price": 312,
+        "image": "https://images.unsplash.com/photo-fa43da94ecb0?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 21,
+          "fiber": 4,
+          "calories": 377,
+          "carbs": 53,
+          "fat": 10
+        },
+        "tags": [
+          "main",
+          "gluten-free",
+          "rice"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Kebab Platter",
+        "price": 375,
+        "image": "https://images.unsplash.com/photo-cd7bf6b854b1?w=600",
+        "diet": "non-veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 33,
+          "fiber": 6,
+          "calories": 432,
+          "carbs": 4,
+          "fat": 26
+        },
+        "tags": [
+          "noodles",
+          "spicy"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 151,
+        "image": "https://images.unsplash.com/photo-68d8c25d2c0c?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 385,
+          "carbs": 30,
+          "fat": 8
+        },
+        "tags": [
+          "popular",
+          "noodles",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Dessert Dreams",
+    "cuisine": "Desserts",
+    "rating": 4.2,
+    "image": "https://images.unsplash.com/photo-cf367aed4191?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.029389,
+      "longitude": 80.219658,
+      "address": "Alandur, Chennai - 600016"
+    },
+    "menu": [
+      {
+        "name": "Waffle with Ice Cream",
+        "price": 148,
+        "image": "https://images.unsplash.com/photo-d410d4cade34?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 2,
+          "calories": 366,
+          "carbs": 30,
+          "fat": 22
+        },
+        "tags": [
+          "breakfast",
+          "dessert",
+          "popular",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Vanilla Scoop",
+        "price": 500,
+        "image": "https://images.unsplash.com/photo-a962e639b54f?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 1,
+          "calories": 460,
+          "carbs": 30,
+          "fat": 18
+        },
+        "tags": [
+          "vegan",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      },
+      {
+        "name": "Strawberry Sundae",
+        "price": 229,
+        "image": "https://images.unsplash.com/photo-ca82aed168f1?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 1,
+          "calories": 334,
+          "carbs": 50,
+          "fat": 8
+        },
+        "tags": [
+          "popular",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Macaron Assortment",
+        "price": 248,
+        "image": "https://images.unsplash.com/photo-7ec1e8750fe8?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 2,
+          "calories": 352,
+          "carbs": 46,
+          "fat": 24
+        },
+        "tags": [
+          "soup",
+          "main"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 302,
+        "image": "https://images.unsplash.com/photo-a8959c783d99?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 433,
+          "carbs": 33,
+          "fat": 17
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "bread"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9,
+        "is_vegan": false
+      }
+    ]
+  },
+  {
+    "name": "Sweet Tooth Bakery",
+    "cuisine": "Desserts",
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-a7779f888fd7?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.024289,
+      "longitude": 80.184438,
+      "address": "Tambaram, Chennai - 600045"
+    },
+    "menu": [
+      {
+        "name": "Macaron Assortment",
+        "price": 158,
+        "image": "https://images.unsplash.com/photo-7d0a9e86814f?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 2,
+          "calories": 369,
+          "carbs": 50,
+          "fat": 14
+        },
+        "tags": [
+          "popular",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Waffle with Ice Cream",
+        "price": 557,
+        "image": "https://images.unsplash.com/photo-640f51a140ce?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 3,
+          "calories": 426,
+          "carbs": 40,
+          "fat": 9
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "noodles"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 70,
+        "image": "https://images.unsplash.com/photo-52d2cacd9e79?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 416,
+          "carbs": 49,
+          "fat": 19
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Red Velvet Cake",
+        "price": 549,
+        "image": "https://images.unsplash.com/photo-1f6208e64f49?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 0,
+          "calories": 420,
+          "carbs": 30,
+          "fat": 19
+        },
+        "tags": [
+          "popular",
+          "dessert",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Chocolate Scoop",
+        "price": 503,
+        "image": "https://images.unsplash.com/photo-cf916463f91f?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 2,
+          "calories": 332,
+          "carbs": 41,
+          "fat": 19
+        },
+        "tags": [
+          "dessert",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      }
+    ]
+  },
+  {
+    "name": "Vegan Delight",
+    "cuisine": "Vegan",
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-92d2544c4fec?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.04641,
+      "longitude": 80.231896,
+      "address": "Kilpauk, Chennai - 600010"
+    },
+    "menu": [
+      {
+        "name": "Vegan Burger",
+        "price": 593,
+        "image": "https://images.unsplash.com/photo-4bb3003e05fe?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 40,
+          "fiber": 3,
+          "calories": 497,
+          "carbs": 38,
+          "fat": 15
+        },
+        "tags": [
+          "high-protein",
+          "soup"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_vegan": true
+      },
+      {
+        "name": "Tofu Stir Fry",
+        "price": 106,
+        "image": "https://images.unsplash.com/photo-afa800e48e05?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 8,
+          "calories": 341,
+          "carbs": 15,
+          "fat": 4
+        },
+        "tags": [
+          "soup",
+          "comfort"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_vegan": true
+      },
+      {
+        "name": "Kale Smoothie",
+        "price": 228,
+        "image": "https://images.unsplash.com/photo-4fa6991d2e61?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 21,
+          "fiber": 4,
+          "calories": 317,
+          "carbs": 50,
+          "fat": 16
+        },
+        "tags": [
+          "bread",
+          "main",
+          "healthy",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_vegan": false
+      },
+      {
+        "name": "Vegan Burger",
+        "price": 335,
+        "image": "https://images.unsplash.com/photo-70a334791536?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 16,
+          "fiber": 4,
+          "calories": 395,
+          "carbs": 50,
+          "fat": 14
+        },
+        "tags": [
+          "sweet",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_vegan": false
+      },
+      {
+        "name": "Vegan Burger",
+        "price": 532,
+        "image": "https://images.unsplash.com/photo-710e1e0fa726?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 22,
+          "fiber": 9,
+          "calories": 253,
+          "carbs": 41,
+          "fat": 18
+        },
+        "tags": [
+          "vegan",
+          "side"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_vegan": true
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 414,
+        "image": "https://images.unsplash.com/photo-a7b3199a4228?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 319,
+          "carbs": 30,
+          "fat": 17
+        },
+        "tags": [
+          "popular",
+          "dessert",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": false
+      }
+    ]
+  },
+  {
+    "name": "Coastal Catch",
+    "cuisine": "Seafood",
+    "rating": 4.4,
+    "image": "https://images.unsplash.com/photo-3bb2b340c131?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.042676,
+      "longitude": 80.269763,
+      "address": "Besant Nagar (Near Beach), Chennai - 600090"
+    },
+    "menu": [
+      {
+        "name": "Coconut Ice Cream",
+        "price": 410,
+        "image": "https://images.unsplash.com/photo-a26f7d89248a?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 497,
+          "carbs": 36,
+          "fat": 19
+        },
+        "tags": [
+          "salad",
+          "dessert",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Fried Calamari",
+        "price": 376,
+        "image": "https://images.unsplash.com/photo-052a0833ea2d?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 8,
+          "calories": 258,
+          "carbs": 34,
+          "fat": 7
+        },
+        "tags": [
+          "sweet",
+          "appetizer",
+          "healthy",
+          "fried"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.3
+      },
+      {
+        "name": "Fish Fry",
+        "price": 89,
+        "image": "https://images.unsplash.com/photo-e87b0e9b1a47?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 24,
+          "fiber": 8,
+          "calories": 742,
+          "carbs": 70,
+          "fat": 22
+        },
+        "tags": [
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.4
+      },
+      {
+        "name": "Prawn Curry",
+        "price": 425,
+        "image": "https://images.unsplash.com/photo-95b073328906?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 7,
+          "calories": 294,
+          "carbs": 30,
+          "fat": 4
+        },
+        "tags": [
+          "healthy",
+          "sweet"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.6
+      },
+      {
+        "name": "Coconut Ice Cream",
+        "price": 81,
+        "image": "https://images.unsplash.com/photo-59692cde4207?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 2,
+          "calories": 507,
+          "carbs": 34,
+          "fat": 24
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 243,
+        "image": "https://images.unsplash.com/photo-dcc815245280?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 0,
+          "calories": 448,
+          "carbs": 34,
+          "fat": 8
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Street Food Junction",
+    "cuisine": "Street Food",
+    "rating": 4.9,
+    "image": "https://images.unsplash.com/photo-fbf2bf014ad5?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.083092,
+      "longitude": 80.272122,
+      "address": "Chintadripet, Chennai - 600002"
+    },
+    "menu": [
+      {
+        "name": "Pav Bhaji",
+        "price": 494,
+        "image": "https://images.unsplash.com/photo-81ba89ca4d6a?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 339,
+          "carbs": 73,
+          "fat": 23
+        },
+        "tags": [
+          "side",
+          "bread",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Pav Bhaji",
+        "price": 526,
+        "image": "https://images.unsplash.com/photo-7e1cc0449860?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 20,
+          "fiber": 0,
+          "calories": 712,
+          "carbs": 48,
+          "fat": 25
+        },
+        "tags": [
+          "side",
+          "bread",
+          "dessert"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Pav Bhaji",
+        "price": 495,
+        "image": "https://images.unsplash.com/photo-d80abd6007dc?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 18,
+          "fiber": 7,
+          "calories": 704,
+          "carbs": 21,
+          "fat": 19
+        },
+        "tags": [
+          "side",
+          "bread",
+          "soup"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Vada Pav",
+        "price": 468,
+        "image": "https://images.unsplash.com/photo-5543d6926af6?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 0,
+          "calories": 436,
+          "carbs": 24,
+          "fat": 15
+        },
+        "tags": [
+          "side",
+          "bread",
+          "gluten-free",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Kathi Roll",
+        "price": 319,
+        "image": "https://images.unsplash.com/photo-aa7ac37e45b3?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 16,
+          "fiber": 7,
+          "calories": 603,
+          "carbs": 22,
+          "fat": 10
+        },
+        "tags": [
+          "side",
+          "bread",
+          "traditional",
+          "breakfast"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 248,
+        "image": "https://images.unsplash.com/photo-c2fdcd5dd3f0?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 3,
+          "calories": 322,
+          "carbs": 31,
+          "fat": 13
+        },
+        "tags": [
+          "popular",
+          "noodles",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      }
+    ]
+  },
+  {
+    "name": "Breakfast Club",
+    "cuisine": "Breakfast",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-137c4d5ebe66?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.027564,
+      "longitude": 80.235816,
+      "address": "Royapuram, Chennai - 600013"
+    },
+    "menu": [
+      {
+        "name": "Pancake Stack",
+        "price": 535,
+        "image": "https://images.unsplash.com/photo-5358cd31393d?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 3,
+          "calories": 474,
+          "carbs": 39,
+          "fat": 8
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Cinnamon Roll",
+        "price": 498,
+        "image": "https://images.unsplash.com/photo-f2ff6017afb3?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 1,
+          "calories": 431,
+          "carbs": 76,
+          "fat": 27
+        },
+        "tags": [
+          "side",
+          "bread",
+          "appetizer",
+          "dessert"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Pancake Stack",
+        "price": 346,
+        "image": "https://images.unsplash.com/photo-b065d50a5877?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 3,
+          "calories": 416,
+          "carbs": 50,
+          "fat": 24
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "vegan"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": true
+      },
+      {
+        "name": "Pancake Stack",
+        "price": 576,
+        "image": "https://images.unsplash.com/photo-86ac3eddd1a3?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 0,
+          "calories": 483,
+          "carbs": 47,
+          "fat": 12
+        },
+        "tags": [
+          "popular",
+          "bread",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Macaron Assortment",
+        "price": 238,
+        "image": "https://images.unsplash.com/photo-9143d1a28fde?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 2,
+          "calories": 508,
+          "carbs": 50,
+          "fat": 12
+        },
+        "tags": [
+          "breakfast",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.9
+      }
+    ]
+  },
+  {
+    "name": "Cafe Mocha",
+    "cuisine": "Cafe",
+    "rating": 4.6,
+    "image": "https://images.unsplash.com/photo-4ef177d2c1aa?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.035612,
+      "longitude": 80.233657,
+      "address": "Nandanam, Chennai - 600035"
+    },
+    "menu": [
+      {
+        "name": "Cappuccino",
+        "price": 365,
+        "image": "https://images.unsplash.com/photo-cf49ace37cf5?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 1,
+          "calories": 377,
+          "carbs": 74,
+          "fat": 12
+        },
+        "tags": [
+          "gluten-free",
+          "appetizer"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_gluten_free": true,
+        "is_vegan": false
+      },
+      {
+        "name": "Blueberry Cheesecake",
+        "price": 169,
+        "image": "https://images.unsplash.com/photo-721c6a1c879b?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 0,
+          "calories": 305,
+          "carbs": 36,
+          "fat": 15
+        },
+        "tags": [
+          "popular",
+          "dessert",
+          "spicy",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5,
+        "is_vegan": true
+      },
+      {
+        "name": "Cappuccino",
+        "price": 229,
+        "image": "https://images.unsplash.com/photo-470ec9e6920b?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 3,
+          "calories": 378,
+          "carbs": 47,
+          "fat": 22
+        },
+        "tags": [
+          "side",
+          "bread"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      },
+      {
+        "name": "Iced Latte",
+        "price": 178,
+        "image": "https://images.unsplash.com/photo-4b8b89bbbb3c?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 4,
+          "fiber": 1,
+          "calories": 515,
+          "carbs": 45,
+          "fat": 17
+        },
+        "tags": [
+          "popular",
+          "appetizer",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Egg Sandwich",
+        "price": 253,
+        "image": "https://images.unsplash.com/photo-bcb66b49793b?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 8,
+          "calories": 475,
+          "carbs": 57,
+          "fat": 15
+        },
+        "tags": [
+          "soup",
+          "spicy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Cheesecake",
+        "price": 82,
+        "image": "https://images.unsplash.com/photo-6b856b8a203f?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 0,
+          "calories": 446,
+          "carbs": 36,
+          "fat": 16
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "side"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      }
+    ]
+  },
+  {
+    "name": "Scoops Ice Cream Parlor",
+    "cuisine": "Ice Cream",
+    "rating": 4.3,
+    "image": "https://images.unsplash.com/photo-65f60ebcacc7?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.066559,
+      "longitude": 80.229385,
+      "address": "Anna Nagar West, Chennai - 600040"
+    },
+    "menu": [
+      {
+        "name": "Waffle with Ice Cream",
+        "price": 226,
+        "image": "https://images.unsplash.com/photo-8b522af270fc?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 1,
+          "calories": 338,
+          "carbs": 42,
+          "fat": 23
+        },
+        "tags": [
+          "popular",
+          "high-protein",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Vanilla Scoop",
+        "price": 361,
+        "image": "https://images.unsplash.com/photo-c18e3727c0e6?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 1,
+          "calories": 407,
+          "carbs": 50,
+          "fat": 14
+        },
+        "tags": [
+          "popular",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Cheesecake",
+        "price": 514,
+        "image": "https://images.unsplash.com/photo-7d22209a8ef0?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 3,
+          "calories": 466,
+          "carbs": 34,
+          "fat": 24
+        },
+        "tags": [
+          "salad",
+          "dessert",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_gluten_free": true
+      },
+      {
+        "name": "Cheesecake",
+        "price": 377,
+        "image": "https://images.unsplash.com/photo-c1affa01145b?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 0,
+          "calories": 436,
+          "carbs": 30,
+          "fat": 21
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 81,
+        "image": "https://images.unsplash.com/photo-b44985b40e6c?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 2,
+          "calories": 489,
+          "carbs": 42,
+          "fat": 18
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      }
+    ]
+  },
+  {
+    "name": "Frosty Treats",
+    "cuisine": "Desserts",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-387a3b68189a?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.048952,
+      "longitude": 80.220557,
+      "address": "Mambalam, Chennai - 600033"
+    },
+    "menu": [
+      {
+        "name": "Waffle with Ice Cream",
+        "price": 299,
+        "image": "https://images.unsplash.com/photo-fa258c8538d2?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 2,
+          "fiber": 1,
+          "calories": 438,
+          "carbs": 47,
+          "fat": 8
+        },
+        "tags": [
+          "popular",
+          "soup",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6
+      },
+      {
+        "name": "Vanilla Creme Brulee",
+        "price": 326,
+        "image": "https://images.unsplash.com/photo-b19a831b18c5?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 0,
+          "calories": 397,
+          "carbs": 48,
+          "fat": 24
+        },
+        "tags": [
+          "side",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Vanilla Scoop",
+        "price": 223,
+        "image": "https://images.unsplash.com/photo-27085326ca7e?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 3,
+          "calories": 316,
+          "carbs": 32,
+          "fat": 19
+        },
+        "tags": [
+          "soup",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_gluten_free": false
+      },
+      {
+        "name": "Macaron Assortment",
+        "price": 466,
+        "image": "https://images.unsplash.com/photo-2d84719c19d6?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 0,
+          "calories": 503,
+          "carbs": 47,
+          "fat": 17
+        },
+        "tags": [
+          "salad",
+          "traditional"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Vanilla Scoop",
+        "price": 74,
+        "image": "https://images.unsplash.com/photo-9f75263a6e63?w=600",
+        "diet": "veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 2,
+          "calories": 348,
+          "carbs": 49,
+          "fat": 21
+        },
+        "tags": [
+          "gluten-free",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_vegan": true
+      }
+    ]
+  },
+  {
+    "name": "Heavenly Scoops",
+    "cuisine": "Ice Cream",
+    "rating": 4.8,
+    "image": "https://images.unsplash.com/photo-86b03b207e6b?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.055563,
+      "longitude": 80.208669,
+      "address": "Kodambakkam West, Chennai - 600024"
+    },
+    "menu": [
+      {
+        "name": "Mango Sorbet",
+        "price": 182,
+        "image": "https://images.unsplash.com/photo-c4cf45342760?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 0,
+          "calories": 344,
+          "carbs": 38,
+          "fat": 13
+        },
+        "tags": [
+          "popular",
+          "noodles",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 392,
+        "image": "https://images.unsplash.com/photo-426a68407b2b?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 2,
+          "calories": 340,
+          "carbs": 43,
+          "fat": 14
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "high-protein"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 548,
+        "image": "https://images.unsplash.com/photo-66beb9a15f0b?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 1,
+          "calories": 490,
+          "carbs": 34,
+          "fat": 20
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "vegan"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4,
+        "is_gluten_free": false,
+        "is_vegan": true
+      },
+      {
+        "name": "Vanilla Scoop",
+        "price": 379,
+        "image": "https://images.unsplash.com/photo-1b43e5d84be2?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 3,
+          "calories": 352,
+          "carbs": 47,
+          "fat": 11
+        },
+        "tags": [
+          "traditional",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      },
+      {
+        "name": "Chocolate Truffle",
+        "price": 280,
+        "image": "https://images.unsplash.com/photo-a323edf673a8?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 3,
+          "calories": 394,
+          "carbs": 37,
+          "fat": 15
+        },
+        "tags": [
+          "popular",
+          "noodles",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_gluten_free": false
+      },
+      {
+        "name": "Strawberry Sundae",
+        "price": 79,
+        "image": "https://images.unsplash.com/photo-ca8f2b4cd0d0?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 0,
+          "calories": 470,
+          "carbs": 36,
+          "fat": 17
+        },
+        "tags": [
+          "appetizer",
+          "traditional"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Amma's Rasoi",
+    "cuisine": "South Indian",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-76c473326587?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.036927,
+      "longitude": 80.236039,
+      "address": "Purasawalkam, Chennai - 600007"
+    },
+    "menu": [
+      {
+        "name": "Sambar",
+        "price": 184,
+        "image": "https://images.unsplash.com/photo-a806628138ce?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 5,
+          "fiber": 7,
+          "calories": 276,
+          "carbs": 69,
+          "fat": 34
+        },
+        "tags": [
+          "noodles",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Medu Vada",
+        "price": 140,
+        "image": "https://images.unsplash.com/photo-797d89b07c3b?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 28,
+          "fiber": 1,
+          "calories": 459,
+          "carbs": 52,
+          "fat": 17
+        },
+        "tags": [
+          "salad",
+          "appetizer",
+          "spicy",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Medu Vada",
+        "price": 197,
+        "image": "https://images.unsplash.com/photo-ff66dcd7abc2?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 28,
+          "fiber": 2,
+          "calories": 606,
+          "carbs": 24,
+          "fat": 16
+        },
+        "tags": [
+          "main",
+          "appetizer",
+          "traditional",
+          "fried"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Sambar",
+        "price": 112,
+        "image": "https://images.unsplash.com/photo-9bd0e720a1b4?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 1,
+          "calories": 628,
+          "carbs": 69,
+          "fat": 20
+        },
+        "tags": [
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Uttapam",
+        "price": 72,
+        "image": "https://images.unsplash.com/photo-d268143670cf?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 13,
+          "fiber": 0,
+          "calories": 401,
+          "carbs": 72,
+          "fat": 35
+        },
+        "tags": [
+          "vegan",
+          "appetizer"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_vegan": true
+      },
+      {
+        "name": "Brownie with Ice Cream",
+        "price": 593,
+        "image": "https://images.unsplash.com/photo-0eedb0f4bb92?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 2,
+          "calories": 319,
+          "carbs": 39,
+          "fat": 20
+        },
+        "tags": [
+          "dessert",
+          "popular",
+          "sweet",
+          "side"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8
+      }
+    ]
+  },
+  {
+    "name": "Noodle Nest",
+    "cuisine": "Chinese",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-e7945ec8d30e?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.026237,
+      "longitude": 80.228277,
+      "address": "T. Nagar Extension, Chennai - 600017"
+    },
+    "menu": [
+      {
+        "name": "Chicken Manchurian",
+        "price": 158,
+        "image": "https://images.unsplash.com/photo-32271307b1de?w=600",
+        "diet": "non-veg",
+        "spicy": "none",
+        "nutritional_info": {
+          "protein": 10,
+          "fiber": 1,
+          "calories": 434,
+          "carbs": 45,
+          "fat": 9
+        },
+        "tags": [
+          "gluten-free",
+          "noodles"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.5
+      },
+      {
+        "name": "Honey Chilli Potato",
+        "price": 546,
+        "image": "https://images.unsplash.com/photo-dbe662644165?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 6,
+          "fiber": 0,
+          "calories": 359,
+          "carbs": 51,
+          "fat": 13
+        },
+        "tags": [
+          "popular",
+          "gluten-free"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3
+      },
+      {
+        "name": "Chicken Manchurian",
+        "price": 98,
+        "image": "https://images.unsplash.com/photo-cce5dd61f5ff?w=600",
+        "diet": "non-veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 17,
+          "fiber": 2,
+          "calories": 288,
+          "carbs": 54,
+          "fat": 21
+        },
+        "tags": [
+          "popular",
+          "appetizer"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.8
+      },
+      {
+        "name": "Schezwan Noodles",
+        "price": 244,
+        "image": "https://images.unsplash.com/photo-646490e59837?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 14,
+          "fiber": 0,
+          "calories": 723,
+          "carbs": 54,
+          "fat": 31
+        },
+        "tags": [
+          "breakfast",
+          "main",
+          "noodles"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7
+      },
+      {
+        "name": "Fried Rice",
+        "price": 189,
+        "image": "https://images.unsplash.com/photo-6cfdd131804b?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 7,
+          "fiber": 3,
+          "calories": 506,
+          "carbs": 46,
+          "fat": 25
+        },
+        "tags": [
+          "dessert",
+          "rice",
+          "popular",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.4
+      },
+      {
+        "name": "Panna Cotta",
+        "price": 391,
+        "image": "https://images.unsplash.com/photo-3e40a8d000c7?w=600",
+        "diet": "veg",
+        "spicy": "hot",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 1,
+          "calories": 375,
+          "carbs": 49,
+          "fat": 16
+        },
+        "tags": [
+          "popular",
+          "appetizer",
+          "dessert",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.5
+      }
+    ]
+  },
+  {
+    "name": "Green Spoon",
+    "cuisine": "Healthy",
+    "rating": 4.7,
+    "image": "https://images.unsplash.com/photo-ed4a2da96ca4?w=800&h=600&fit=crop",
+    "location": {
+      "latitude": 13.017682,
+      "longitude": 80.244236,
+      "address": "OMR Link Road, Chennai - 600096"
+    },
+    "menu": [
+      {
+        "name": "Quinoa Power Bowl",
+        "price": 410,
+        "image": "https://images.unsplash.com/photo-35668469a92a?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 9,
+          "fiber": 5,
+          "calories": 315,
+          "carbs": 45,
+          "fat": 8
+        },
+        "tags": [
+          "main",
+          "healthy",
+          "salad"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_vegan": false
+      },
+      {
+        "name": "Smoothie Bowl",
+        "price": 574,
+        "image": "https://images.unsplash.com/photo-b0d62f3a4211?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 14,
+          "fiber": 5,
+          "calories": 355,
+          "carbs": 32,
+          "fat": 12
+        },
+        "tags": [
+          "side",
+          "main",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.7,
+        "is_vegan": false
+      },
+      {
+        "name": "Grilled Chicken Salad",
+        "price": 165,
+        "image": "https://images.unsplash.com/photo-1b81c5436471?w=600",
+        "diet": "non-veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 33,
+          "fiber": 3,
+          "calories": 542,
+          "carbs": 27,
+          "fat": 28
+        },
+        "tags": [
+          "vegan",
+          "main",
+          "healthy",
+          "fried"
+        ],
+        "is_vegetarian": false,
+        "rating": 4.7
+      },
+      {
+        "name": "Quinoa Power Bowl",
+        "price": 92,
+        "image": "https://images.unsplash.com/photo-bbd62b3b5a3c?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 18,
+          "fiber": 8,
+          "calories": 388,
+          "carbs": 30,
+          "fat": 8
+        },
+        "tags": [
+          "main",
+          "healthy",
+          "comfort",
+          "sweet"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.3,
+        "is_gluten_free": false,
+        "is_vegan": false
+      },
+      {
+        "name": "Avocado Toast",
+        "price": 376,
+        "image": "https://images.unsplash.com/photo-1fd77ed82e17?w=600",
+        "diet": "veg",
+        "spicy": "medium",
+        "nutritional_info": {
+          "protein": 8,
+          "fiber": 3,
+          "calories": 210,
+          "carbs": 22,
+          "fat": 11
+        },
+        "tags": [
+          "bread",
+          "main",
+          "traditional",
+          "healthy"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.6,
+        "is_vegan": true
+      },
+      {
+        "name": "Macaron Assortment",
+        "price": 67,
+        "image": "https://images.unsplash.com/photo-0a24cfdd9daa?w=600",
+        "diet": "veg",
+        "spicy": "mild",
+        "nutritional_info": {
+          "protein": 3,
+          "fiber": 2,
+          "calories": 378,
+          "carbs": 34,
+          "fat": 16
+        },
+        "tags": [
+          "vegan",
+          "rice"
+        ],
+        "is_vegetarian": true,
+        "rating": 4.8,
+        "is_vegan": false
+      }
+    ]
+  }
+]
