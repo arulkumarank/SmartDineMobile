@@ -7,6 +7,7 @@ import Cart from '../screens/Cart';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, StyleSheet, TouchableOpacity, Platform, Text } from 'react-native';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,22 +22,27 @@ const TABS_CONFIG = [
 
 // Custom Tab Bar with Enhanced Curve
 function CustomTabBar({ state, descriptors, navigation }: any) {
+  const { colors, isDark } = useTheme();
+
+  const tabBarBg = colors.surface;
+  const inactiveColor = colors.textSecondary;
+
   return (
     <View style={styles.tabBarContainer}>
       {/* White Background with Curve */}
       <View style={styles.tabBarBackground}>
         {/* Left section */}
-        <View style={styles.leftSection} />
+        <View style={[styles.leftSection, { backgroundColor: tabBarBg }]} />
 
         {/* Center curve cutout */}
         <View style={styles.centerCurve}>
-          <View style={styles.curveLeft} />
+          <View style={[styles.curveLeft, { backgroundColor: tabBarBg }]} />
           <View style={styles.curveGap} />
-          <View style={styles.curveRight} />
+          <View style={[styles.curveRight, { backgroundColor: tabBarBg }]} />
         </View>
 
         {/* Right section */}
-        <View style={styles.rightSection} />
+        <View style={[styles.rightSection, { backgroundColor: tabBarBg }]} />
       </View>
 
       {/* Tab Items */}
@@ -87,11 +93,11 @@ function CustomTabBar({ state, descriptors, navigation }: any) {
               <Icon
                 name={config?.icon || 'help-circle'}
                 size={24}
-                color={isFocused ? '#ff6b00' : '#999'}
+                color={isFocused ? '#ff6b00' : inactiveColor}
               />
               <Text style={[
                 styles.tabLabel,
-                isFocused && styles.tabLabelActive
+                { color: isFocused ? '#ff6b00' : inactiveColor },
               ]}>
                 {config?.label}
               </Text>

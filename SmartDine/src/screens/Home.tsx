@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { aiAPI, foodsAPI, restaurantsAPI } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
 import ProfileHeader from '../components/ProfileHeader';
@@ -18,6 +19,7 @@ import type { Food, Restaurant } from '../types';
 import { isFuzzyMatch } from '../utils/search';
 
 export default function Home({ navigation }: any) {
+  const { isDark, colors } = useTheme();
   const [question, setQuestion] = useState('');
   const [aiText, setAiText] = useState('');
   const [suggestedFoods, setSuggestedFoods] = useState<Food[]>([]);
@@ -31,14 +33,25 @@ export default function Home({ navigation }: any) {
     loadDiscoverData();
   }, []);
 
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = <T,>(array: T[]): T[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
   const loadDiscoverData = async () => {
     try {
       const [foodsRes, restaurantsRes] = await Promise.all([
         foodsAPI.getAll(),
         restaurantsAPI.getAll()
       ]);
-      setDiscoverFoods(foodsRes.foods || []);
-      setDiscoverRestaurants(restaurantsRes.restaurants || []);
+      // Randomize the order of foods and restaurants
+      setDiscoverFoods(shuffleArray(foodsRes.foods || []));
+      setDiscoverRestaurants(shuffleArray(restaurantsRes.restaurants || []));
     } catch (error) {
       console.error('Failed to load discover data:', error);
     }
@@ -130,9 +143,22 @@ export default function Home({ navigation }: any) {
   };
 
 
+  // Theme-aware dynamic styles
+  const themedStyles = {
+    container: { backgroundColor: colors.background },
+    brandingContainer: { backgroundColor: colors.surface },
+    title: { color: colors.text },
+    subtitle: { color: colors.textSecondary },
+    searchBox: { backgroundColor: colors.surface },
+    sectionTitle: { color: colors.text },
+    aiCard: { backgroundColor: colors.surface },
+    aiText: { color: colors.text },
+    discoverSection: { backgroundColor: colors.surface },
+    restaurantsSection: { backgroundColor: colors.background },
+  };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themedStyles.container]}>
       {/* SCROLLABLE CONTENT - Search bar becomes sticky */}
       <ScrollView
         style={styles.scrollView}
@@ -140,22 +166,22 @@ export default function Home({ navigation }: any) {
         stickyHeaderIndices={[1]} // Index 1 is the searchBox container
       >
         {/* Branding with Profile */}
-        < View style={styles.brandingContainer} >
+        < View style={[styles.brandingContainer, themedStyles.brandingContainer]} >
           <View>
-            <Text style={styles.branding}>Smart Dine</Text>
-            <Text style={styles.tagline}>AI-Powered Food Discovery</Text>
+            <Text style={[styles.branding, themedStyles.title]}>Smart Dine</Text>
+            <Text style={[styles.tagline, themedStyles.subtitle]}>AI-Powered Food Discovery</Text>
           </View>
           <ProfileHeader navigation={navigation} />
         </View >
 
         {/* Search Box - Sticks to top */}
-        < View style={styles.stickySearchContainer} >
-          <View style={styles.searchBox}>
+        < View style={[styles.stickySearchContainer, themedStyles.searchBox]} >
+          <View style={[styles.searchBox, themedStyles.searchBox]}>
             <Icon name="magnify" size={24} color="#ff6b00" style={styles.searchIcon} />
             <TextInput
               placeholder="What are you craving today?"
-              placeholderTextColor="#999"
-              style={styles.input}
+              placeholderTextColor={colors.textSecondary}
+              style={[styles.input, { color: colors.text }]}
               value={question}
               onChangeText={setQuestion}
               onSubmitEditing={handleSearch}
@@ -171,10 +197,13 @@ export default function Home({ navigation }: any) {
           </View>
         </View >
 
-        {/* AI Text - Simple inline text, no container */}
+        {/* AI Message Box - Themed card */}
         {
           searched && aiText && (
-            <Text style={styles.aiText}>{aiText}</Text>
+            <View style={[styles.aiMessageBox, { backgroundColor: colors.card, borderColor: colors.border }]}>
+              <Icon name="robot-happy" size={24} color="#ff6b00" style={{ marginRight: 12 }} />
+              <Text style={[styles.aiText, themedStyles.aiText]}>{aiText}</Text>
+            </View>
           )
         }
 
@@ -222,8 +251,8 @@ export default function Home({ navigation }: any) {
         }
 
         {/* Discover Food Section */}
-        <View style={styles.discoverSection}>
-          <Text style={styles.sectionTitle}>Discover Food</Text>
+        <View style={[styles.discoverSection, themedStyles.discoverSection]}>
+          <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Discover Food</Text>
           <FlatList
             horizontal
             data={discoverFoods}
@@ -243,8 +272,8 @@ export default function Home({ navigation }: any) {
         </View>
 
         {/* Discover Restaurants Section - All scroll together */}
-        <View style={styles.restaurantsSection}>
-          <Text style={styles.sectionTitle}>Discover Restaurants</Text>
+        <View style={[styles.restaurantsSection, themedStyles.restaurantsSection]}>
+          <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Discover Restaurants</Text>
           {discoverRestaurants.map((restaurant, index) => (
             <View key={index} style={styles.restaurantCardWrapper}>
               <RestaurantCard
@@ -300,7 +329,20 @@ const styles = StyleSheet.create({
   searchButton: { backgroundColor: '#ff6b00', borderRadius: 24, width: 44, height: 44, alignItems: 'center', justifyContent: 'center', shadowColor: '#ff6b00', shadowOpacity: 0.3, shadowRadius: 8, elevation: 4 },
 
   scrollView: { flex: 1 },
-  aiText: { fontSize: 15, color: '#555', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8, lineHeight: 20 },
+  aiMessageBox: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginHorizontal: 20,
+    marginTop: 16,
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  aiText: { flex: 1, fontSize: 15, color: '#555', lineHeight: 22 },
   section: { marginTop: 8, marginBottom: 16 },
   discoverSection: { paddingTop: 24, paddingBottom: 20, backgroundColor: '#fff', borderTopLeftRadius: 28, borderTopRightRadius: 28, marginTop: 20 },
   restaurantsContainer: { paddingHorizontal: 16, marginTop: 16, marginBottom: 12 },

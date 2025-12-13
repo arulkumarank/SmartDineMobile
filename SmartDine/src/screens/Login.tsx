@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Login({ navigation }: any) {
+    const { colors } = useTheme();
     const { login } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -49,25 +51,33 @@ export default function Login({ navigation }: any) {
         }
     };
 
+    const themedStyles = {
+        container: { backgroundColor: colors.background },
+        title: { color: colors.primary },
+        subtitle: { color: colors.textSecondary },
+        input: { backgroundColor: colors.card, borderColor: colors.border, color: colors.text },
+        linkText: { color: colors.textSecondary },
+    };
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, themedStyles.container]}>
             <View style={styles.content}>
-                <Text style={styles.title}>Welcome to SmartDine</Text>
-                <Text style={styles.subtitle}>Login to discover great food</Text>
+                <Text style={[styles.title, themedStyles.title]}>Welcome to SmartDine</Text>
+                <Text style={[styles.subtitle, themedStyles.subtitle]}>Login to discover great food</Text>
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themedStyles.input]}
                     placeholder="Username"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={colors.textSecondary}
                     value={username}
                     onChangeText={setUsername}
                     autoCapitalize="none"
                 />
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themedStyles.input]}
                     placeholder="Password"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={colors.textSecondary}
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
@@ -87,7 +97,7 @@ export default function Login({ navigation }: any) {
                 <TouchableOpacity
                     style={styles.linkButton}
                     onPress={() => navigation.navigate('Signup')}>
-                    <Text style={styles.linkText}>
+                    <Text style={[styles.linkText, themedStyles.linkText]}>
                         Don't have an account? <Text style={styles.linkBold}>Sign up</Text>
                     </Text>
                 </TouchableOpacity>

@@ -11,10 +11,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { profileAPI } from '../services/api';
 import type { UserProfile } from '../types';
 
 export default function Profile() {
+  const { isDark, colors } = useTheme();
   const { logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -99,49 +101,63 @@ export default function Profile() {
     }
   };
 
+  // Theme-aware styles
+  const themedStyles = {
+    container: { backgroundColor: colors.background },
+    loadingContainer: { backgroundColor: colors.background },
+    header: { backgroundColor: colors.surface },
+    title: { color: colors.text },
+    subtitle: { color: colors.textSecondary },
+    label: { color: colors.text },
+    inputContainer: { backgroundColor: colors.card, borderColor: colors.border },
+    input: { color: colors.text },
+    chip: { backgroundColor: colors.card, borderColor: colors.border },
+    chipText: { color: colors.textSecondary },
+  };
+
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
+      <View style={[styles.loadingContainer, themedStyles.loadingContainer]}>
         <ActivityIndicator size="large" color="#ff6b00" />
       </View>
     );
   }
 
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView style={[styles.container, themedStyles.container]} showsVerticalScrollIndicator={false}>
       {/* Header with Curvy Design */}
-      <View style={styles.header}>
+      <View style={[styles.header, themedStyles.header]}>
         <Icon name="account-circle" size={60} color="#ff6b00" />
-        <Text style={styles.title}>My Profile</Text>
-        <Text style={styles.subtitle}>Personalize your experience</Text>
+        <Text style={[styles.title, themedStyles.title]}>My Profile</Text>
+        <Text style={[styles.subtitle, themedStyles.subtitle]}>Personalize your experience</Text>
       </View>
 
       {/* Profile Form */}
       <View style={styles.formContainer}>
         <View style={styles.section}>
-          <Text style={styles.label}>Name</Text>
-          <View style={styles.inputContainer}>
-            <Icon name="account" size={20} color="#888" style={styles.inputIcon} />
+          <Text style={[styles.label, themedStyles.label]}>Name</Text>
+          <View style={[styles.inputContainer, themedStyles.inputContainer]}>
+            <Icon name="account" size={20} color={colors.textSecondary} style={styles.inputIcon} />
             <TextInput
-              style={styles.input}
+              style={[styles.input, themedStyles.input]}
               value={profile.name}
               onChangeText={text => setProfile({ ...profile, name: text })}
               placeholder="Your name"
-              placeholderTextColor="#999"
+              placeholderTextColor={colors.textSecondary}
             />
           </View>
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.label}>Email</Text>
-          <View style={styles.inputContainer}>
-            <Icon name="email" size={20} color="#888" style={styles.inputIcon} />
+          <Text style={[styles.label, themedStyles.label]}>Email</Text>
+          <View style={[styles.inputContainer, themedStyles.inputContainer]}>
+            <Icon name="email" size={20} color={colors.textSecondary} style={styles.inputIcon} />
             <TextInput
-              style={styles.input}
+              style={[styles.input, themedStyles.input]}
               value={profile.email}
               onChangeText={text => setProfile({ ...profile, email: text })}
               placeholder="your@email.com"
-              placeholderTextColor="#999"
+              placeholderTextColor={colors.textSecondary}
               keyboardType="email-address"
             />
           </View>

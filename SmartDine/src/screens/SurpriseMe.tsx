@@ -12,12 +12,14 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import type { Food } from '../types';
 
 const { width } = Dimensions.get('window');
 const SURPRISE_STORAGE_KEY = '@surprise_last_loaded';
 
 export default function SurpriseMe({ navigation }: any) {
+    const { isDark, colors } = useTheme();
     const [food, setFood] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const fadeAnim = useState(new Animated.Value(0))[0];
@@ -100,10 +102,24 @@ export default function SurpriseMe({ navigation }: any) {
         await getRandomFood();
     };
 
+    // Theme-aware styles
+    const themedStyles = {
+        container: { backgroundColor: isDark ? colors.background : '#fef5e7' },
+        gradientBg: { backgroundColor: isDark ? colors.surface : '#fff9e6' },
+        title: { color: colors.text },
+        subtitle: { color: colors.textSecondary },
+        foodCard: { backgroundColor: colors.card },
+        foodName: { color: colors.text },
+        restaurantName: { color: colors.textSecondary },
+        description: { color: colors.textSecondary },
+        loadingText: { color: colors.textSecondary },
+        emptyText: { color: colors.textSecondary },
+    };
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, themedStyles.container]}>
             {/* Celebratory Background */}
-            <View style={styles.gradientBg} />
+            <View style={[styles.gradientBg, themedStyles.gradientBg]} />
 
             {/* Confetti Elements */}
             <Animated.View
@@ -130,8 +146,8 @@ export default function SurpriseMe({ navigation }: any) {
             {/* Header */}
             <View style={styles.header}>
                 <Icon name="party-popper" size={36} color="#ff6b00" />
-                <Text style={styles.title}>Surprise</Text>
-                <Text style={styles.subtitle}>Your serendipitous meal awaits!</Text>
+                <Text style={[styles.title, themedStyles.title]}>Surprise</Text>
+                <Text style={[styles.subtitle, themedStyles.subtitle]}>Your serendipitous meal awaits!</Text>
             </View>
 
             {/* Content */}
@@ -139,15 +155,15 @@ export default function SurpriseMe({ navigation }: any) {
                 {loading && (
                     <View style={styles.loadingContainer}>
                         <ActivityIndicator size="large" color="#ff6b00" />
-                        <Text style={styles.loadingText}>Creating magic...</Text>
+                        <Text style={[styles.loadingText, themedStyles.loadingText]}>Creating magic...</Text>
                     </View>
                 )}
 
                 {!loading && !food && (
                     <View style={styles.emptyState}>
-                        <Icon name="calendar-check" size={80} color="#ddd" />
-                        <Text style={styles.emptyText}>You've already received your</Text>
-                        <Text style={styles.emptyText}>surprise for today!</Text>
+                        <Icon name="calendar-check" size={80} color={colors.textSecondary} />
+                        <Text style={[styles.emptyText, themedStyles.emptyText]}>You've already received your</Text>
+                        <Text style={[styles.emptyText, themedStyles.emptyText]}>surprise for today!</Text>
                         <Text style={styles.emptyHint}>Come back tomorrow or tap refresh ↻</Text>
                     </View>
                 )}
@@ -156,6 +172,7 @@ export default function SurpriseMe({ navigation }: any) {
                     <Animated.View
                         style={[
                             styles.foodCard,
+                            themedStyles.foodCard,
                             {
                                 opacity: fadeAnim,
                                 transform: [{ scale: scaleAnim }],
@@ -174,11 +191,11 @@ export default function SurpriseMe({ navigation }: any) {
                         </View>
 
                         <View style={styles.foodInfo}>
-                            <Text style={styles.foodName}>{food.name}</Text>
+                            <Text style={[styles.foodName, themedStyles.foodName]}>{food.name}</Text>
 
                             <View style={styles.restaurantRow}>
-                                <Icon name="store" size={16} color="#666" />
-                                <Text style={styles.restaurantName}>{food.restaurant}</Text>
+                                <Icon name="store" size={16} color={colors.textSecondary} />
+                                <Text style={[styles.restaurantName, themedStyles.restaurantName]}>{food.restaurant}</Text>
                             </View>
 
                             {/* Taste Profile Chips */}

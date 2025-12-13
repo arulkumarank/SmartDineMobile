@@ -10,10 +10,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { restaurantsAPI } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import FoodCard from '../components/FoodCard';
 import type { Food } from '../types';
 
 export default function Restaurant({ route, navigation }: any) {
+  const { isDark, colors } = useTheme();
   const restaurant = route?.params || {
     name: 'Restaurant Name',
     cuisine: 'Cuisine',
@@ -91,8 +93,21 @@ export default function Restaurant({ route, navigation }: any) {
     }
   };
 
+  // Theme-aware styles
+  const themedStyles = {
+    container: { backgroundColor: colors.background },
+    content: { backgroundColor: colors.surface },
+    title: { color: colors.text },
+    rating: { color: colors.textSecondary },
+    cuisine: { color: colors.textSecondary },
+    addressContainer: { backgroundColor: colors.card },
+    address: { color: colors.text },
+    menuTitle: { color: colors.text },
+    menuNote: { color: colors.textSecondary },
+  };
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, themedStyles.container]}>
       {/* Cover Image with Floating Maps Button */}
       <View style={styles.imageContainer}>
         <Image source={{ uri: restaurant.image }} style={styles.coverImage} />
@@ -107,26 +122,26 @@ export default function Restaurant({ route, navigation }: any) {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.content}>
-        <Text style={styles.title}>{restaurant.name}</Text>
+      <View style={[styles.content, themedStyles.content]}>
+        <Text style={[styles.title, themedStyles.title]}>{restaurant.name}</Text>
 
         <View style={styles.row}>
           <Icon name="star" size={20} color="#ff6b00" />
-          <Text style={styles.rating}>{restaurant.rating}</Text>
-          <Text style={styles.cuisine}>• {restaurant.cuisine}</Text>
+          <Text style={[styles.rating, themedStyles.rating]}>{restaurant.rating}</Text>
+          <Text style={[styles.cuisine, themedStyles.cuisine]}>• {restaurant.cuisine}</Text>
         </View>
 
         {restaurant.location && (
           <TouchableOpacity
-            style={styles.addressContainer}
+            style={[styles.addressContainer, themedStyles.addressContainer]}
             onPress={handleAddressClick}>
             <Icon name="map-marker" size={20} color="#ff6b00" />
-            <Text style={styles.address}>{restaurant.location.address}</Text>
-            <Icon name="chevron-right" size={20} color="#888" />
+            <Text style={[styles.address, themedStyles.address]}>{restaurant.location.address}</Text>
+            <Icon name="chevron-right" size={20} color={colors.textSecondary} />
           </TouchableOpacity>
         )}
 
-        <Text style={styles.menuTitle}>Menu</Text>
+        <Text style={[styles.menuTitle, themedStyles.menuTitle]}>Menu</Text>
 
         {/* Menu Items in 2-column Grid */}
         {menuItems.length > 0 ? (
@@ -142,7 +157,7 @@ export default function Restaurant({ route, navigation }: any) {
             ))}
           </View>
         ) : (
-          <Text style={styles.menuNote}>
+          <Text style={[styles.menuNote, themedStyles.menuNote]}>
             {loading ? 'Loading menu...' : 'No menu items available'}
           </Text>
         )}

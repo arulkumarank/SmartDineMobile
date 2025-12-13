@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useTheme } from '../context/ThemeContext';
 
 interface Props {
   name: string;
@@ -17,19 +18,28 @@ export default function RestaurantCard({
   cuisine,
   onPress,
 }: Props) {
+  const { colors } = useTheme();
+
+  const themedStyles = {
+    card: { backgroundColor: colors.card },
+    title: { color: colors.text },
+    rating: { color: colors.textSecondary },
+    sub: { color: colors.textSecondary },
+  };
+
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity style={[styles.card, themedStyles.card]} onPress={onPress}>
       <Image source={{ uri: image }} style={styles.image} />
 
       <View style={styles.info}>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={[styles.title, themedStyles.title]}>{name}</Text>
 
         <View style={styles.row}>
           <Icon name="star" size={16} color="#ff9500" />
-          <Text style={styles.rating}>{rating}</Text>
+          <Text style={[styles.rating, themedStyles.rating]}>{rating}</Text>
         </View>
 
-        <Text style={styles.sub}>{cuisine}</Text>
+        <Text style={[styles.sub, themedStyles.sub]}>{cuisine}</Text>
 
       </View>
     </TouchableOpacity>

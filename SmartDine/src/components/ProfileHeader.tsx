@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface ProfileHeaderProps {
@@ -17,6 +18,7 @@ interface ProfileHeaderProps {
 }
 
 export default function ProfileHeader({ navigation, username = 'User' }: ProfileHeaderProps) {
+    const { colors } = useTheme();
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { itemCount } = useCart();
 
@@ -42,7 +44,7 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
         <View style={styles.container}>
             {/* Cart Icon with Badge */}
             <TouchableOpacity style={styles.cartButton} onPress={handleCartPress}>
-                <Icon name="cart-outline" size={24} color="#1a1a1a" />
+                <Icon name="cart-outline" size={24} color={colors.text} />
                 {itemCount > 0 && (
                     <View style={styles.cartBadge}>
                         <Text style={styles.cartBadgeText}>{itemCount > 9 ? '9+' : itemCount}</Text>
@@ -69,16 +71,16 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                     style={styles.modalOverlay}
                     onPress={() => setDropdownVisible(false)}
                 >
-                    <View style={styles.dropdown}>
+                    <View style={[styles.dropdown, { backgroundColor: colors.surface }]}>
                         {/* User Info */}
                         <View style={styles.userInfo}>
                             <View style={styles.avatarLarge}>
                                 <Icon name="account" size={32} color="#fff" />
                             </View>
-                            <Text style={styles.userName}>{username}</Text>
+                            <Text style={[styles.userName, { color: colors.text }]}>{username}</Text>
                         </View>
 
-                        <View style={styles.divider} />
+                        <View style={[styles.divider, { backgroundColor: colors.border }]} />
 
                         {/* Menu Items */}
                         <TouchableOpacity
@@ -88,8 +90,8 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                                 navigation.navigate('Profile');
                             }}
                         >
-                            <Icon name="account-circle-outline" size={22} color="#666" />
-                            <Text style={styles.menuText}>My Profile</Text>
+                            <Icon name="account-circle-outline" size={22} color={colors.textSecondary} />
+                            <Text style={[styles.menuText, { color: colors.text }]}>My Profile</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -99,8 +101,8 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                                 // TODO: Navigate to notifications
                             }}
                         >
-                            <Icon name="bell-outline" size={22} color="#666" />
-                            <Text style={styles.menuText}>Notifications</Text>
+                            <Icon name="bell-outline" size={22} color={colors.textSecondary} />
+                            <Text style={[styles.menuText, { color: colors.text }]}>Notifications</Text>
                             <View style={styles.notificationDot} />
                         </TouchableOpacity>
 
@@ -111,14 +113,25 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                                 navigation.navigate('Cart');
                             }}
                         >
-                            <Icon name="cart-outline" size={22} color="#666" />
-                            <Text style={styles.menuText}>My Cart</Text>
+                            <Icon name="cart-outline" size={22} color={colors.textSecondary} />
+                            <Text style={[styles.menuText, { color: colors.text }]}>My Cart</Text>
                             {itemCount > 0 && (
                                 <Text style={styles.cartCount}>{itemCount}</Text>
                             )}
                         </TouchableOpacity>
 
-                        <View style={styles.divider} />
+                        <TouchableOpacity
+                            style={styles.menuItem}
+                            onPress={() => {
+                                setDropdownVisible(false);
+                                navigation.navigate('Settings');
+                            }}
+                        >
+                            <Icon name="cog-outline" size={22} color={colors.textSecondary} />
+                            <Text style={[styles.menuText, { color: colors.text }]}>Settings</Text>
+                        </TouchableOpacity>
+
+                        <View style={[styles.divider, { backgroundColor: colors.border }]} />
 
                         <TouchableOpacity
                             style={[styles.menuItem, styles.logoutItem]}

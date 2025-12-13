@@ -12,8 +12,10 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI, restaurantsAPI } from '../services/api';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function FoodDetail({ route, navigation }: any) {
+    const { isDark, colors } = useTheme();
     const { food } = route?.params || {};
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -72,26 +74,52 @@ export default function FoodDetail({ route, navigation }: any) {
         }
     };
 
+    // Theme-aware styles
+    const themedStyles = {
+        container: { backgroundColor: colors.background },
+        centerContainer: { backgroundColor: colors.background },
+        content: { backgroundColor: colors.surface },
+        foodName: { color: colors.text },
+        sectionTitle: { color: colors.text },
+        description: { color: colors.textSecondary },
+        loadingText: { color: colors.textSecondary },
+        errorText: { color: colors.textSecondary },
+        tasteChip: { backgroundColor: isDark ? colors.card : '#fff5ed' },
+        tasteText: { color: colors.primary },
+        infoCard: { backgroundColor: colors.card },
+        infoLabel: { color: colors.textSecondary },
+        infoValue: { color: colors.text },
+        nutritionItem: { backgroundColor: colors.card },
+        nutritionValue: { color: colors.text },
+        nutritionLabel: { color: colors.textSecondary },
+        popularCard: { backgroundColor: isDark ? colors.card : '#fce4ec' },
+        popularText: { color: colors.textSecondary },
+        sideChip: { backgroundColor: colors.card, borderColor: colors.border },
+        sideText: { color: colors.textSecondary },
+        footer: { backgroundColor: colors.surface },
+        priceLabel: { color: colors.textSecondary },
+    };
+
     if (loading) {
         return (
-            <View style={styles.centerContainer}>
+            <View style={[styles.centerContainer, themedStyles.centerContainer]}>
                 <ActivityIndicator size="large" color="#ff6b00" />
-                <Text style={styles.loadingText}>Loading details...</Text>
+                <Text style={[styles.loadingText, themedStyles.loadingText]}>Loading details...</Text>
             </View>
         );
     }
 
     if (!details) {
         return (
-            <View style={styles.centerContainer}>
+            <View style={[styles.centerContainer, themedStyles.centerContainer]}>
                 <Icon name="alert-circle-outline" size={64} color="#ff6b00" />
-                <Text style={styles.errorText}>Food details not available</Text>
+                <Text style={[styles.errorText, themedStyles.errorText]}>Food details not available</Text>
             </View>
         );
     }
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
+        <ScrollView style={[styles.container, themedStyles.container]} contentContainerStyle={styles.scrollContent}>
             {/* Food Image - 1/4 height */}
             <Image
                 source={{ uri: details.image || 'https://source.unsplash.com/600x400/?food' }}
@@ -99,9 +127,9 @@ export default function FoodDetail({ route, navigation }: any) {
             />
 
             {/* Content */}
-            <View style={styles.content}>
+            <View style={[styles.content, themedStyles.content]}>
                 {/* Food Name & Restaurant */}
-                <Text style={styles.foodName}>{details.name}</Text>
+                <Text style={[styles.foodName, themedStyles.foodName]}>{details.name}</Text>
                 <TouchableOpacity
                     style={styles.restaurantRow}
                     onPress={() => handleRestaurantPress()}
@@ -114,30 +142,30 @@ export default function FoodDetail({ route, navigation }: any) {
                 {/* Taste Profile */}
                 {details.taste_profile && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Taste Profile</Text>
+                        <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Taste Profile</Text>
                         <View style={styles.tasteGrid}>
                             {details.taste_profile.spiciness && (
-                                <View style={styles.tasteChip}>
+                                <View style={[styles.tasteChip, themedStyles.tasteChip]}>
                                     <Icon name="chili-hot" size={16} color="#ff6b00" />
-                                    <Text style={styles.tasteText}>{details.taste_profile.spiciness}</Text>
+                                    <Text style={[styles.tasteText, themedStyles.tasteText]}>{details.taste_profile.spiciness}</Text>
                                 </View>
                             )}
                             {details.taste_profile.sweetness && details.taste_profile.sweetness !== 'none' && (
-                                <View style={styles.tasteChip}>
+                                <View style={[styles.tasteChip, themedStyles.tasteChip]}>
                                     <Icon name="candy" size={16} color="#ff6b00" />
-                                    <Text style={styles.tasteText}>{details.taste_profile.sweetness}</Text>
+                                    <Text style={[styles.tasteText, themedStyles.tasteText]}>{details.taste_profile.sweetness}</Text>
                                 </View>
                             )}
                             {details.taste_profile.texture && (
-                                <View style={styles.tasteChip}>
+                                <View style={[styles.tasteChip, themedStyles.tasteChip]}>
                                     <Icon name="hand" size={16} color="#ff6b00" />
-                                    <Text style={styles.tasteText}>{details.taste_profile.texture}</Text>
+                                    <Text style={[styles.tasteText, themedStyles.tasteText]}>{details.taste_profile.texture}</Text>
                                 </View>
                             )}
                             {details.taste_profile.richness && (
-                                <View style={styles.tasteChip}>
+                                <View style={[styles.tasteChip, themedStyles.tasteChip]}>
                                     <Icon name="star" size={16} color="#ff6b00" />
-                                    <Text style={styles.tasteText}>{details.taste_profile.richness}</Text>
+                                    <Text style={[styles.tasteText, themedStyles.tasteText]}>{details.taste_profile.richness}</Text>
                                 </View>
                             )}
                         </View>
@@ -147,25 +175,25 @@ export default function FoodDetail({ route, navigation }: any) {
                 {/* Description */}
                 {details.description && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Description</Text>
-                        <Text style={styles.description}>{details.description}</Text>
+                        <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Description</Text>
+                        <Text style={[styles.description, themedStyles.description]}>{details.description}</Text>
                     </View>
                 )}
 
                 {/* Cooking Style & Best Time */}
                 <View style={styles.infoRow}>
                     {details.cooking_style && (
-                        <View style={styles.infoCard}>
+                        <View style={[styles.infoCard, themedStyles.infoCard]}>
                             <Icon name="chef-hat" size={24} color="#ff6b00" />
-                            <Text style={styles.infoLabel}>Cooking</Text>
-                            <Text style={styles.infoValue}>{details.cooking_style}</Text>
+                            <Text style={[styles.infoLabel, themedStyles.infoLabel]}>Cooking</Text>
+                            <Text style={[styles.infoValue, themedStyles.infoValue]}>{details.cooking_style}</Text>
                         </View>
                     )}
                     {details.best_time && (
-                        <View style={styles.infoCard}>
+                        <View style={[styles.infoCard, themedStyles.infoCard]}>
                             <Icon name="clock-outline" size={24} color="#ff6b00" />
-                            <Text style={styles.infoLabel}>Best Time</Text>
-                            <Text style={styles.infoValue}>{details.best_time}</Text>
+                            <Text style={[styles.infoLabel, themedStyles.infoLabel]}>Best Time</Text>
+                            <Text style={[styles.infoValue, themedStyles.infoValue]}>{details.best_time}</Text>
                         </View>
                     )}
                 </View>
@@ -173,30 +201,30 @@ export default function FoodDetail({ route, navigation }: any) {
                 {/* Nutritional Info */}
                 {details.nutritional_info && Object.keys(details.nutritional_info).length > 0 && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Nutritional Information</Text>
+                        <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Nutritional Information</Text>
                         <View style={styles.nutritionGrid}>
-                            {details.nutritional_info.protein && (
-                                <View style={styles.nutritionItem}>
-                                    <Text style={styles.nutritionValue}>{details.nutritional_info.protein}g</Text>
-                                    <Text style={styles.nutritionLabel}>Protein</Text>
+                            {details.nutritional_info.protein != null && (
+                                <View style={[styles.nutritionItem, themedStyles.nutritionItem]}>
+                                    <Text style={[styles.nutritionValue, themedStyles.nutritionValue]}>{details.nutritional_info.protein}g</Text>
+                                    <Text style={[styles.nutritionLabel, themedStyles.nutritionLabel]}>Protein</Text>
                                 </View>
                             )}
-                            {details.nutritional_info.fiber && (
-                                <View style={styles.nutritionItem}>
-                                    <Text style={styles.nutritionValue}>{details.nutritional_info.fiber}g</Text>
-                                    <Text style={styles.nutritionLabel}>Fiber</Text>
+                            {details.nutritional_info.fiber != null && (
+                                <View style={[styles.nutritionItem, themedStyles.nutritionItem]}>
+                                    <Text style={[styles.nutritionValue, themedStyles.nutritionValue]}>{details.nutritional_info.fiber}g</Text>
+                                    <Text style={[styles.nutritionLabel, themedStyles.nutritionLabel]}>Fiber</Text>
                                 </View>
                             )}
-                            {details.nutritional_info.calories && (
-                                <View style={styles.nutritionItem}>
-                                    <Text style={styles.nutritionValue}>{details.nutritional_info.calories}</Text>
-                                    <Text style={styles.nutritionLabel}>Calories</Text>
+                            {details.nutritional_info.calories != null && (
+                                <View style={[styles.nutritionItem, themedStyles.nutritionItem]}>
+                                    <Text style={[styles.nutritionValue, themedStyles.nutritionValue]}>{details.nutritional_info.calories}</Text>
+                                    <Text style={[styles.nutritionLabel, themedStyles.nutritionLabel]}>Calories</Text>
                                 </View>
                             )}
-                            {details.nutritional_info.carbs && (
-                                <View style={styles.nutritionItem}>
-                                    <Text style={styles.nutritionValue}>{details.nutritional_info.carbs}g</Text>
-                                    <Text style={styles.nutritionLabel}>Carbs</Text>
+                            {details.nutritional_info.carbs != null && (
+                                <View style={[styles.nutritionItem, themedStyles.nutritionItem]}>
+                                    <Text style={[styles.nutritionValue, themedStyles.nutritionValue]}>{details.nutritional_info.carbs}g</Text>
+                                    <Text style={[styles.nutritionLabel, themedStyles.nutritionLabel]}>Carbs</Text>
                                 </View>
                             )}
                         </View>
@@ -205,20 +233,20 @@ export default function FoodDetail({ route, navigation }: any) {
 
                 {/* Why Popular */}
                 {details.why_popular && (
-                    <View style={styles.popularCard}>
+                    <View style={[styles.popularCard, themedStyles.popularCard]}>
                         <Icon name="heart" size={20} color="#ff6b00" />
-                        <Text style={styles.popularText}>{details.why_popular}</Text>
+                        <Text style={[styles.popularText, themedStyles.popularText]}>{details.why_popular}</Text>
                     </View>
                 )}
 
                 {/* Recommended Sides */}
                 {details.recommended_sides && details.recommended_sides.length > 0 && (
                     <View style={styles.section}>
-                        <Text style={styles.sectionTitle}>Goes Well With</Text>
+                        <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Goes Well With</Text>
                         <View style={styles.sidesContainer}>
                             {details.recommended_sides.map((side: string, index: number) => (
-                                <View key={index} style={styles.sideChip}>
-                                    <Text style={styles.sideText}>{side}</Text>
+                                <View key={index} style={[styles.sideChip, themedStyles.sideChip]}>
+                                    <Text style={[styles.sideText, themedStyles.sideText]}>{side}</Text>
                                 </View>
                             ))}
                         </View>
@@ -226,9 +254,9 @@ export default function FoodDetail({ route, navigation }: any) {
                 )}
 
                 {/* Price & Add to Cart Button */}
-                <View style={styles.footer}>
+                <View style={[styles.footer, themedStyles.footer]}>
                     <View>
-                        <Text style={styles.priceLabel}>Price</Text>
+                        <Text style={[styles.priceLabel, themedStyles.priceLabel]}>Price</Text>
                         <Text style={styles.price}>₹{details.price || '0'}</Text>
                     </View>
                     <TouchableOpacity style={styles.orderButton} onPress={handleAddToCart}>

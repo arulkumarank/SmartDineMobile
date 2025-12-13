@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useTheme } from '../context/ThemeContext';
 import type { Food } from '../types';
 
 interface Props {
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function FoodCard({ food, onPress, compact = false }: Props) {
+    const { colors } = useTheme();
+
     const renderNutritionBadges = () => {
         const badges = [];
 
@@ -31,18 +34,24 @@ export default function FoodCard({ food, onPress, compact = false }: Props) {
 
     const badges = renderNutritionBadges();
 
+    const themedStyles = {
+        card: { backgroundColor: colors.card },
+        foodName: { color: colors.text },
+        restaurant: { color: colors.textSecondary },
+    };
+
     return (
-        <TouchableOpacity style={[styles.card, compact && styles.cardCompact]} onPress={onPress}>
+        <TouchableOpacity style={[styles.card, compact && styles.cardCompact, themedStyles.card]} onPress={onPress}>
             <Image
                 source={{ uri: food.image || 'https://source.unsplash.com/600x400/?food' }}
                 style={compact ? styles.imageCompact : styles.image}
             />
 
             <View style={compact ? styles.infoCompact : styles.info}>
-                <Text style={compact ? styles.foodNameCompact : styles.foodName} numberOfLines={1}>
+                <Text style={[compact ? styles.foodNameCompact : styles.foodName, themedStyles.foodName]} numberOfLines={1}>
                     {food.name}
                 </Text>
-                <Text style={compact ? styles.restaurantCompact : styles.restaurant} numberOfLines={1}>
+                <Text style={[compact ? styles.restaurantCompact : styles.restaurant, themedStyles.restaurant]} numberOfLines={1}>
                     {food.restaurant}
                 </Text>
 
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
     },
     imageCompact: {
         width: '100%',
-        height: 120,
+        height: 100,
     },
     info: {
         padding: 14,

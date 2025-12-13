@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI, restaurantsAPI } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import type { Food, Restaurant } from '../types';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
@@ -22,6 +24,7 @@ type FilterState = {
 };
 
 export default function Search({ navigation }: any) {
+  const { isDark, colors } = useTheme();
   const scrollViewRef = useRef<ScrollView>(null);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<{ foods: Food[]; restaurants: Restaurant[] }>({ foods: [], restaurants: [] });
@@ -145,7 +148,13 @@ export default function Search({ navigation }: any) {
             return filters.taste.some(taste => {
               const cleanTaste = taste.replace(/[🌶️🍯🍋🧂😊]/g, '').trim();
               if (cleanTaste === 'spicy') return (food as any).spicy === 'hot' || (food as any).spicy === 'medium';
-              if (cleanTaste === 'sweet') return food.name.toLowerCase().includes('sweet');
+              // Sweet filter - includes desserts, cakes, ice cream, etc.
+              if (cleanTaste === 'sweet') {
+                const name = food.name.toLowerCase();
+                const tags = (food.tags || []).map(t => t.toLowerCase());
+                const sweetKeywords = ['sweet', 'dessert', 'cake', 'ice cream', 'brownie', 'cookie', 'pastry', 'pudding', 'cheesecake', 'chocolate', 'tiramisu', 'panna cotta', 'kulfi', 'gulab jamun', 'rasmalai', 'jalebi', 'halwa', 'kheer', 'mango sticky', 'waffle', 'pancake', 'macaron', 'truffle', 'scoop', 'sundae', 'milkshake'];
+                return sweetKeywords.some(kw => name.includes(kw)) || tags.includes('dessert') || tags.includes('sweet');
+              }
               if (cleanTaste === 'sour') return food.tags?.includes('sour');
               if (cleanTaste === 'savory') return !(food as any).spicy;
               if (cleanTaste === 'mild') return (food as any).spicy === 'mild' || !(food as any).spicy;
@@ -189,13 +198,24 @@ export default function Search({ navigation }: any) {
 
   const showFoods = query.length > 0 || filters.taste.length > 0;
 
+  // Theme-aware dynamic styles
+  const themedStyles = {
+    container: { backgroundColor: colors.background },
+    header: { backgroundColor: colors.surface },
+    title: { color: colors.text },
+    subtitle: { color: colors.textSecondary },
+    filterContainer: { backgroundColor: colors.surface },
+    filterLabel: { color: colors.text },
+    resultsCount: { color: colors.text },
+  };
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themedStyles.container]}>
       {/* Fixed Header with Search */}
-      <View style={styles.stickyHeader}>
-        <View style={styles.header}>
-          <Text style={styles.title}>Search</Text>
-          <Text style={styles.subtitle}>{showFoods ? 'Find foods' : 'Browse restaurants'}</Text>
+      <View style={[styles.stickyHeader, themedStyles.header]}>
+        <View style={[styles.header, themedStyles.header]}>
+          <Text style={[styles.title, themedStyles.title]}>Search</Text>
+          <Text style={[styles.subtitle, themedStyles.subtitle]}>{showFoods ? 'Find foods' : 'Browse restaurants'}</Text>
         </View>
 
         {/* Search Bar - Stays sticky */}
@@ -273,7 +293,7 @@ export default function Search({ navigation }: any) {
 
       {/* Results */}
       <ScrollView ref={scrollViewRef} style={styles.resultsScroll} showsVerticalScrollIndicator={false}>
-        <Text style={styles.resultsCount}>
+        <Text style={[styles.resultsCount, themedStyles.resultsCount]}>
           {showFoods ? `${results.foods.length} Foods` : `${results.restaurants.length} Restaurants`}
         </Text>
 
@@ -328,23 +348,23 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 4 }
   },
-  header: { paddingTop: 60, paddingHorizontal: 20, paddingBottom: 16, backgroundColor: '#fff', borderBottomLeftRadius: 25, borderBottomRightRadius: 25 },
+  header: { paddingTop: 20, paddingHorizontal: 20, paddingBottom: 5 },
   title: { fontSize: 28, fontWeight: '800', color: '#1a1a1a', marginBottom: 4 },
   subtitle: { fontSize: 15, color: '#666' },
-  searchSection: { paddingHorizontal: 20, paddingVertical: 16 },
-  filterToggle: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 20, marginBottom: 12, paddingVertical: 12, backgroundColor: '#fff', borderRadius: 20, gap: 6, shadowColor: '#000', shadowOpacity: 0.05, shadowRadius: 4, elevation: 2 },
+  searchSection: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 },
+  filterToggle: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 20, marginVertical: 12, paddingVertical: 12, backgroundColor: '#fff', borderRadius: 20, gap: 6, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 6, elevation: 3, borderWidth: 1, borderColor: '#f0f0f0' },
   filterToggleText: { fontSize: 15, fontWeight: '600', color: '#ff6b00' },
   filtersContainer: { backgroundColor: '#fff', marginHorizontal: 20, marginBottom: 16, padding: 16, borderRadius: 16, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 8, elevation: 4 },
   filterSection: { marginBottom: 16 },
   filterLabel: { fontSize: 13, fontWeight: '700', color: '#333', marginBottom: 10, textTransform: 'uppercase' },
   filterChips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  filterChip: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: 18, backgroundColor: '#f5f5f5', borderWidth: 1.5, borderColor: '#e0e0e0' },
+  filterChip: { paddingHorizontal: 4, paddingVertical: 8, borderRadius: 18, backgroundColor: '#f5f5f5', borderWidth: 1.5, borderColor: '#e0e0e0' },
   filterChipActive: { backgroundColor: '#ff6b00', borderColor: '#ff6b00' },
   filterChipText: { fontSize: 13, color: '#666', fontWeight: '500' },
   filterChipTextActive: { color: '#fff', fontWeight: '600' },
   resultsScroll: { flex: 1, marginTop: 8 },
   resultsCount: { fontSize: 18, fontWeight: '700', color: '#333', paddingHorizontal: 20, marginBottom: 16 },
-  foodsGrid: { paddingHorizontal: 10, paddingBottom: 20 },
-  foodCardWrapper: { width: 150, padding: 6, marginRight: 8 },
-  restaurantsList: { paddingHorizontal: 20, paddingBottom: 20 },
+  foodsGrid: { paddingHorizontal: 12, paddingBottom: 120 },
+  foodCardWrapper: { width: (Dimensions.get('window').width - 24) / 2, paddingHorizontal: 4, paddingVertical: 6 },
+  restaurantsList: { paddingHorizontal: 20, paddingBottom: 120 },
 });

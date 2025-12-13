@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useCart } from '../context/CartContext';
+import { useTheme } from '../context/ThemeContext';
 
 const Cart = ({ navigation }: any) => {
+  const { isDark, colors } = useTheme();
   const { items, removeFromCart, updateQuantity, getSubtotal, getTax, getTotal, clearCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
 
@@ -36,27 +38,46 @@ const Cart = ({ navigation }: any) => {
     );
   };
 
+  // Theme-aware styles
+  const themedStyles = {
+    container: { backgroundColor: colors.background },
+    header: { backgroundColor: colors.surface },
+    title: { color: colors.text },
+    cartItem: { backgroundColor: colors.card },
+    itemName: { color: colors.text },
+    itemRestaurant: { color: colors.textSecondary },
+    quantity: { color: colors.text },
+    quantityButton: { backgroundColor: isDark ? colors.surface : '#fff5ed' },
+    billingSummary: { backgroundColor: colors.surface },
+    billingTitle: { color: colors.text },
+    billingLabel: { color: colors.textSecondary },
+    billingValue: { color: colors.text },
+    emptyContainer: { backgroundColor: colors.background },
+    emptyTitle: { color: colors.text },
+    emptySubtitle: { color: colors.textSecondary },
+  };
+
   const renderCartItem = ({ item }: any) => (
-    <View style={styles.cartItem}>
+    <View style={[styles.cartItem, themedStyles.cartItem]}>
       <Image
         source={{ uri: item.image || 'https://via.placeholder.com/80' }}
         style={styles.itemImage}
       />
       <View style={styles.itemDetails}>
-        <Text style={styles.itemName} numberOfLines={1}>{item.name}</Text>
-        <Text style={styles.itemRestaurant}>{item.restaurant}</Text>
+        <Text style={[styles.itemName, themedStyles.itemName]} numberOfLines={1}>{item.name}</Text>
+        <Text style={[styles.itemRestaurant, themedStyles.itemRestaurant]}>{item.restaurant}</Text>
         <Text style={styles.itemPrice}>₹{item.price}</Text>
       </View>
       <View style={styles.quantityContainer}>
         <TouchableOpacity
-          style={styles.quantityButton}
+          style={[styles.quantityButton, themedStyles.quantityButton]}
           onPress={() => updateQuantity(item.cartId, item.quantity - 1)}
         >
           <Icon name="minus" size={16} color="#ff6b00" />
         </TouchableOpacity>
-        <Text style={styles.quantity}>{item.quantity}</Text>
+        <Text style={[styles.quantity, themedStyles.quantity]}>{item.quantity}</Text>
         <TouchableOpacity
-          style={styles.quantityButton}
+          style={[styles.quantityButton, themedStyles.quantityButton]}
           onPress={() => updateQuantity(item.cartId, item.quantity + 1)}
         >
           <Icon name="plus" size={16} color="#ff6b00" />
@@ -73,10 +94,10 @@ const Cart = ({ navigation }: any) => {
 
   if (items.length === 0 && !orderPlaced) {
     return (
-      <View style={styles.emptyContainer}>
-        <Icon name="cart-outline" size={80} color="#ddd" />
-        <Text style={styles.emptyTitle}>Your Cart is Empty</Text>
-        <Text style={styles.emptySubtitle}>Add some delicious food to get started!</Text>
+      <View style={[styles.emptyContainer, themedStyles.emptyContainer]}>
+        <Icon name="cart-outline" size={80} color={colors.textSecondary} />
+        <Text style={[styles.emptyTitle, themedStyles.emptyTitle]}>Your Cart is Empty</Text>
+        <Text style={[styles.emptySubtitle, themedStyles.emptySubtitle]}>Add some delicious food to get started!</Text>
         <TouchableOpacity
           style={styles.browseButton}
           onPress={() => navigation.navigate('Home')}
@@ -89,10 +110,10 @@ const Cart = ({ navigation }: any) => {
 
   if (orderPlaced) {
     return (
-      <View style={styles.emptyContainer}>
+      <View style={[styles.emptyContainer, themedStyles.emptyContainer]}>
         <Icon name="check-circle" size={80} color="#4CAF50" />
-        <Text style={styles.emptyTitle}>Order Placed!</Text>
-        <Text style={styles.emptySubtitle}>Thank you for your demo order.</Text>
+        <Text style={[styles.emptyTitle, themedStyles.emptyTitle]}>Order Placed!</Text>
+        <Text style={[styles.emptySubtitle, themedStyles.emptySubtitle]}>Thank you for your demo order.</Text>
         <TouchableOpacity
           style={styles.browseButton}
           onPress={() => {
@@ -107,10 +128,10 @@ const Cart = ({ navigation }: any) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, themedStyles.container]}>
       {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.title}>Your Cart</Text>
+      <View style={[styles.header, themedStyles.header]}>
+        <Text style={[styles.title, themedStyles.title]}>Your Cart</Text>
         <TouchableOpacity onPress={clearCart}>
           <Text style={styles.clearText}>Clear All</Text>
         </TouchableOpacity>
@@ -126,23 +147,23 @@ const Cart = ({ navigation }: any) => {
       />
 
       {/* Billing Summary */}
-      <View style={styles.billingSummary}>
-        <Text style={styles.billingTitle}>Billing Summary</Text>
+      <View style={[styles.billingSummary, themedStyles.billingSummary]}>
+        <Text style={[styles.billingTitle, themedStyles.billingTitle]}>Billing Summary</Text>
 
         <View style={styles.billingRow}>
-          <Text style={styles.billingLabel}>Subtotal</Text>
-          <Text style={styles.billingValue}>₹{getSubtotal()}</Text>
+          <Text style={[styles.billingLabel, themedStyles.billingLabel]}>Subtotal</Text>
+          <Text style={[styles.billingValue, themedStyles.billingValue]}>₹{getSubtotal()}</Text>
         </View>
 
         <View style={styles.billingRow}>
-          <Text style={styles.billingLabel}>Tax (5%)</Text>
-          <Text style={styles.billingValue}>₹{getTax()}</Text>
+          <Text style={[styles.billingLabel, themedStyles.billingLabel]}>Tax (5%)</Text>
+          <Text style={[styles.billingValue, themedStyles.billingValue]}>₹{getTax()}</Text>
         </View>
 
-        <View style={styles.divider} />
+        <View style={[styles.divider, { borderColor: colors.border }]} />
 
         <View style={styles.billingRow}>
-          <Text style={styles.totalLabel}>Total</Text>
+          <Text style={[styles.totalLabel, themedStyles.billingTitle]}>Total</Text>
           <Text style={styles.totalValue}>₹{getTotal()}</Text>
         </View>
 

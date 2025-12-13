@@ -10,8 +10,10 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Signup({ navigation }: any) {
+    const { colors } = useTheme();
     const { signup } = useAuth();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -55,25 +57,33 @@ export default function Signup({ navigation }: any) {
         }
     };
 
+    const themedStyles = {
+        container: { backgroundColor: colors.background },
+        title: { color: colors.primary },
+        subtitle: { color: colors.textSecondary },
+        input: { backgroundColor: colors.card, borderColor: colors.border, color: colors.text },
+        linkText: { color: colors.textSecondary },
+    };
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, themedStyles.container]}>
             <View style={styles.content}>
-                <Text style={styles.title}>Create Account</Text>
-                <Text style={styles.subtitle}>Join SmartDine today</Text>
+                <Text style={[styles.title, themedStyles.title]}>Create Account</Text>
+                <Text style={[styles.subtitle, themedStyles.subtitle]}>Join SmartDine today</Text>
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themedStyles.input]}
                     placeholder="Username"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={colors.textSecondary}
                     value={username}
                     onChangeText={setUsername}
                     autoCapitalize="none"
                 />
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themedStyles.input]}
                     placeholder="Email"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={colors.textSecondary}
                     value={email}
                     onChangeText={setEmail}
                     autoCapitalize="none"
@@ -81,9 +91,9 @@ export default function Signup({ navigation }: any) {
                 />
 
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, themedStyles.input]}
                     placeholder="Password (min 6 characters)"
-                    placeholderTextColor="#888"
+                    placeholderTextColor={colors.textSecondary}
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry
@@ -103,7 +113,7 @@ export default function Signup({ navigation }: any) {
                 <TouchableOpacity
                     style={styles.linkButton}
                     onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.linkText}>
+                    <Text style={[styles.linkText, themedStyles.linkText]}>
                         Already have an account? <Text style={styles.linkBold}>Login</Text>
                     </Text>
                 </TouchableOpacity>

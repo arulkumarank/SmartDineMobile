@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
 import { CartProvider } from './src/context/CartContext';
+import { ThemeProvider } from './src/context/ThemeContext';
 import { ActivityIndicator, View } from 'react-native';
 
 import Login from './src/screens/Login';
@@ -12,6 +13,7 @@ import Restaurant from './src/screens/Restaurant';
 import Map from './src/screens/Map';
 import FoodDetail from './src/screens/FoodDetail';
 import Profile from './src/screens/Profile';
+import Settings from './src/screens/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -51,6 +53,11 @@ function AppNavigator() {
             component={Profile}
             options={{ headerShown: true, title: 'My Profile' }}
           />
+          <Stack.Screen
+            name="Settings"
+            component={Settings}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -65,9 +72,11 @@ function AppNavigator() {
 export default function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <AppNavigator />
-      </CartProvider>
+      <ThemeProvider>
+        <CartProvider>
+          <AppNavigator />
+        </CartProvider>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

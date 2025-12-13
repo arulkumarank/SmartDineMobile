@@ -3,12 +3,26 @@ import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, Dimensions
 import MapView, { Marker, Callout } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { restaurantsAPI } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 import type { Restaurant } from '../types';
 
 const { width, height } = Dimensions.get('window');
 
+// Dark mode map style
+const darkMapStyle = [
+    { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+    { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+    { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+    { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#17263c' }] },
+    { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#38414e' }] },
+    { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#212a37' }] },
+    { featureType: 'poi', elementType: 'geometry', stylers: [{ color: '#283d6a' }] },
+    { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#263c3f' }] },
+];
+
 export default function Map({ navigation, route }: any) {
-    const selectedRestaurant = route?.params?.restaurant; // Get selected restaurant from navigation
+    const selectedRestaurant = route?.params?.restaurant;
+    const { isDark, colors } = useTheme();
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -109,6 +123,7 @@ export default function Map({ navigation, route }: any) {
                 region={region}
                 showsUserLocation={true}
                 showsMyLocationButton={true}
+                customMapStyle={isDark ? darkMapStyle : undefined}
             >
                 {restaurants.map((restaurant, index) => {
                     const isSelected = selectedRestaurant && restaurant.name === selectedRestaurant.name;
