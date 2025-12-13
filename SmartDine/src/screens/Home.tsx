@@ -352,8 +352,8 @@ const styles = StyleSheet.create({
 
   // Responsive Width for Food Cards
   foodCardWrapper: {
-    width: width * 0.65, // 65% of screen width
-    marginRight: 16
+    width: width * 0.42, // 42% of screen width for compact cards
+    marginRight: 12
   },
   restaurantCardWrapper: { marginBottom: 16 },
 });

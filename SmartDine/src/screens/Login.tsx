@@ -5,12 +5,12 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    Alert,
     ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import StyledAlert from '../components/StyledAlert';
 
 export default function Login({ navigation }: any) {
     const { colors } = useTheme();
@@ -18,10 +18,13 @@ export default function Login({ navigation }: any) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState<{ visible: boolean; type: 'error' | 'success'; title: string; message: string }>({
+        visible: false, type: 'error', title: '', message: ''
+    });
 
     const handleLogin = async () => {
         if (!username.trim() || !password.trim()) {
-            Alert.alert('Error', 'Please fill in all fields');
+            setAlert({ visible: true, type: 'error', title: 'Error', message: 'Please fill in all fields' });
             return;
         }
 
@@ -45,7 +48,7 @@ export default function Login({ navigation }: any) {
                 }
             }
 
-            Alert.alert('Login Failed', errorMessage);
+            setAlert({ visible: true, type: 'error', title: 'Login Failed', message: errorMessage });
         } finally {
             setLoading(false);
         }
@@ -102,6 +105,14 @@ export default function Login({ navigation }: any) {
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            <StyledAlert
+                visible={alert.visible}
+                type={alert.type}
+                title={alert.title}
+                message={alert.message}
+                onClose={() => setAlert({ ...alert, visible: false })}
+            />
         </View>
     );
 }

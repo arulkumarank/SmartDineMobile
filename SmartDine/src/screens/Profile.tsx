@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Alert,
   ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -14,6 +13,7 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { profileAPI } from '../services/api';
 import type { UserProfile } from '../types';
+import StyledAlert from '../components/StyledAlert';
 
 export default function Profile() {
   const { isDark, colors } = useTheme();
@@ -26,6 +26,9 @@ export default function Profile() {
     email: '',
     taste_preference: '',
     dietary_restrictions: [],
+  });
+  const [alert, setAlert] = useState<{ visible: boolean; type: 'error' | 'success'; title: string; message: string }>({
+    visible: false, type: 'success', title: '', message: ''
   });
 
   const tasteOptions = [
@@ -78,9 +81,9 @@ export default function Profile() {
         taste_preference: profile.taste_preference,
         dietary_restrictions: profile.dietary_restrictions,
       });
-      Alert.alert('Success', 'Profile updated successfully');
+      setAlert({ visible: true, type: 'success', title: 'Success', message: 'Profile updated successfully' });
     } catch (error: any) {
-      Alert.alert('Error', error.response?.data?.detail || 'Failed to update profile');
+      setAlert({ visible: true, type: 'error', title: 'Error', message: error.response?.data?.detail || 'Failed to update profile' });
     } finally {
       setSaving(false);
     }
@@ -232,6 +235,14 @@ export default function Profile() {
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>
       </View>
+
+      <StyledAlert
+        visible={alert.visible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={() => setAlert({ ...alert, visible: false })}
+      />
     </ScrollView>
   );
 }

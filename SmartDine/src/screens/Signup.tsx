@@ -5,12 +5,12 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    Alert,
     ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import StyledAlert from '../components/StyledAlert';
 
 export default function Signup({ navigation }: any) {
     const { colors } = useTheme();
@@ -19,15 +19,18 @@ export default function Signup({ navigation }: any) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState<{ visible: boolean; type: 'error' | 'success'; title: string; message: string }>({
+        visible: false, type: 'error', title: '', message: ''
+    });
 
     const handleSignup = async () => {
         if (!username.trim() || !email.trim() || !password.trim()) {
-            Alert.alert('Error', 'Please fill in all fields');
+            setAlert({ visible: true, type: 'error', title: 'Error', message: 'Please fill in all fields' });
             return;
         }
 
         if (password.length < 6) {
-            Alert.alert('Error', 'Password must be at least 6 characters');
+            setAlert({ visible: true, type: 'error', title: 'Error', message: 'Password must be at least 6 characters' });
             return;
         }
 
@@ -51,7 +54,7 @@ export default function Signup({ navigation }: any) {
                 }
             }
 
-            Alert.alert('Signup Failed', errorMessage);
+            setAlert({ visible: true, type: 'error', title: 'Signup Failed', message: errorMessage });
         } finally {
             setLoading(false);
         }
@@ -118,6 +121,14 @@ export default function Signup({ navigation }: any) {
                     </Text>
                 </TouchableOpacity>
             </View>
+
+            <StyledAlert
+                visible={alert.visible}
+                type={alert.type}
+                title={alert.title}
+                message={alert.message}
+                onClose={() => setAlert({ ...alert, visible: false })}
+            />
         </View>
     );
 }

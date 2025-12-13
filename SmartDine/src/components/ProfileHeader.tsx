@@ -10,7 +10,8 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../context/AuthContext';
+import { useNotifications } from '../context/NotificationsContext';
 
 interface ProfileHeaderProps {
     navigation: any;
@@ -19,18 +20,15 @@ interface ProfileHeaderProps {
 
 export default function ProfileHeader({ navigation, username = 'User' }: ProfileHeaderProps) {
     const { colors } = useTheme();
+    const { logout } = useAuth();
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { itemCount } = useCart();
+    const { unreadCount } = useNotifications();
 
     const handleLogout = async () => {
         try {
-            await AsyncStorage.removeItem('token');
-            await AsyncStorage.removeItem('username');
             setDropdownVisible(false);
-            navigation.reset({
-                index: 0,
-                routes: [{ name: 'Login' }],
-            });
+            await logout();
         } catch (error) {
             console.error('Logout error:', error);
         }
@@ -98,12 +96,16 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                             style={styles.menuItem}
                             onPress={() => {
                                 setDropdownVisible(false);
-                                // TODO: Navigate to notifications
+                                navigation.navigate('Notifications');
                             }}
                         >
                             <Icon name="bell-outline" size={22} color={colors.textSecondary} />
                             <Text style={[styles.menuText, { color: colors.text }]}>Notifications</Text>
-                            <View style={styles.notificationDot} />
+                            {unreadCount > 0 && (
+                                <View style={styles.notificationBadge}>
+                                    <Text style={styles.notificationBadgeText}>{unreadCount > 9 ? '9+' : unreadCount}</Text>
+                                </View>
+                            )}
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -264,5 +266,19 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#ff4444',
         flex: 1,
+    },
+    notificationBadge: {
+        backgroundColor: '#ff6b00',
+        borderRadius: 10,
+        minWidth: 20,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 6,
+    },
+    notificationBadgeText: {
+        color: '#fff',
+        fontSize: 11,
+        fontWeight: '800',
     },
 });

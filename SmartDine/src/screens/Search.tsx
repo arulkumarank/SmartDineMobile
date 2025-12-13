@@ -229,70 +229,69 @@ export default function Search({ navigation }: any) {
         </View>
       </View>
 
-      {/* Filter Toggle - Expandable */}
-      <TouchableOpacity
-        style={styles.filterToggle}
-        onPress={() => setShowFilters(!showFilters)}>
-        <Icon name="filter-variant" size={20} color="#ff6b00" />
-        <Text style={styles.filterToggleText}>Filters</Text>
-        <Icon name={showFilters ? 'chevron-up' : 'chevron-down'} size={20} color="#ff6b00" />
-      </TouchableOpacity>
-
-      {/* Expandable Filters - Vertical Layout */}
-      {showFilters && (
-        <View style={styles.filtersContainer}>
-          <View style={styles.filterSection}>
-            <Text style={styles.filterLabel}>Taste</Text>
-            <View style={styles.filterChips}>
-              {tasteOptions.map(taste => (
-                <TouchableOpacity
-                  key={taste}
-                  style={[styles.filterChip, filters.taste.includes(taste) && styles.filterChipActive]}
-                  onPress={() => toggleFilter('taste', taste)}>
-                  <Text style={[styles.filterChipText, filters.taste.includes(taste) && styles.filterChipTextActive]}>
-                    {taste}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.filterSection}>
-            <Text style={styles.filterLabel}>Price</Text>
-            <View style={styles.filterChips}>
-              {priceOptions.map(price => (
-                <TouchableOpacity
-                  key={price}
-                  style={[styles.filterChip, filters.price.includes(price) && styles.filterChipActive]}
-                  onPress={() => toggleFilter('price', price)}>
-                  <Text style={[styles.filterChipText, filters.price.includes(price) && styles.filterChipTextActive]}>
-                    {price}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.filterSection}>
-            <Text style={styles.filterLabel}>Dietary</Text>
-            <View style={styles.filterChips}>
-              {dietaryOptions.map(dietary => (
-                <TouchableOpacity
-                  key={dietary}
-                  style={[styles.filterChip, filters.dietary.includes(dietary) && styles.filterChipActive]}
-                  onPress={() => toggleFilter('dietary', dietary)}>
-                  <Text style={[styles.filterChipText, filters.dietary.includes(dietary) && styles.filterChipTextActive]}>
-                    {dietary}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-        </View>
-      )}
-
-      {/* Results */}
+      {/* Results - All content in one scrollable area */}
       <ScrollView ref={scrollViewRef} style={styles.resultsScroll} showsVerticalScrollIndicator={false}>
+        {/* Filter Toggle - Inside ScrollView */}
+        <TouchableOpacity
+          style={styles.filterToggle}
+          onPress={() => setShowFilters(!showFilters)}>
+          <Icon name="filter-variant" size={20} color="#ff6b00" />
+          <Text style={styles.filterToggleText}>Filters</Text>
+          <Icon name={showFilters ? 'chevron-up' : 'chevron-down'} size={20} color="#ff6b00" />
+        </TouchableOpacity>
+
+        {/* Expandable Filters - Inside ScrollView */}
+        {showFilters && (
+          <View style={styles.filtersContainer}>
+            <View style={styles.filterSection}>
+              <Text style={styles.filterLabel}>Taste</Text>
+              <View style={styles.filterChips}>
+                {tasteOptions.map(taste => (
+                  <TouchableOpacity
+                    key={taste}
+                    style={[styles.filterChip, filters.taste.includes(taste) && styles.filterChipActive]}
+                    onPress={() => toggleFilter('taste', taste)}>
+                    <Text style={[styles.filterChipText, filters.taste.includes(taste) && styles.filterChipTextActive]}>
+                      {taste}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.filterSection}>
+              <Text style={styles.filterLabel}>Price</Text>
+              <View style={styles.filterChips}>
+                {priceOptions.map(price => (
+                  <TouchableOpacity
+                    key={price}
+                    style={[styles.filterChip, filters.price.includes(price) && styles.filterChipActive]}
+                    onPress={() => toggleFilter('price', price)}>
+                    <Text style={[styles.filterChipText, filters.price.includes(price) && styles.filterChipTextActive]}>
+                      {price}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+
+            <View style={styles.filterSection}>
+              <Text style={styles.filterLabel}>Dietary</Text>
+              <View style={styles.filterChips}>
+                {dietaryOptions.map(dietary => (
+                  <TouchableOpacity
+                    key={dietary}
+                    style={[styles.filterChip, filters.dietary.includes(dietary) && styles.filterChipActive]}
+                    onPress={() => toggleFilter('dietary', dietary)}>
+                    <Text style={[styles.filterChipText, filters.dietary.includes(dietary) && styles.filterChipTextActive]}>
+                      {dietary}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </View>
+          </View>
+        )}
         <Text style={[styles.resultsCount, themedStyles.resultsCount]}>
           {showFoods ? `${results.foods.length} Foods` : `${results.restaurants.length} Restaurants`}
         </Text>
@@ -352,7 +351,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 28, fontWeight: '800', color: '#1a1a1a', marginBottom: 4 },
   subtitle: { fontSize: 15, color: '#666' },
   searchSection: { paddingHorizontal: 20, paddingTop: 10, paddingBottom: 16 },
-  filterToggle: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 20, marginVertical: 12, paddingVertical: 12, backgroundColor: '#fff', borderRadius: 20, gap: 6, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 6, elevation: 3, borderWidth: 1, borderColor: '#f0f0f0' },
+  filterToggle: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginHorizontal: 20, marginTop: 8, marginBottom: 12, paddingVertical: 12, backgroundColor: '#fff', borderRadius: 20, gap: 6, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 6, elevation: 3, borderWidth: 1, borderColor: '#f0f0f0' },
   filterToggleText: { fontSize: 15, fontWeight: '600', color: '#ff6b00' },
   filtersContainer: { backgroundColor: '#fff', marginHorizontal: 20, marginBottom: 16, padding: 16, borderRadius: 16, shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 8, elevation: 4 },
   filterSection: { marginBottom: 16 },

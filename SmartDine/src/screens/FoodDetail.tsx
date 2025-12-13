@@ -7,7 +7,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     ActivityIndicator,
-    Alert,
+    Modal,
+    Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI, restaurantsAPI } from '../services/api';
@@ -19,6 +20,7 @@ export default function FoodDetail({ route, navigation }: any) {
     const { food } = route?.params || {};
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [showCartModal, setShowCartModal] = useState(false);
     const { addToCart } = useCart();
 
     useEffect(() => {
@@ -30,12 +32,22 @@ export default function FoodDetail({ route, navigation }: any) {
     const loadFoodDetails = async () => {
         try {
             setLoading(true);
-            // Call the food detail API we created in Phase 1
+            console.log('Loading food details:', food?.name, 'from', food?.restaurant);
+
+            // Call the food detail API for AI-enhanced info
             const response = await foodsAPI.getDetail(food.name, food.restaurant);
-            setDetails(response);
+            console.log('API response:', response);
+
+            if (response && response.name) {
+                setDetails(response);
+            } else {
+                console.log('API did not return valid food data, using basic food data');
+                // Use basic info if API doesn't return valid data
+                setDetails(food);
+            }
         } catch (error) {
             console.error('Failed to load food details:', error);
-            // Use basic info if API fails
+            // Use basic info from route params as fallback
             setDetails(food);
         } finally {
             setLoading(false);
@@ -52,11 +64,10 @@ export default function FoodDetail({ route, navigation }: any) {
                 cuisine: details.cuisine,
                 rating: details.rating,
             });
-            Alert.alert(
-                'Added to Cart! 🛒',
-                `${details.name} has been added to your cart.`,
-                [{ text: 'OK' }]
-            );
+            // Show styled modal
+            setShowCartModal(true);
+            // Auto-hide after 2 seconds
+            setTimeout(() => setShowCartModal(false), 2000);
         }
     };
 
@@ -265,6 +276,32 @@ export default function FoodDetail({ route, navigation }: any) {
                     </TouchableOpacity>
                 </View>
             </View>
+
+            {/* Styled Add to Cart Modal */}
+            <Modal
+                visible={showCartModal}
+                transparent={true}
+                animationType="fade"
+                onRequestClose={() => setShowCartModal(false)}
+            >
+                <View style={styles.modalOverlay}>
+                    <View style={[styles.modalContent, { backgroundColor: colors.surface }]}>
+                        <View style={styles.modalIconContainer}>
+                            <Icon name="check-circle" size={60} color="#4CAF50" />
+                        </View>
+                        <Text style={[styles.modalTitle, { color: colors.text }]}>Added to Cart!</Text>
+                        <Text style={[styles.modalMessage, { color: colors.textSecondary }]}>
+                            {details?.name} has been added to your cart
+                        </Text>
+                        <TouchableOpacity
+                            style={styles.modalButton}
+                            onPress={() => setShowCartModal(false)}
+                        >
+                            <Text style={styles.modalButtonText}>Continue</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
         </ScrollView>
     );
 }
@@ -507,6 +544,62 @@ const styles = StyleSheet.create({
     orderButtonText: {
         fontSize: 16,
         fontWeight: '800',
+        color: '#fff',
+    },
+    // Modal styles
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: '#fff',
+        borderRadius: 24,
+        padding: 30,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOpacity: 0.25,
+        shadowRadius: 20,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 10,
+    },
+    modalIconContainer: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: '#e8f5e9',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: '800',
+        color: '#1a1a1a',
+        marginBottom: 8,
+    },
+    modalMessage: {
+        fontSize: 16,
+        color: '#666',
+        textAlign: 'center',
+        marginBottom: 24,
+    },
+    modalButton: {
+        backgroundColor: '#ff6b00',
+        paddingHorizontal: 40,
+        paddingVertical: 14,
+        borderRadius: 25,
+        shadowColor: '#ff6b00',
+        shadowOpacity: 0.4,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 4 },
+        elevation: 6,
+    },
+    modalButtonText: {
+        fontSize: 16,
+        fontWeight: '700',
         color: '#fff',
     },
 });

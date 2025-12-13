@@ -6,36 +6,40 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
+import StyledAlert from '../components/StyledAlert';
 
 const Cart = ({ navigation }: any) => {
   const { isDark, colors } = useTheme();
   const { items, removeFromCart, updateQuantity, getSubtotal, getTax, getTotal, clearCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [alert, setAlert] = useState<{ visible: boolean; type: 'error' | 'success' | 'warning'; title: string; message: string }>({
+    visible: false, type: 'success', title: '', message: ''
+  });
 
   const handlePlaceOrder = () => {
     if (items.length === 0) {
-      Alert.alert('Empty Cart', 'Please add items to your cart first.');
+      setAlert({ visible: true, type: 'warning', title: 'Empty Cart', message: 'Please add items to your cart first.' });
       return;
     }
 
-    Alert.alert(
-      'Order Placed! 🎉',
-      `Your order of ₹${getTotal()} has been placed successfully!\n\nThis is a demo - no actual order was made.`,
-      [
-        {
-          text: 'OK',
-          onPress: () => {
-            clearCart();
-            setOrderPlaced(true);
-          },
-        },
-      ]
-    );
+    setAlert({
+      visible: true,
+      type: 'success',
+      title: 'Order Placed! 🎉',
+      message: `Your order of ₹${getTotal()} has been placed successfully!\n\nThis is a demo - no actual order was made.`
+    });
+  };
+
+  const handleAlertClose = () => {
+    if (alert.type === 'success' && alert.title.includes('Order')) {
+      clearCart();
+      setOrderPlaced(true);
+    }
+    setAlert({ ...alert, visible: false });
   };
 
   // Theme-aware styles
@@ -173,6 +177,14 @@ const Cart = ({ navigation }: any) => {
           <Icon name="arrow-right" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
+
+      <StyledAlert
+        visible={alert.visible}
+        type={alert.type}
+        title={alert.title}
+        message={alert.message}
+        onClose={handleAlertClose}
+      />
     </View>
   );
 };
