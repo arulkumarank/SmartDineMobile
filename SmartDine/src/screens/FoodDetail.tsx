@@ -7,14 +7,17 @@ import {
     StyleSheet,
     TouchableOpacity,
     ActivityIndicator,
+    Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { foodsAPI } from '../services/api';
+import { foodsAPI, restaurantsAPI } from '../services/api';
+import { useCart } from '../context/CartContext';
 
 export default function FoodDetail({ route, navigation }: any) {
     const { food } = route?.params || {};
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const { addToCart } = useCart();
 
     useEffect(() => {
         if (food) {
@@ -37,6 +40,38 @@ export default function FoodDetail({ route, navigation }: any) {
         }
     };
 
+    const handleAddToCart = () => {
+        if (details) {
+            addToCart({
+                name: details.name,
+                restaurant: details.restaurant,
+                price: details.price || 0,
+                image: details.image,
+                cuisine: details.cuisine,
+                rating: details.rating,
+            });
+            Alert.alert(
+                'Added to Cart! 🛒',
+                `${details.name} has been added to your cart.`,
+                [{ text: 'OK' }]
+            );
+        }
+    };
+
+    const handleRestaurantPress = async () => {
+        try {
+            const response = await restaurantsAPI.getAll();
+            const restaurant = response.restaurants?.find(
+                (r: any) => r.name === details.restaurant
+            );
+            if (restaurant) {
+                navigation.navigate('Restaurant', restaurant);
+            }
+        } catch (error) {
+            console.error('Failed to navigate to restaurant:', error);
+        }
+    };
+
     if (loading) {
         return (
             <View style={styles.centerContainer}>
@@ -56,7 +91,7 @@ export default function FoodDetail({ route, navigation }: any) {
     }
 
     return (
-        <ScrollView style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
             {/* Food Image - 1/4 height */}
             <Image
                 source={{ uri: details.image || 'https://source.unsplash.com/600x400/?food' }}
@@ -67,11 +102,14 @@ export default function FoodDetail({ route, navigation }: any) {
             <View style={styles.content}>
                 {/* Food Name & Restaurant */}
                 <Text style={styles.foodName}>{details.name}</Text>
-                <View style={styles.restaurantRow}>
-                    <Icon name="store" size={18} color="#666" />
-                    <Text style={styles.restaurantName}>{details.restaurant}</Text>
-                    <Text style={styles.cuisine}>• {details.cuisine}</Text>
-                </View>
+                <TouchableOpacity
+                    style={styles.restaurantRow}
+                    onPress={() => handleRestaurantPress()}
+                >
+                    <Icon name="store" size={18} color="#ff6b00" />
+                    <Text style={styles.restaurantNameLink}>{details.restaurant}</Text>
+                    <Icon name="chevron-right" size={18} color="#ff6b00" />
+                </TouchableOpacity>
 
                 {/* Taste Profile */}
                 {details.taste_profile && (
@@ -187,15 +225,15 @@ export default function FoodDetail({ route, navigation }: any) {
                     </View>
                 )}
 
-                {/* Price & Order Button */}
+                {/* Price & Add to Cart Button */}
                 <View style={styles.footer}>
                     <View>
                         <Text style={styles.priceLabel}>Price</Text>
                         <Text style={styles.price}>₹{details.price || '0'}</Text>
                     </View>
-                    <TouchableOpacity style={styles.orderButton}>
-                        <Text style={styles.orderButtonText}>Order Now</Text>
-                        <Icon name="arrow-right" size={20} color="#fff" />
+                    <TouchableOpacity style={styles.orderButton} onPress={handleAddToCart}>
+                        <Icon name="cart-plus" size={20} color="#fff" />
+                        <Text style={styles.orderButtonText}>Add to Cart</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -207,6 +245,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f8f9fa',
+    },
+    scrollContent: {
+        paddingBottom: 100,
     },
     centerContainer: {
         flex: 1,
@@ -227,7 +268,7 @@ const styles = StyleSheet.create({
     },
     foodImage: {
         width: '100%',
-        height: 200, // 1/4 of typical screen height
+        height: 200,
     },
     content: {
         padding: 20,
@@ -242,12 +283,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
+        backgroundColor: '#fff5ed',
+        paddingHorizontal: 12,
+        paddingVertical: 10,
+        borderRadius: 12,
     },
     restaurantName: {
         fontSize: 16,
         color: '#666',
         marginLeft: 6,
         fontWeight: '600',
+    },
+    restaurantNameLink: {
+        fontSize: 16,
+        color: '#ff6b00',
+        marginLeft: 6,
+        fontWeight: '700',
+        flex: 1,
     },
     cuisine: {
         fontSize: 16,

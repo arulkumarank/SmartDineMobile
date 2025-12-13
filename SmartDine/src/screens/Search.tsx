@@ -290,13 +290,7 @@ export default function Search({ navigation }: any) {
                 <FoodCard
                   food={item}
                   compact
-                  onPress={() => navigation.navigate('Restaurant', {
-                    name: item.restaurant,
-                    cuisine: item.cuisine || 'Dining',
-                    rating: item.rating || 4.5,
-                    image: item.image,
-                    location: { address: item.restaurant, latitude: 0, longitude: 0 }
-                  })}
+                  onPress={() => navigation.navigate('FoodDetail', { food: item })}
                 />
               </View>
             )}

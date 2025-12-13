@@ -1,54 +1,355 @@
-  import React from 'react';
-  import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  Image,
+  Alert,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useCart } from '../context/CartContext';
 
-  const Cart = () => {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Your Cart 🛒</Text>
+const Cart = ({ navigation }: any) => {
+  const { items, removeFromCart, updateQuantity, getSubtotal, getTax, getTotal, clearCart } = useCart();
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
-        <View style={styles.emptyBox}>
-          <Text style={styles.emptyText}>Your cart is empty</Text>
-        </View>
+  const handlePlaceOrder = () => {
+    if (items.length === 0) {
+      Alert.alert('Empty Cart', 'Please add items to your cart first.');
+      return;
+    }
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Browse Restaurants</Text>
-        </TouchableOpacity>
-      </View>
+    Alert.alert(
+      'Order Placed! 🎉',
+      `Your order of ₹${getTotal()} has been placed successfully!\n\nThis is a demo - no actual order was made.`,
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            clearCart();
+            setOrderPlaced(true);
+          },
+        },
+      ]
     );
   };
 
-  export default Cart;
+  const renderCartItem = ({ item }: any) => (
+    <View style={styles.cartItem}>
+      <Image
+        source={{ uri: item.image || 'https://via.placeholder.com/80' }}
+        style={styles.itemImage}
+      />
+      <View style={styles.itemDetails}>
+        <Text style={styles.itemName} numberOfLines={1}>{item.name}</Text>
+        <Text style={styles.itemRestaurant}>{item.restaurant}</Text>
+        <Text style={styles.itemPrice}>₹{item.price}</Text>
+      </View>
+      <View style={styles.quantityContainer}>
+        <TouchableOpacity
+          style={styles.quantityButton}
+          onPress={() => updateQuantity(item.cartId, item.quantity - 1)}
+        >
+          <Icon name="minus" size={16} color="#ff6b00" />
+        </TouchableOpacity>
+        <Text style={styles.quantity}>{item.quantity}</Text>
+        <TouchableOpacity
+          style={styles.quantityButton}
+          onPress={() => updateQuantity(item.cartId, item.quantity + 1)}
+        >
+          <Icon name="plus" size={16} color="#ff6b00" />
+        </TouchableOpacity>
+      </View>
+      <TouchableOpacity
+        style={styles.removeButton}
+        onPress={() => removeFromCart(item.cartId)}
+      >
+        <Icon name="trash-can-outline" size={20} color="#ff4444" />
+      </TouchableOpacity>
+    </View>
+  );
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 20,
-      backgroundColor: "#fff",
-    },
-    title: {
-      fontSize: 26,
-      fontWeight: "700",
-      marginBottom: 20,
-    },
-    emptyBox: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-    },
-    emptyText: {
-      fontSize: 18,
-      color: "#777",
-    },
-    button: {
-      backgroundColor: "#ff6b00",
-      paddingVertical: 17,
-      borderRadius: 14,
-    },
+  if (items.length === 0 && !orderPlaced) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Icon name="cart-outline" size={80} color="#ddd" />
+        <Text style={styles.emptyTitle}>Your Cart is Empty</Text>
+        <Text style={styles.emptySubtitle}>Add some delicious food to get started!</Text>
+        <TouchableOpacity
+          style={styles.browseButton}
+          onPress={() => navigation.navigate('Home')}
+        >
+          <Text style={styles.browseButtonText}>Browse Food</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
-    buttonText: {
-      textAlign: "center",
-      color: "#fff",
-      fontSize: 16,
-      fontWeight: "600",
-    },
-  });
+  if (orderPlaced) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Icon name="check-circle" size={80} color="#4CAF50" />
+        <Text style={styles.emptyTitle}>Order Placed!</Text>
+        <Text style={styles.emptySubtitle}>Thank you for your demo order.</Text>
+        <TouchableOpacity
+          style={styles.browseButton}
+          onPress={() => {
+            setOrderPlaced(false);
+            navigation.navigate('Home');
+          }}
+        >
+          <Text style={styles.browseButtonText}>Continue Shopping</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Text style={styles.title}>Your Cart</Text>
+        <TouchableOpacity onPress={clearCart}>
+          <Text style={styles.clearText}>Clear All</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Cart Items */}
+      <FlatList
+        data={items}
+        renderItem={renderCartItem}
+        keyExtractor={(item) => item.cartId}
+        contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
+      />
+
+      {/* Billing Summary */}
+      <View style={styles.billingSummary}>
+        <Text style={styles.billingTitle}>Billing Summary</Text>
+
+        <View style={styles.billingRow}>
+          <Text style={styles.billingLabel}>Subtotal</Text>
+          <Text style={styles.billingValue}>₹{getSubtotal()}</Text>
+        </View>
+
+        <View style={styles.billingRow}>
+          <Text style={styles.billingLabel}>Tax (5%)</Text>
+          <Text style={styles.billingValue}>₹{getTax()}</Text>
+        </View>
+
+        <View style={styles.divider} />
+
+        <View style={styles.billingRow}>
+          <Text style={styles.totalLabel}>Total</Text>
+          <Text style={styles.totalValue}>₹{getTotal()}</Text>
+        </View>
+
+        {/* Place Order Button */}
+        <TouchableOpacity style={styles.placeOrderButton} onPress={handlePlaceOrder}>
+          <Text style={styles.placeOrderText}>Place Order</Text>
+          <Icon name="arrow-right" size={20} color="#fff" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default Cart;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    paddingBottom: 16,
+    backgroundColor: '#fff',
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: '900',
+    color: '#1a1a1a',
+  },
+  clearText: {
+    fontSize: 14,
+    color: '#ff4444',
+    fontWeight: '600',
+  },
+  listContent: {
+    padding: 16,
+    paddingBottom: 280,
+  },
+  cartItem: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    padding: 12,
+    marginBottom: 12,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+  },
+  itemImage: {
+    width: 60,
+    height: 60,
+    borderRadius: 12,
+  },
+  itemDetails: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  itemName: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1a1a1a',
+  },
+  itemRestaurant: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 2,
+  },
+  itemPrice: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#ff6b00',
+    marginTop: 4,
+  },
+  quantityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 20,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  quantityButton: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  quantity: {
+    fontSize: 16,
+    fontWeight: '700',
+    marginHorizontal: 12,
+    color: '#1a1a1a',
+  },
+  removeButton: {
+    marginLeft: 12,
+    padding: 8,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f9fa',
+    padding: 40,
+  },
+  emptyTitle: {
+    fontSize: 24,
+    fontWeight: '800',
+    color: '#1a1a1a',
+    marginTop: 20,
+  },
+  emptySubtitle: {
+    fontSize: 15,
+    color: '#888',
+    marginTop: 8,
+    textAlign: 'center',
+  },
+  browseButton: {
+    backgroundColor: '#ff6b00',
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 28,
+    marginTop: 24,
+  },
+  browseButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  billingSummary: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    padding: 24,
+    paddingBottom: 100,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: -4 },
+    elevation: 20,
+  },
+  billingTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1a1a1a',
+    marginBottom: 16,
+  },
+  billingRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  billingLabel: {
+    fontSize: 15,
+    color: '#666',
+  },
+  billingValue: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  divider: {
+    height: 1,
+    backgroundColor: '#eee',
+    marginVertical: 12,
+  },
+  totalLabel: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#1a1a1a',
+  },
+  totalValue: {
+    fontSize: 22,
+    fontWeight: '900',
+    color: '#ff6b00',
+  },
+  placeOrderButton: {
+    flexDirection: 'row',
+    backgroundColor: '#ff6b00',
+    paddingVertical: 16,
+    borderRadius: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    gap: 8,
+    shadowColor: '#ff6b00',
+    shadowOpacity: 0.4,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8,
+  },
+  placeOrderText: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#fff',
+  },
+});

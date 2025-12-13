@@ -13,7 +13,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { aiAPI, foodsAPI, restaurantsAPI } from '../services/api';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
+import ProfileHeader from '../components/ProfileHeader';
 import type { Food, Restaurant } from '../types';
+import { isFuzzyMatch } from '../utils/search';
 
 export default function Home({ navigation }: any) {
   const [question, setQuestion] = useState('');
@@ -83,10 +85,6 @@ export default function Home({ navigation }: any) {
         console.log(`Matched ${matchedFoods.length} foods from AI suggestions`);
       }
 
-      import { isFuzzyMatch } from '../utils/search';
-
-      // ... inside Home logic ...
-
       // Fallback: semantic/fuzzy search if no matches
       if (matchedFoods.length === 0) {
         matchedFoods = allFoods.filter((f: Food) => {
@@ -141,10 +139,13 @@ export default function Home({ navigation }: any) {
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[1]} // Index 1 is the searchBox container
       >
-        {/* Branding - Scrolls away */}
+        {/* Branding with Profile */}
         < View style={styles.brandingContainer} >
-          <Text style={styles.branding}>Smart Dine</Text>
-          <Text style={styles.tagline}>AI-Powered Food Discovery</Text>
+          <View>
+            <Text style={styles.branding}>Smart Dine</Text>
+            <Text style={styles.tagline}>AI-Powered Food Discovery</Text>
+          </View>
+          <ProfileHeader navigation={navigation} />
         </View >
 
         {/* Search Box - Sticks to top */}
@@ -191,13 +192,7 @@ export default function Home({ navigation }: any) {
                     <FoodCard
                       food={item}
                       compact
-                      onPress={() => navigation.navigate('Restaurant', {
-                        name: item.restaurant,
-                        cuisine: item.cuisine || 'Dining',
-                        rating: item.rating || 4.5,
-                        image: item.image,
-                        location: { address: item.restaurant, latitude: 0, longitude: 0 }
-                      })}
+                      onPress={() => navigation.navigate('FoodDetail', { food: item })}
                     />
                   </View>
                 )}
@@ -239,13 +234,7 @@ export default function Home({ navigation }: any) {
                 <FoodCard
                   food={item}
                   compact
-                  onPress={() => navigation.navigate('Restaurant', {
-                    name: item.restaurant,
-                    cuisine: item.cuisine || 'Dining',
-                    rating: item.rating || 4.5,
-                    image: item.image,
-                    location: { address: item.restaurant, latitude: 0, longitude: 0 }
-                  })}
+                  onPress={() => navigation.navigate('FoodDetail', { food: item })}
                 />
               </View>
             )}
@@ -278,7 +267,7 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#f8f9fa' },
-  brandingContainer: { paddingHorizontal: 20, paddingTop: 50, paddingBottom: 10, backgroundColor: '#f8f9fa' },
+  brandingContainer: { paddingHorizontal: 20, paddingTop: 50, paddingBottom: 10, backgroundColor: '#f8f9fa', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   branding: { fontSize: 32, fontWeight: '900', color: '#ff6b00', letterSpacing: -1 },
   tagline: { fontSize: 13, color: '#666', marginTop: 2 },
 

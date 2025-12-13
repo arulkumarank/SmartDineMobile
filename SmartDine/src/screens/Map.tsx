@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#f8f9fa',
         padding: 30,
+        paddingBottom: 100, // Space for bottom tab bar
     },
     loadingText: {
         marginTop: 16,

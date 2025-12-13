@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { restaurantsAPI } from '../services/api';
@@ -61,6 +62,28 @@ export default function Restaurant({ route, navigation }: any) {
     }
   };
 
+  const openGoogleMaps = () => {
+    if (restaurant.location) {
+      const { latitude, longitude, address } = restaurant.location;
+
+      // Create Google Maps URL
+      let mapsUrl = '';
+      if (latitude && longitude && latitude !== 0 && longitude !== 0) {
+        mapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+      } else {
+        // Use address for search
+        const query = encodeURIComponent(`${restaurant.name} ${address || ''}`);
+        mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+      }
+
+      Linking.openURL(mapsUrl).catch(err => {
+        console.error('Failed to open maps:', err);
+        // Fallback: navigate to in-app map
+        navigation.navigate('Map', { restaurant });
+      });
+    }
+  };
+
   const handleAddressClick = () => {
     if (restaurant.location) {
       // Navigate to Map screen with restaurant location
@@ -70,7 +93,19 @@ export default function Restaurant({ route, navigation }: any) {
 
   return (
     <ScrollView style={styles.container}>
-      <Image source={{ uri: restaurant.image }} style={styles.coverImage} />
+      {/* Cover Image with Floating Maps Button */}
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: restaurant.image }} style={styles.coverImage} />
+
+        {/* Floating Google Maps Button - Top Right */}
+        <TouchableOpacity
+          style={styles.mapsButton}
+          onPress={openGoogleMaps}
+          activeOpacity={0.8}
+        >
+          <Icon name="google-maps" size={24} color="#fff" />
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.content}>
         <Text style={styles.title}>{restaurant.name}</Text>
@@ -121,9 +156,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fafafa',
   },
+  imageContainer: {
+    position: 'relative',
+  },
   coverImage: {
     width: '100%',
     height: 250,
+  },
+  mapsButton: {
+    position: 'absolute',
+    top: 15,
+    right: 15,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: '#ff6b00',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   content: {
     padding: 20,

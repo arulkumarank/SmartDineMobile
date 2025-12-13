@@ -3,19 +3,20 @@ import Home from '../screens/Home';
 import Search from '../screens/Search';
 import SurpriseMe from '../screens/SurpriseMe';
 import Map from '../screens/Map';
-import Profile from '../screens/Profile';
+import Cart from '../screens/Cart';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, StyleSheet, TouchableOpacity, Platform, Text } from 'react-native';
+import { useCart } from '../context/CartContext';
 
 const Tab = createBottomTabNavigator();
 
-// Tab bar config
+// Tab bar config - Cart replaces Profile
 const TABS_CONFIG = [
   { name: 'Home', icon: 'silverware-fork-knife', label: 'Discover' },
   { name: 'Search', icon: 'magnify', label: 'Search' },
   { name: 'SurpriseMe', icon: null, label: null }, // Center - handled separately
   { name: 'Map', icon: 'map-marker', label: 'Map' },
-  { name: 'Profile', icon: 'account-circle-outline', label: 'Profile' },
+  { name: 'Cart', icon: 'cart-outline', label: 'Cart' },
 ];
 
 // Custom Tab Bar with Enhanced Curve
@@ -113,7 +114,7 @@ export default function BottomTabs() {
       <Tab.Screen name="Search" component={Search} />
       <Tab.Screen name="SurpriseMe" component={SurpriseMe} />
       <Tab.Screen name="Map" component={Map} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Cart" component={Cart} />
     </Tab.Navigator>
   );
 }

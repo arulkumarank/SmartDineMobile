@@ -3,7 +3,7 @@
     "name": "Spice Symphony",
     "cuisine": "North Indian",
     "rating": 4.8,
-    "image": "https://images.unsplash.com/photo-d10b82359733?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800",
     "location": {
       "latitude": 13.063918,
       "longitude": 80.239342,
@@ -12,8 +12,8 @@
     "menu": [
       {
         "name": "Butter Chicken",
-        "price": 440,
-        "image": "https://images.unsplash.com/photo-3306ff672fb9?w=600",
+        "price": 305,
+        "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -24,16 +24,16 @@
           "fat": 12
         },
         "tags": [
-          "vegan",
-          "dessert"
+          "popular",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.8
       },
       {
         "name": "Gajar Halwa",
-        "price": 201,
-        "image": "https://images.unsplash.com/photo-c4ee3a32e12e?w=600",
+        "price": 171,
+        "image": "https://images.unsplash.com/photo-1633383718081-22ac93e3db65?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -44,16 +44,17 @@
           "fat": 18
         },
         "tags": [
-          "side",
-          "spicy"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Garlic Naan",
-        "price": 76,
-        "image": "https://images.unsplash.com/photo-b3cfa092fafc?w=600",
+        "price": 45,
+        "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -64,18 +65,16 @@
           "fat": 12
         },
         "tags": [
-          "side",
-          "bread",
-          "soup",
-          "appetizer"
+          "traditional",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Gulab Jamun",
-        "price": 81,
-        "image": "https://images.unsplash.com/photo-553766104a76?w=600",
+        "price": 185,
+        "image": "https://images.unsplash.com/photo-1540648639573-8c848de23f0a?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -86,16 +85,18 @@
           "fat": 12
         },
         "tags": [
-          "breakfast",
-          "high-protein"
+          "spicy",
+          "vegetarian",
+          "sweet",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Cheesecake",
-        "price": 437,
-        "image": "https://images.unsplash.com/photo-8e80b9f5f261?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -106,10 +107,10 @@
           "fat": 8
         },
         "tags": [
-          "dessert",
-          "popular",
+          "spicy",
+          "vegetarian",
           "sweet",
-          "bread"
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -120,7 +121,7 @@
     "name": "Bombay Brasserie",
     "cuisine": "North Indian",
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-67f99e276e33?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=800",
     "location": {
       "latitude": 13.06869,
       "longitude": 80.235473,
@@ -129,8 +130,8 @@
     "menu": [
       {
         "name": "Aloo Gobi",
-        "price": 416,
-        "image": "https://images.unsplash.com/photo-1d57f3c30c25?w=600",
+        "price": 253,
+        "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -141,16 +142,15 @@
           "fat": 29
         },
         "tags": [
-          "main",
-          "gluten-free"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Gulab Jamun",
-        "price": 518,
-        "image": "https://images.unsplash.com/photo-b5f2dd26e147?w=600",
+        "price": 185,
+        "image": "https://images.unsplash.com/photo-1540648639573-8c848de23f0a?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -161,16 +161,18 @@
           "fat": 17
         },
         "tags": [
-          "side",
-          "high-protein"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Chicken Biryani",
-        "price": 577,
-        "image": "https://images.unsplash.com/photo-ca93f6423743?w=600",
+        "price": 281,
+        "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -181,18 +183,18 @@
           "fat": 27
         },
         "tags": [
-          "main",
-          "soup",
-          "rice",
-          "sweet"
+          "traditional",
+          "popular",
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Garlic Naan",
-        "price": 533,
-        "image": "https://images.unsplash.com/photo-cc47c97aa162?w=600",
+        "price": 45,
+        "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -203,18 +205,17 @@
           "fat": 18
         },
         "tags": [
-          "side",
-          "bread",
-          "gluten-free",
-          "breakfast"
+          "traditional",
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Red Velvet Cake",
-        "price": 182,
-        "image": "https://images.unsplash.com/photo-dc92fc0f7ebf?w=600",
+        "price": 169,
+        "image": "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -225,10 +226,10 @@
           "fat": 13
         },
         "tags": [
-          "dessert",
-          "popular",
+          "spicy",
+          "vegetarian",
           "sweet",
-          "vegan"
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -240,7 +241,7 @@
     "name": "Tandoor Flames",
     "cuisine": "North Indian",
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-1dda7a546865?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800",
     "location": {
       "latitude": 13.046716,
       "longitude": 80.25301,
@@ -249,8 +250,8 @@
     "menu": [
       {
         "name": "Butter Chicken",
-        "price": 50,
-        "image": "https://images.unsplash.com/photo-90b206751fc3?w=600",
+        "price": 305,
+        "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -261,16 +262,17 @@
           "fat": 27
         },
         "tags": [
-          "traditional",
-          "rice"
+          "popular",
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Paneer Tikka",
-        "price": 126,
-        "image": "https://images.unsplash.com/photo-05d934f468d2?w=600",
+        "price": 225,
+        "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -281,16 +283,17 @@
           "fat": 9
         },
         "tags": [
-          "popular",
-          "rice"
+          "traditional",
+          "vegetarian",
+          "high-protein"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Aloo Gobi",
-        "price": 176,
-        "image": "https://images.unsplash.com/photo-6c520b5ce362?w=600",
+        "price": 253,
+        "image": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -301,16 +304,15 @@
           "fat": 18
         },
         "tags": [
-          "breakfast",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.9
       },
       {
         "name": "Chicken Biryani",
-        "price": 131,
-        "image": "https://images.unsplash.com/photo-338acd715bc0?w=600",
+        "price": 281,
+        "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -321,18 +323,17 @@
           "fat": 10
         },
         "tags": [
-          "main",
-          "gluten-free",
-          "rice",
-          "sweet"
+          "traditional",
+          "popular",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Chicken Biryani",
-        "price": 261,
-        "image": "https://images.unsplash.com/photo-a0a57579c186?w=600",
+        "price": 281,
+        "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -343,18 +344,18 @@
           "fat": 14
         },
         "tags": [
-          "main",
-          "dessert",
-          "rice",
-          "salad"
+          "traditional",
+          "popular",
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.6
       },
       {
         "name": "Vanilla Creme Brulee",
-        "price": 74,
-        "image": "https://images.unsplash.com/photo-8f5fbd3b8127?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -365,8 +366,10 @@
           "fat": 10
         },
         "tags": [
-          "appetizer",
-          "rice"
+          "spicy",
+          "vegetarian",
+          "sweet",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
@@ -377,7 +380,7 @@
     "name": "Kerala Cafe",
     "cuisine": "South Indian",
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-3b35339b50ae?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1567337710282-00832b415979?w=800",
     "location": {
       "latitude": 13.043045,
       "longitude": 80.268032,
@@ -386,8 +389,8 @@
     "menu": [
       {
         "name": "Filter Coffee",
-        "price": 213,
-        "image": "https://images.unsplash.com/photo-0d4659144bcc?w=600",
+        "price": 83,
+        "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -398,8 +401,8 @@
           "fat": 8
         },
         "tags": [
-          "vegan",
-          "breakfast"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -407,8 +410,8 @@
       },
       {
         "name": "Sambar",
-        "price": 176,
-        "image": "https://images.unsplash.com/photo-06f7ebebf803?w=600",
+        "price": 97,
+        "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -419,16 +422,16 @@
           "fat": 26
         },
         "tags": [
-          "dessert",
-          "fried"
+          "traditional",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Sambar",
-        "price": 360,
-        "image": "https://images.unsplash.com/photo-19a8a6ae32a0?w=600",
+        "price": 97,
+        "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -439,16 +442,17 @@
           "fat": 7
         },
         "tags": [
-          "bread",
-          "healthy"
+          "spicy",
+          "vegetarian",
+          "traditional"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Medu Vada",
-        "price": 114,
-        "image": "https://images.unsplash.com/photo-89adec0d04b4?w=600",
+        "price": 111,
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -459,18 +463,16 @@
           "fat": 24
         },
         "tags": [
-          "bread",
-          "appetizer",
-          "traditional",
-          "fried"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.9
       },
       {
         "name": "Rava Dosa",
-        "price": 52,
-        "image": "https://images.unsplash.com/photo-32e93ebf7fc9?w=600",
+        "price": 92,
+        "image": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -481,16 +483,17 @@
           "fat": 25
         },
         "tags": [
-          "comfort",
-          "fried"
+          "traditional",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Chocolate Truffle",
-        "price": 567,
-        "image": "https://images.unsplash.com/photo-cd2a5b8e2794?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -501,10 +504,10 @@
           "fat": 13
         },
         "tags": [
-          "popular",
-          "dessert",
-          "breakfast",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.3
@@ -515,7 +518,7 @@
     "name": "Dosa Corner",
     "cuisine": "South Indian",
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-8d1fa68d39bf?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=800",
     "location": {
       "latitude": 13.051311,
       "longitude": 80.235333,
@@ -524,8 +527,8 @@
     "menu": [
       {
         "name": "Sambar",
-        "price": 453,
-        "image": "https://images.unsplash.com/photo-574992d3d58b?w=600",
+        "price": 97,
+        "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -536,8 +539,9 @@
           "fat": 11
         },
         "tags": [
-          "vegan",
-          "high-protein"
+          "spicy",
+          "vegetarian",
+          "traditional"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -546,8 +550,8 @@
       },
       {
         "name": "Paper Masala Dosa",
-        "price": 451,
-        "image": "https://images.unsplash.com/photo-95a24e4c649c?w=600",
+        "price": 96,
+        "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -558,16 +562,17 @@
           "fat": 19
         },
         "tags": [
-          "salad",
-          "appetizer"
+          "traditional",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.9
       },
       {
         "name": "Rava Dosa",
-        "price": 341,
-        "image": "https://images.unsplash.com/photo-da9c526cceb6?w=600",
+        "price": 92,
+        "image": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -578,8 +583,10 @@
           "fat": 12
         },
         "tags": [
-          "main",
-          "high-protein"
+          "spicy",
+          "vegetarian",
+          "popular",
+          "traditional"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -587,8 +594,8 @@
       },
       {
         "name": "Masala Dosa",
-        "price": 126,
-        "image": "https://images.unsplash.com/photo-8a7d2685678c?w=600",
+        "price": 119,
+        "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -599,16 +606,17 @@
           "fat": 15
         },
         "tags": [
-          "noodles",
-          "sweet"
+          "traditional",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Rava Dosa",
-        "price": 288,
-        "image": "https://images.unsplash.com/photo-6c998d9775c4?w=600",
+        "price": 92,
+        "image": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -619,8 +627,9 @@
           "fat": 10
         },
         "tags": [
-          "main",
-          "rice"
+          "traditional",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.7,
@@ -628,8 +637,8 @@
       },
       {
         "name": "Cheesecake",
-        "price": 170,
-        "image": "https://images.unsplash.com/photo-ccd3c2cb6476?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -640,10 +649,9 @@
           "fat": 10
         },
         "tags": [
-          "breakfast",
-          "dessert",
-          "popular",
-          "healthy"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7
@@ -654,7 +662,7 @@
     "name": "Dragon Wok",
     "cuisine": "Chinese",
     "rating": 4.4,
-    "image": "https://images.unsplash.com/photo-7078fd0ae6b3?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=800",
     "location": {
       "latitude": 13.029397,
       "longitude": 80.232344,
@@ -663,8 +671,8 @@
     "menu": [
       {
         "name": "Veg Spring Rolls",
-        "price": 348,
-        "image": "https://images.unsplash.com/photo-27d82d8eb912?w=600",
+        "price": 147,
+        "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -675,18 +683,16 @@
           "fat": 19
         },
         "tags": [
-          "side",
-          "bread",
-          "gluten-free",
-          "fried"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Honey Chilli Potato",
-        "price": 595,
-        "image": "https://images.unsplash.com/photo-da611f4a9ca4?w=600",
+        "price": 181,
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -697,16 +703,16 @@
           "fat": 28
         },
         "tags": [
-          "rice",
-          "sweet"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Szechwan Fried Rice",
-        "price": 288,
-        "image": "https://images.unsplash.com/photo-e4dc6fbf3cbc?w=600",
+        "price": 247,
+        "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -717,18 +723,16 @@
           "fat": 20
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "spicy"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Chicken Manchurian",
-        "price": 422,
-        "image": "https://images.unsplash.com/photo-35d730542c71?w=600",
+        "price": 242,
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -739,16 +743,16 @@
           "fat": 16
         },
         "tags": [
-          "traditional",
-          "dessert"
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Chicken Manchurian",
-        "price": 533,
-        "image": "https://images.unsplash.com/photo-7732fa510e9f?w=600",
+        "price": 242,
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -759,16 +763,15 @@
           "fat": 17
         },
         "tags": [
-          "popular",
-          "fried"
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Chocolate Truffle",
-        "price": 231,
-        "image": "https://images.unsplash.com/photo-0ea4e3fbccb6?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -779,10 +782,10 @@
           "fat": 13
         },
         "tags": [
-          "salad",
-          "dessert",
-          "popular",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
@@ -793,7 +796,7 @@
     "name": "The Chinese Wok",
     "cuisine": "Chinese",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-7099b3e574b2?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1552611052-33e04de081de?w=800",
     "location": {
       "latitude": 13.041788,
       "longitude": 80.255371,
@@ -802,8 +805,8 @@
     "menu": [
       {
         "name": "Honey Chilli Potato",
-        "price": 123,
-        "image": "https://images.unsplash.com/photo-8c5544290512?w=600",
+        "price": 181,
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -814,16 +817,15 @@
           "fat": 28
         },
         "tags": [
-          "breakfast",
-          "high-protein"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Fried Rice",
-        "price": 550,
-        "image": "https://images.unsplash.com/photo-8ce45af0328d?w=600",
+        "price": 221,
+        "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -834,18 +836,16 @@
           "fat": 15
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Chilli Chicken",
-        "price": 114,
-        "image": "https://images.unsplash.com/photo-02a0187f8d68?w=600",
+        "price": 312,
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -856,16 +856,15 @@
           "fat": 8
         },
         "tags": [
-          "side",
-          "noodles"
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Szechwan Fried Rice",
-        "price": 315,
-        "image": "https://images.unsplash.com/photo-8758577cf3a6?w=600",
+        "price": 247,
+        "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -876,10 +875,8 @@
           "fat": 23
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "spicy"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -887,8 +884,8 @@
       },
       {
         "name": "Chicken Manchurian",
-        "price": 86,
-        "image": "https://images.unsplash.com/photo-b5bc91691a34?w=600",
+        "price": 242,
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
         "diet": "non-veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -899,16 +896,16 @@
           "fat": 6
         },
         "tags": [
-          "vegan",
-          "bread"
+          "spicy",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.3
       },
       {
         "name": "Red Velvet Cake",
-        "price": 505,
-        "image": "https://images.unsplash.com/photo-d5bdb9b100c8?w=600",
+        "price": 169,
+        "image": "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -919,10 +916,10 @@
           "fat": 20
         },
         "tags": [
-          "breakfast",
-          "dessert",
-          "rice",
-          "popular"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
@@ -933,7 +930,7 @@
     "name": "Pasta Paradise",
     "cuisine": "Italian",
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-7d786b54c8d8?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
     "location": {
       "latitude": 13.036178,
       "longitude": 80.23276,
@@ -942,8 +939,8 @@
     "menu": [
       {
         "name": "Pesto Pasta",
-        "price": 517,
-        "image": "https://images.unsplash.com/photo-2d62678f7dc5?w=600",
+        "price": 383,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -954,16 +951,17 @@
           "fat": 27
         },
         "tags": [
-          "dessert",
-          "fried"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Tiramisu",
-        "price": 599,
-        "image": "https://images.unsplash.com/photo-9312cf604e86?w=600",
+        "price": 125,
+        "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -974,7 +972,8 @@
           "fat": 23
         },
         "tags": [
-          "salad",
+          "sweet",
+          "vegetarian",
           "dessert"
         ],
         "is_vegetarian": true,
@@ -982,8 +981,8 @@
       },
       {
         "name": "Tiramisu",
-        "price": 587,
-        "image": "https://images.unsplash.com/photo-9658b2dddde8?w=600",
+        "price": 125,
+        "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -994,16 +993,17 @@
           "fat": 34
         },
         "tags": [
-          "side",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Pesto Pasta",
-        "price": 541,
-        "image": "https://images.unsplash.com/photo-170d22620e7b?w=600",
+        "price": 383,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1014,8 +1014,9 @@
           "fat": 15
         },
         "tags": [
-          "dessert",
-          "sweet"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -1023,8 +1024,8 @@
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 428,
-        "image": "https://images.unsplash.com/photo-7c34146bb1bb?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1035,10 +1036,9 @@
           "fat": 16
         },
         "tags": [
-          "popular",
-          "fried",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.9
@@ -1049,7 +1049,7 @@
     "name": "Pizza Corner",
     "cuisine": "Italian",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-3cc6b95d4a49?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800",
     "location": {
       "latitude": 13.023038,
       "longitude": 80.199304,
@@ -1058,8 +1058,8 @@
     "menu": [
       {
         "name": "Tiramisu",
-        "price": 285,
-        "image": "https://images.unsplash.com/photo-dd9f2b4e07bb?w=600",
+        "price": 125,
+        "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1070,16 +1070,18 @@
           "fat": 13
         },
         "tags": [
-          "gluten-free",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Caprese Salad",
-        "price": 75,
-        "image": "https://images.unsplash.com/photo-1ef85535b4f6?w=600",
+        "price": 295,
+        "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1090,18 +1092,16 @@
           "fat": 14
         },
         "tags": [
-          "main",
-          "gluten-free",
-          "healthy",
-          "salad"
+          "vegetarian",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.9
       },
       {
         "name": "Tiramisu",
-        "price": 435,
-        "image": "https://images.unsplash.com/photo-89284f0efaf0?w=600",
+        "price": 125,
+        "image": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1112,16 +1112,17 @@
           "fat": 13
         },
         "tags": [
-          "main",
-          "traditional"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Pesto Pasta",
-        "price": 90,
-        "image": "https://images.unsplash.com/photo-5bf722b575e4?w=600",
+        "price": 383,
+        "image": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1132,16 +1133,17 @@
           "fat": 26
         },
         "tags": [
-          "breakfast",
-          "high-protein"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 198,
-        "image": "https://images.unsplash.com/photo-69347b169e13?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1152,10 +1154,9 @@
           "fat": 22
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "vegan"
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -1167,7 +1168,7 @@
     "name": "Pizza Paradise",
     "cuisine": "Italian",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-50c50ec8b12b?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800",
     "location": {
       "latitude": 13.012292,
       "longitude": 80.226778,
@@ -1176,8 +1177,8 @@
     "menu": [
       {
         "name": "Lasagna",
-        "price": 560,
-        "image": "https://images.unsplash.com/photo-ad000f937ee0?w=600",
+        "price": 380,
+        "image": "https://images.unsplash.com/photo-1619895092538-128341789043?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1188,16 +1189,16 @@
           "fat": 17
         },
         "tags": [
-          "bread",
-          "salad"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Pasta Alfredo",
-        "price": 566,
-        "image": "https://images.unsplash.com/photo-331ffdc960fa?w=600",
+        "price": 304,
+        "image": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1208,16 +1209,18 @@
           "fat": 26
         },
         "tags": [
-          "bread",
-          "high-protein"
+          "comfort",
+          "vegetarian",
+          "popular",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Margherita Pizza",
-        "price": 593,
-        "image": "https://images.unsplash.com/photo-8d9935ba8350?w=600",
+        "price": 330,
+        "image": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1228,16 +1231,17 @@
           "fat": 13
         },
         "tags": [
-          "high-protein",
-          "soup"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Caprese Salad",
-        "price": 55,
-        "image": "https://images.unsplash.com/photo-4ef2481e7fd8?w=600",
+        "price": 295,
+        "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1248,10 +1252,8 @@
           "fat": 15
         },
         "tags": [
-          "popular",
-          "main",
-          "healthy",
-          "vegan"
+          "vegetarian",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -1260,8 +1262,8 @@
       },
       {
         "name": "Vanilla Creme Brulee",
-        "price": 153,
-        "image": "https://images.unsplash.com/photo-4b03732d5846?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1272,7 +1274,8 @@
           "fat": 9
         },
         "tags": [
-          "gluten-free",
+          "sweet",
+          "vegetarian",
           "dessert"
         ],
         "is_vegetarian": true,
@@ -1284,7 +1287,7 @@
     "name": "The Fitness Kitchen",
     "cuisine": "Healthy",
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-8b378489dba9?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",
     "location": {
       "latitude": 13.014976,
       "longitude": 80.22186,
@@ -1293,8 +1296,8 @@
     "menu": [
       {
         "name": "Grilled Chicken Salad",
-        "price": 290,
-        "image": "https://images.unsplash.com/photo-799d6697c14b?w=600",
+        "price": 321,
+        "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1305,9 +1308,8 @@
           "fat": 30
         },
         "tags": [
-          "breakfast",
-          "main",
-          "noodles",
+          "high-protein",
+          "mild",
           "healthy"
         ],
         "is_vegetarian": false,
@@ -1315,8 +1317,8 @@
       },
       {
         "name": "Smoothie Bowl",
-        "price": 394,
-        "image": "https://images.unsplash.com/photo-f4ecb42ca6f4?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1327,9 +1329,8 @@
           "fat": 12
         },
         "tags": [
-          "breakfast",
-          "main",
-          "traditional",
+          "vegetarian",
+          "mild",
           "healthy"
         ],
         "is_vegetarian": true,
@@ -1338,8 +1339,8 @@
       },
       {
         "name": "Quinoa Power Bowl",
-        "price": 53,
-        "image": "https://images.unsplash.com/photo-36b985d2678b?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1350,10 +1351,8 @@
           "fat": 18
         },
         "tags": [
-          "main",
-          "appetizer",
-          "healthy",
-          "gluten-free"
+          "vegetarian",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.7,
@@ -1361,8 +1360,8 @@
       },
       {
         "name": "Smoothie Bowl",
-        "price": 162,
-        "image": "https://images.unsplash.com/photo-261710a3a5d2?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1373,9 +1372,7 @@
           "fat": 16
         },
         "tags": [
-          "popular",
-          "main",
-          "appetizer",
+          "vegetarian",
           "healthy"
         ],
         "is_vegetarian": true,
@@ -1384,8 +1381,8 @@
       },
       {
         "name": "Red Velvet Cake",
-        "price": 513,
-        "image": "https://images.unsplash.com/photo-71f99dd53ae3?w=600",
+        "price": 169,
+        "image": "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1396,10 +1393,10 @@
           "fat": 9
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "side"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -1411,7 +1408,7 @@
     "name": "Burger Hub",
     "cuisine": "Fast Food",
     "rating": 4.8,
-    "image": "https://images.unsplash.com/photo-ee4bb75c2e8d?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.080207,
       "longitude": 80.268881,
@@ -1420,8 +1417,8 @@
     "menu": [
       {
         "name": "Classic Beef Burger",
-        "price": 547,
-        "image": "https://images.unsplash.com/photo-713f9572b79e?w=600",
+        "price": 75,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1432,16 +1429,16 @@
           "fat": 29
         },
         "tags": [
-          "noodles",
-          "spicy"
+          "comfort",
+          "popular"
         ],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Classic Beef Burger",
-        "price": 317,
-        "image": "https://images.unsplash.com/photo-9b4a830c2392?w=600",
+        "price": 75,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1452,16 +1449,16 @@
           "fat": 23
         },
         "tags": [
-          "breakfast",
-          "fried"
+          "comfort",
+          "popular"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Classic Beef Burger",
-        "price": 461,
-        "image": "https://images.unsplash.com/photo-e4597c2a86bf?w=600",
+        "price": 75,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1472,16 +1469,17 @@
           "fat": 32
         },
         "tags": [
-          "bread",
-          "main"
+          "comfort",
+          "popular",
+          "mild"
         ],
         "is_vegetarian": false,
         "rating": 4.3
       },
       {
         "name": "Fries",
-        "price": 316,
-        "image": "https://images.unsplash.com/photo-4a16f4398476?w=600",
+        "price": 120,
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1492,18 +1490,16 @@
           "fat": 25
         },
         "tags": [
-          "popular",
-          "appetizer",
-          "traditional",
-          "fried"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Double Chicken Burger",
-        "price": 468,
-        "image": "https://images.unsplash.com/photo-c42b991da291?w=600",
+        "price": 336,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1514,16 +1510,18 @@
           "fat": 30
         },
         "tags": [
-          "dessert",
-          "fried"
+          "comfort",
+          "popular",
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Chocolate Truffle",
-        "price": 453,
-        "image": "https://images.unsplash.com/photo-318f55a1592d?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1534,10 +1532,10 @@
           "fat": 17
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "side"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7
@@ -1548,7 +1546,7 @@
     "name": "The Burger Hub",
     "cuisine": "Fast Food",
     "rating": 4.6,
-    "image": "https://images.unsplash.com/photo-1a89b7e19a44?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.035623,
       "longitude": 80.252769,
@@ -1557,8 +1555,8 @@
     "menu": [
       {
         "name": "Crispy Paneer Burger",
-        "price": 499,
-        "image": "https://images.unsplash.com/photo-6106c1a30095?w=600",
+        "price": 238,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1569,8 +1567,12 @@
           "fat": 16
         },
         "tags": [
+          "comfort",
+          "high-protein",
           "traditional",
-          "comfort"
+          "vegetarian",
+          "popular",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -1578,8 +1580,8 @@
       },
       {
         "name": "Crispy Paneer Burger",
-        "price": 156,
-        "image": "https://images.unsplash.com/photo-9cc829a83479?w=600",
+        "price": 238,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1590,16 +1592,19 @@
           "fat": 10
         },
         "tags": [
-          "side",
-          "bread"
+          "comfort",
+          "high-protein",
+          "traditional",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Fries",
-        "price": 510,
-        "image": "https://images.unsplash.com/photo-ca51a5771047?w=600",
+        "price": 120,
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1610,18 +1615,16 @@
           "fat": 13
         },
         "tags": [
-          "bread",
-          "high-protein",
-          "appetizer",
-          "fried"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Veggie Burger",
-        "price": 479,
-        "image": "https://images.unsplash.com/photo-f2da8ed9ec84?w=600",
+        "price": 210,
+        "image": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1632,16 +1635,18 @@
           "fat": 18
         },
         "tags": [
-          "dessert",
-          "rice"
+          "comfort",
+          "vegetarian",
+          "popular",
+          "high-protein"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Cheesecake",
-        "price": 257,
-        "image": "https://images.unsplash.com/photo-7d5eabf34733?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1652,10 +1657,9 @@
           "fat": 12
         },
         "tags": [
-          "popular",
-          "salad",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.4
@@ -1666,7 +1670,7 @@
     "name": "Sushi Station",
     "cuisine": "Japanese",
     "rating": 4.2,
-    "image": "https://images.unsplash.com/photo-3ea8631404df?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1553621042-f6e147245754?w=800",
     "location": {
       "latitude": 13.02825,
       "longitude": 80.279592,
@@ -1675,8 +1679,8 @@
     "menu": [
       {
         "name": "Mochi Ice Cream",
-        "price": 386,
-        "image": "https://images.unsplash.com/photo-721f61ab1a63?w=600",
+        "price": 131,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1687,10 +1691,10 @@
           "fat": 25
         },
         "tags": [
-          "popular",
-          "fried",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -1698,8 +1702,8 @@
       },
       {
         "name": "California Roll",
-        "price": 264,
-        "image": "https://images.unsplash.com/photo-6eb4c82044c3?w=600",
+        "price": 412,
+        "image": "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1710,18 +1714,16 @@
           "fat": 10
         },
         "tags": [
-          "side",
-          "bread",
-          "appetizer",
-          "healthy"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Salmon Sashimi",
-        "price": 308,
-        "image": "https://images.unsplash.com/photo-88f6f677a5e2?w=600",
+        "price": 361,
+        "image": "https://images.unsplash.com/photo-1617196034630-95f8e5f04b4a?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1732,16 +1734,15 @@
           "fat": 24
         },
         "tags": [
-          "popular",
-          "soup"
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Salmon Sashimi",
-        "price": 314,
-        "image": "https://images.unsplash.com/photo-e523d53581fc?w=600",
+        "price": 361,
+        "image": "https://images.unsplash.com/photo-1617196034630-95f8e5f04b4a?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1752,16 +1753,16 @@
           "fat": 13
         },
         "tags": [
-          "gluten-free",
-          "rice"
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.9
       },
       {
         "name": "Chocolate Truffle",
-        "price": 67,
-        "image": "https://images.unsplash.com/photo-e7a6296f7cf3?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1772,10 +1773,10 @@
           "fat": 11
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "main"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -1787,7 +1788,7 @@
     "name": "Taco Fiesta",
     "cuisine": "Mexican",
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-8ba7a31f0c52?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?w=800",
     "location": {
       "latitude": 13.06225,
       "longitude": 80.252462,
@@ -1796,8 +1797,8 @@
     "menu": [
       {
         "name": "Chicken Tacos",
-        "price": 215,
-        "image": "https://images.unsplash.com/photo-51dabde5b95f?w=600",
+        "price": 223,
+        "image": "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -1808,16 +1809,15 @@
           "fat": 8
         },
         "tags": [
-          "breakfast",
-          "dessert"
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.8
       },
       {
         "name": "Salsa & Chips",
-        "price": 241,
-        "image": "https://images.unsplash.com/photo-be445ad31f6d?w=600",
+        "price": 156,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1828,16 +1828,16 @@
           "fat": 16
         },
         "tags": [
-          "main",
-          "appetizer"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Churros",
-        "price": 246,
-        "image": "https://images.unsplash.com/photo-b9f47813e092?w=600",
+        "price": 233,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1848,8 +1848,8 @@
           "fat": 12
         },
         "tags": [
-          "dessert",
-          "noodles"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -1857,8 +1857,8 @@
       },
       {
         "name": "Salsa & Chips",
-        "price": 447,
-        "image": "https://images.unsplash.com/photo-3f5e64d7923f?w=600",
+        "price": 156,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -1869,8 +1869,8 @@
           "fat": 7
         },
         "tags": [
-          "salad",
-          "spicy"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7,
@@ -1878,8 +1878,8 @@
       },
       {
         "name": "Macaron Assortment",
-        "price": 515,
-        "image": "https://images.unsplash.com/photo-e2c2502ba2d4?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -1890,8 +1890,8 @@
           "fat": 12
         },
         "tags": [
-          "breakfast",
-          "traditional"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -1902,7 +1902,7 @@
     "name": "BBQ Nation",
     "cuisine": "Barbecue",
     "rating": 4.4,
-    "image": "https://images.unsplash.com/photo-9c4b1b9cebdc?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.038943,
       "longitude": 80.251415,
@@ -1911,8 +1911,8 @@
     "menu": [
       {
         "name": "BBQ Ribs",
-        "price": 579,
-        "image": "https://images.unsplash.com/photo-e86c93f1b989?w=600",
+        "price": 291,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1922,17 +1922,14 @@
           "carbs": 68,
           "fat": 27
         },
-        "tags": [
-          "side",
-          "appetizer"
-        ],
+        "tags": [],
         "is_vegetarian": false,
         "rating": 4.8
       },
       {
         "name": "Smoked Paneer",
-        "price": 251,
-        "image": "https://images.unsplash.com/photo-e287971dea04?w=600",
+        "price": 262,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1943,16 +1940,18 @@
           "fat": 30
         },
         "tags": [
-          "side",
-          "spicy"
+          "traditional",
+          "vegetarian",
+          "mild",
+          "high-protein"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Grilled Chicken Skewers",
-        "price": 428,
-        "image": "https://images.unsplash.com/photo-abc60d28a0ec?w=600",
+        "price": 317,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -1963,16 +1962,16 @@
           "fat": 9
         },
         "tags": [
-          "breakfast",
-          "vegan"
+          "high-protein",
+          "healthy"
         ],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Corn on the Cob",
-        "price": 537,
-        "image": "https://images.unsplash.com/photo-58130f494810?w=600",
+        "price": 236,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -1983,16 +1982,16 @@
           "fat": 15
         },
         "tags": [
-          "breakfast",
-          "traditional"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Grilled Chicken Skewers",
-        "price": 103,
-        "image": "https://images.unsplash.com/photo-1358508f856d?w=600",
+        "price": 317,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2003,7 +2002,7 @@
           "fat": 8
         },
         "tags": [
-          "appetizer",
+          "high-protein",
           "healthy"
         ],
         "is_vegetarian": false,
@@ -2011,8 +2010,8 @@
       },
       {
         "name": "Panna Cotta",
-        "price": 587,
-        "image": "https://images.unsplash.com/photo-61b165799a80?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2023,10 +2022,7 @@
           "fat": 23
         },
         "tags": [
-          "salad",
-          "dessert",
-          "popular",
-          "sweet"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -2037,7 +2033,7 @@
     "name": "Thai Pavilion",
     "cuisine": "Thai",
     "rating": 4.6,
-    "image": "https://images.unsplash.com/photo-1397ce5367a1?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.009912,
       "longitude": 80.214612,
@@ -2046,8 +2042,8 @@
     "menu": [
       {
         "name": "Pad Thai",
-        "price": 590,
-        "image": "https://images.unsplash.com/photo-42791d5fd593?w=600",
+        "price": 234,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2058,10 +2054,8 @@
           "fat": 36
         },
         "tags": [
-          "bread",
-          "main",
-          "gluten-free",
-          "noodles"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -2069,8 +2063,8 @@
       },
       {
         "name": "Mango Sticky Rice",
-        "price": 369,
-        "image": "https://images.unsplash.com/photo-87abd5bdd8b8?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2081,18 +2075,15 @@
           "fat": 16
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Mango Sticky Rice",
-        "price": 468,
-        "image": "https://images.unsplash.com/photo-12f4ed820563?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -2103,18 +2094,16 @@
           "fat": 22
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Thai Spring Rolls",
-        "price": 517,
-        "image": "https://images.unsplash.com/photo-8a75dc83dc3e?w=600",
+        "price": 153,
+        "image": "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2125,10 +2114,7 @@
           "fat": 30
         },
         "tags": [
-          "side",
-          "bread",
-          "main",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.9,
@@ -2136,8 +2122,8 @@
       },
       {
         "name": "Cheesecake",
-        "price": 187,
-        "image": "https://images.unsplash.com/photo-db1638acbb0b?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2148,10 +2134,10 @@
           "fat": 12
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "gluten-free"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
@@ -2162,7 +2148,7 @@
     "name": "Biryani House",
     "cuisine": "Mughlai",
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-f10c212ff214?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.085001,
       "longitude": 80.263155,
@@ -2171,8 +2157,8 @@
     "menu": [
       {
         "name": "Shahi Tukda",
-        "price": 137,
-        "image": "https://images.unsplash.com/photo-4fb24786ee52?w=600",
+        "price": 227,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -2183,8 +2169,8 @@
           "fat": 28
         },
         "tags": [
-          "soup",
-          "comfort"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -2192,8 +2178,8 @@
       },
       {
         "name": "Chicken Dum Biryani",
-        "price": 490,
-        "image": "https://images.unsplash.com/photo-3a8453a9474b?w=600",
+        "price": 324,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -2204,18 +2190,18 @@
           "fat": 6
         },
         "tags": [
-          "main",
-          "dessert",
-          "rice",
-          "healthy"
+          "spicy",
+          "popular",
+          "high-protein",
+          "traditional"
         ],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Kebab Platter",
-        "price": 331,
-        "image": "https://images.unsplash.com/photo-e247ba38300e?w=600",
+        "price": 230,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2226,16 +2212,15 @@
           "fat": 11
         },
         "tags": [
-          "breakfast",
-          "salad"
+          "mild"
         ],
         "is_vegetarian": false,
         "rating": 4.3
       },
       {
         "name": "Kebab Platter",
-        "price": 121,
-        "image": "https://images.unsplash.com/photo-baf255812643?w=600",
+        "price": 230,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2246,16 +2231,15 @@
           "fat": 14
         },
         "tags": [
-          "side",
-          "healthy"
+          "mild"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Hyderabadi Mutton Biryani",
-        "price": 94,
-        "image": "https://images.unsplash.com/photo-a15b251aa3ff?w=600",
+        "price": 329,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -2266,18 +2250,17 @@
           "fat": 15
         },
         "tags": [
-          "salad",
-          "main",
-          "rice",
-          "high-protein"
+          "spicy",
+          "popular",
+          "traditional"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 454,
-        "image": "https://images.unsplash.com/photo-38b940f56495?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2288,10 +2271,10 @@
           "fat": 14
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "main"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.3
@@ -2302,7 +2285,7 @@
     "name": "Royal Mughal",
     "cuisine": "Mughlai",
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-0d2c42296fbf?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.020038,
       "longitude": 80.232609,
@@ -2311,8 +2294,8 @@
     "menu": [
       {
         "name": "Korma",
-        "price": 386,
-        "image": "https://images.unsplash.com/photo-91f67ca746ef?w=600",
+        "price": 215,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2323,16 +2306,16 @@
           "fat": 22
         },
         "tags": [
-          "bread",
-          "fried"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Pulao",
-        "price": 493,
-        "image": "https://images.unsplash.com/photo-a08d7d7120c8?w=600",
+        "price": 243,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2343,10 +2326,8 @@
           "fat": 32
         },
         "tags": [
-          "vegan",
-          "main",
-          "noodles",
-          "rice"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.7,
@@ -2354,8 +2335,8 @@
       },
       {
         "name": "Chicken Dum Biryani",
-        "price": 312,
-        "image": "https://images.unsplash.com/photo-fa43da94ecb0?w=600",
+        "price": 324,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2366,17 +2347,17 @@
           "fat": 10
         },
         "tags": [
-          "main",
-          "gluten-free",
-          "rice"
+          "traditional",
+          "popular",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.8
       },
       {
         "name": "Kebab Platter",
-        "price": 375,
-        "image": "https://images.unsplash.com/photo-cd7bf6b854b1?w=600",
+        "price": 230,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2386,17 +2367,14 @@
           "carbs": 4,
           "fat": 26
         },
-        "tags": [
-          "noodles",
-          "spicy"
-        ],
+        "tags": [],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Chocolate Truffle",
-        "price": 151,
-        "image": "https://images.unsplash.com/photo-68d8c25d2c0c?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2407,10 +2385,9 @@
           "fat": 8
         },
         "tags": [
-          "popular",
-          "noodles",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -2421,7 +2398,7 @@
     "name": "Dessert Dreams",
     "cuisine": "Desserts",
     "rating": 4.2,
-    "image": "https://images.unsplash.com/photo-cf367aed4191?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.029389,
       "longitude": 80.219658,
@@ -2430,8 +2407,8 @@
     "menu": [
       {
         "name": "Waffle with Ice Cream",
-        "price": 148,
-        "image": "https://images.unsplash.com/photo-d410d4cade34?w=600",
+        "price": 197,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2442,10 +2419,9 @@
           "fat": 22
         },
         "tags": [
-          "breakfast",
-          "dessert",
-          "popular",
-          "spicy"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.9,
@@ -2453,8 +2429,8 @@
       },
       {
         "name": "Vanilla Scoop",
-        "price": 500,
-        "image": "https://images.unsplash.com/photo-a962e639b54f?w=600",
+        "price": 293,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2465,8 +2441,8 @@
           "fat": 18
         },
         "tags": [
-          "vegan",
-          "fried"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -2474,8 +2450,8 @@
       },
       {
         "name": "Strawberry Sundae",
-        "price": 229,
-        "image": "https://images.unsplash.com/photo-ca82aed168f1?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2486,16 +2462,15 @@
           "fat": 8
         },
         "tags": [
-          "popular",
-          "spicy"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Macaron Assortment",
-        "price": 248,
-        "image": "https://images.unsplash.com/photo-7ec1e8750fe8?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2506,16 +2481,16 @@
           "fat": 24
         },
         "tags": [
-          "soup",
-          "main"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 302,
-        "image": "https://images.unsplash.com/photo-a8959c783d99?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2526,10 +2501,10 @@
           "fat": 17
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "bread"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.9,
@@ -2541,7 +2516,7 @@
     "name": "Sweet Tooth Bakery",
     "cuisine": "Desserts",
     "rating": 4.4,
-    "image": "https://images.unsplash.com/photo-a7779f888fd7?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.024289,
       "longitude": 80.184438,
@@ -2550,8 +2525,8 @@
     "menu": [
       {
         "name": "Macaron Assortment",
-        "price": 158,
-        "image": "https://images.unsplash.com/photo-7d0a9e86814f?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2562,16 +2537,15 @@
           "fat": 14
         },
         "tags": [
-          "popular",
-          "salad"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Waffle with Ice Cream",
-        "price": 557,
-        "image": "https://images.unsplash.com/photo-640f51a140ce?w=600",
+        "price": 197,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2582,18 +2556,18 @@
           "fat": 9
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "noodles"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Panna Cotta",
-        "price": 70,
-        "image": "https://images.unsplash.com/photo-52d2cacd9e79?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2604,18 +2578,15 @@
           "fat": 19
         },
         "tags": [
-          "dessert",
-          "popular",
-          "spicy",
-          "sweet"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Red Velvet Cake",
-        "price": 549,
-        "image": "https://images.unsplash.com/photo-1f6208e64f49?w=600",
+        "price": 169,
+        "image": "https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2626,18 +2597,18 @@
           "fat": 19
         },
         "tags": [
-          "popular",
-          "dessert",
-          "spicy",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Chocolate Scoop",
-        "price": 503,
-        "image": "https://images.unsplash.com/photo-cf916463f91f?w=600",
+        "price": 296,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2648,8 +2619,7 @@
           "fat": 19
         },
         "tags": [
-          "dessert",
-          "rice"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
@@ -2660,7 +2630,7 @@
     "name": "Vegan Delight",
     "cuisine": "Vegan",
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-92d2544c4fec?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.04641,
       "longitude": 80.231896,
@@ -2669,8 +2639,8 @@
     "menu": [
       {
         "name": "Vegan Burger",
-        "price": 593,
-        "image": "https://images.unsplash.com/photo-4bb3003e05fe?w=600",
+        "price": 243,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2681,8 +2651,9 @@
           "fat": 15
         },
         "tags": [
-          "high-protein",
-          "soup"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -2690,8 +2661,8 @@
       },
       {
         "name": "Tofu Stir Fry",
-        "price": 106,
-        "image": "https://images.unsplash.com/photo-afa800e48e05?w=600",
+        "price": 296,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2702,8 +2673,8 @@
           "fat": 4
         },
         "tags": [
-          "soup",
-          "comfort"
+          "vegetarian",
+          "high-protein"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -2711,8 +2682,8 @@
       },
       {
         "name": "Kale Smoothie",
-        "price": 228,
-        "image": "https://images.unsplash.com/photo-4fa6991d2e61?w=600",
+        "price": 310,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2723,10 +2694,8 @@
           "fat": 16
         },
         "tags": [
-          "bread",
-          "main",
-          "healthy",
-          "spicy"
+          "vegetarian",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -2734,8 +2703,8 @@
       },
       {
         "name": "Vegan Burger",
-        "price": 335,
-        "image": "https://images.unsplash.com/photo-70a334791536?w=600",
+        "price": 243,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2746,8 +2715,10 @@
           "fat": 14
         },
         "tags": [
-          "sweet",
-          "fried"
+          "comfort",
+          "vegetarian",
+          "popular",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -2755,8 +2726,8 @@
       },
       {
         "name": "Vegan Burger",
-        "price": 532,
-        "image": "https://images.unsplash.com/photo-710e1e0fa726?w=600",
+        "price": 243,
+        "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2767,8 +2738,9 @@
           "fat": 18
         },
         "tags": [
-          "vegan",
-          "side"
+          "comfort",
+          "vegetarian",
+          "popular"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -2776,8 +2748,8 @@
       },
       {
         "name": "Panna Cotta",
-        "price": 414,
-        "image": "https://images.unsplash.com/photo-a7b3199a4228?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2788,10 +2760,7 @@
           "fat": 17
         },
         "tags": [
-          "popular",
-          "dessert",
-          "spicy",
-          "sweet"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -2803,7 +2772,7 @@
     "name": "Coastal Catch",
     "cuisine": "Seafood",
     "rating": 4.4,
-    "image": "https://images.unsplash.com/photo-3bb2b340c131?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.042676,
       "longitude": 80.269763,
@@ -2812,8 +2781,8 @@
     "menu": [
       {
         "name": "Coconut Ice Cream",
-        "price": 410,
-        "image": "https://images.unsplash.com/photo-a26f7d89248a?w=600",
+        "price": 147,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2824,18 +2793,17 @@
           "fat": 19
         },
         "tags": [
-          "salad",
-          "dessert",
-          "popular",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Fried Calamari",
-        "price": 376,
-        "image": "https://images.unsplash.com/photo-052a0833ea2d?w=600",
+        "price": 232,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2846,18 +2814,15 @@
           "fat": 7
         },
         "tags": [
-          "sweet",
-          "appetizer",
-          "healthy",
-          "fried"
+          "mild"
         ],
         "is_vegetarian": false,
         "rating": 4.3
       },
       {
         "name": "Fish Fry",
-        "price": 89,
-        "image": "https://images.unsplash.com/photo-e87b0e9b1a47?w=600",
+        "price": 296,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -2867,17 +2832,14 @@
           "carbs": 70,
           "fat": 22
         },
-        "tags": [
-          "dessert",
-          "sweet"
-        ],
+        "tags": [],
         "is_vegetarian": false,
         "rating": 4.4
       },
       {
         "name": "Prawn Curry",
-        "price": 425,
-        "image": "https://images.unsplash.com/photo-95b073328906?w=600",
+        "price": 327,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2888,16 +2850,15 @@
           "fat": 4
         },
         "tags": [
-          "healthy",
-          "sweet"
+          "mild"
         ],
         "is_vegetarian": false,
         "rating": 4.6
       },
       {
         "name": "Coconut Ice Cream",
-        "price": 81,
-        "image": "https://images.unsplash.com/photo-59692cde4207?w=600",
+        "price": 147,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2908,18 +2869,18 @@
           "fat": 24
         },
         "tags": [
-          "dessert",
-          "popular",
-          "spicy",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Panna Cotta",
-        "price": 243,
-        "image": "https://images.unsplash.com/photo-dcc815245280?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -2930,10 +2891,8 @@
           "fat": 8
         },
         "tags": [
-          "dessert",
-          "popular",
-          "sweet",
-          "high-protein"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -2944,7 +2903,7 @@
     "name": "Street Food Junction",
     "cuisine": "Street Food",
     "rating": 4.9,
-    "image": "https://images.unsplash.com/photo-fbf2bf014ad5?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.083092,
       "longitude": 80.272122,
@@ -2953,8 +2912,8 @@
     "menu": [
       {
         "name": "Pav Bhaji",
-        "price": 494,
-        "image": "https://images.unsplash.com/photo-81ba89ca4d6a?w=600",
+        "price": 203,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2965,17 +2924,15 @@
           "fat": 23
         },
         "tags": [
-          "side",
-          "bread",
-          "salad"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Pav Bhaji",
-        "price": 526,
-        "image": "https://images.unsplash.com/photo-7e1cc0449860?w=600",
+        "price": 203,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -2986,17 +2943,15 @@
           "fat": 25
         },
         "tags": [
-          "side",
-          "bread",
-          "dessert"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Pav Bhaji",
-        "price": 495,
-        "image": "https://images.unsplash.com/photo-d80abd6007dc?w=600",
+        "price": 203,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3007,17 +2962,15 @@
           "fat": 19
         },
         "tags": [
-          "side",
-          "bread",
-          "soup"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Vada Pav",
-        "price": 468,
-        "image": "https://images.unsplash.com/photo-5543d6926af6?w=600",
+        "price": 132,
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3028,18 +2981,15 @@
           "fat": 15
         },
         "tags": [
-          "side",
-          "bread",
-          "gluten-free",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Kathi Roll",
-        "price": 319,
-        "image": "https://images.unsplash.com/photo-aa7ac37e45b3?w=600",
+        "price": 362,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3050,18 +3000,15 @@
           "fat": 10
         },
         "tags": [
-          "side",
-          "bread",
-          "traditional",
-          "breakfast"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Panna Cotta",
-        "price": 248,
-        "image": "https://images.unsplash.com/photo-c2fdcd5dd3f0?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3072,10 +3019,7 @@
           "fat": 13
         },
         "tags": [
-          "popular",
-          "noodles",
-          "dessert",
-          "sweet"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7
@@ -3086,7 +3030,7 @@
     "name": "Breakfast Club",
     "cuisine": "Breakfast",
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-137c4d5ebe66?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.027564,
       "longitude": 80.235816,
@@ -3095,8 +3039,8 @@
     "menu": [
       {
         "name": "Pancake Stack",
-        "price": 535,
-        "image": "https://images.unsplash.com/photo-5358cd31393d?w=600",
+        "price": 194,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3107,10 +3051,10 @@
           "fat": 8
         },
         "tags": [
-          "dessert",
-          "popular",
-          "spicy",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -3118,8 +3062,8 @@
       },
       {
         "name": "Cinnamon Roll",
-        "price": 498,
-        "image": "https://images.unsplash.com/photo-f2ff6017afb3?w=600",
+        "price": 509,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3130,18 +3074,16 @@
           "fat": 27
         },
         "tags": [
-          "side",
-          "bread",
-          "appetizer",
-          "dessert"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Pancake Stack",
-        "price": 346,
-        "image": "https://images.unsplash.com/photo-b065d50a5877?w=600",
+        "price": 194,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3152,10 +3094,10 @@
           "fat": 24
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "vegan"
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
@@ -3163,8 +3105,8 @@
       },
       {
         "name": "Pancake Stack",
-        "price": 576,
-        "image": "https://images.unsplash.com/photo-86ac3eddd1a3?w=600",
+        "price": 194,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3175,18 +3117,18 @@
           "fat": 12
         },
         "tags": [
-          "popular",
-          "bread",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Macaron Assortment",
-        "price": 238,
-        "image": "https://images.unsplash.com/photo-9143d1a28fde?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3197,8 +3139,7 @@
           "fat": 12
         },
         "tags": [
-          "breakfast",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.9
@@ -3209,7 +3150,7 @@
     "name": "Cafe Mocha",
     "cuisine": "Cafe",
     "rating": 4.6,
-    "image": "https://images.unsplash.com/photo-4ef177d2c1aa?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.035612,
       "longitude": 80.233657,
@@ -3218,8 +3159,8 @@
     "menu": [
       {
         "name": "Cappuccino",
-        "price": 365,
-        "image": "https://images.unsplash.com/photo-cf49ace37cf5?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3230,8 +3171,8 @@
           "fat": 12
         },
         "tags": [
-          "gluten-free",
-          "appetizer"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -3240,8 +3181,8 @@
       },
       {
         "name": "Blueberry Cheesecake",
-        "price": 169,
-        "image": "https://images.unsplash.com/photo-721c6a1c879b?w=600",
+        "price": 143,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3252,10 +3193,9 @@
           "fat": 15
         },
         "tags": [
-          "popular",
-          "dessert",
-          "spicy",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.5,
@@ -3263,8 +3203,8 @@
       },
       {
         "name": "Cappuccino",
-        "price": 229,
-        "image": "https://images.unsplash.com/photo-470ec9e6920b?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3275,16 +3215,15 @@
           "fat": 22
         },
         "tags": [
-          "side",
-          "bread"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
       },
       {
         "name": "Iced Latte",
-        "price": 178,
-        "image": "https://images.unsplash.com/photo-4b8b89bbbb3c?w=600",
+        "price": 289,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3295,18 +3234,16 @@
           "fat": 17
         },
         "tags": [
-          "popular",
-          "appetizer",
-          "dessert",
-          "sweet"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Egg Sandwich",
-        "price": 253,
-        "image": "https://images.unsplash.com/photo-bcb66b49793b?w=600",
+        "price": 204,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3317,16 +3254,16 @@
           "fat": 15
         },
         "tags": [
-          "soup",
-          "spicy"
+          "vegetarian",
+          "high-protein"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Cheesecake",
-        "price": 82,
-        "image": "https://images.unsplash.com/photo-6b856b8a203f?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3337,10 +3274,9 @@
           "fat": 16
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "side"
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
@@ -3351,7 +3287,7 @@
     "name": "Scoops Ice Cream Parlor",
     "cuisine": "Ice Cream",
     "rating": 4.3,
-    "image": "https://images.unsplash.com/photo-65f60ebcacc7?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.066559,
       "longitude": 80.229385,
@@ -3360,8 +3296,8 @@
     "menu": [
       {
         "name": "Waffle with Ice Cream",
-        "price": 226,
-        "image": "https://images.unsplash.com/photo-8b522af270fc?w=600",
+        "price": 197,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3372,18 +3308,18 @@
           "fat": 23
         },
         "tags": [
-          "popular",
-          "high-protein",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Vanilla Scoop",
-        "price": 361,
-        "image": "https://images.unsplash.com/photo-c18e3727c0e6?w=600",
+        "price": 293,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3394,16 +3330,15 @@
           "fat": 14
         },
         "tags": [
-          "popular",
-          "healthy"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Cheesecake",
-        "price": 514,
-        "image": "https://images.unsplash.com/photo-7d22209a8ef0?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3414,10 +3349,9 @@
           "fat": 24
         },
         "tags": [
-          "salad",
-          "dessert",
-          "popular",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -3425,8 +3359,8 @@
       },
       {
         "name": "Cheesecake",
-        "price": 377,
-        "image": "https://images.unsplash.com/photo-c1affa01145b?w=600",
+        "price": 137,
+        "image": "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3437,18 +3371,18 @@
           "fat": 21
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 81,
-        "image": "https://images.unsplash.com/photo-b44985b40e6c?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3459,10 +3393,9 @@
           "fat": 18
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
@@ -3473,7 +3406,7 @@
     "name": "Frosty Treats",
     "cuisine": "Desserts",
     "rating": 4.5,
-    "image": "https://images.unsplash.com/photo-387a3b68189a?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.048952,
       "longitude": 80.220557,
@@ -3482,8 +3415,8 @@
     "menu": [
       {
         "name": "Waffle with Ice Cream",
-        "price": 299,
-        "image": "https://images.unsplash.com/photo-fa258c8538d2?w=600",
+        "price": 197,
+        "image": "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3494,18 +3427,18 @@
           "fat": 8
         },
         "tags": [
-          "popular",
-          "soup",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.6
       },
       {
         "name": "Vanilla Creme Brulee",
-        "price": 326,
-        "image": "https://images.unsplash.com/photo-b19a831b18c5?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1470124182917-cc6e71b22ecc?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3516,16 +3449,17 @@
           "fat": 24
         },
         "tags": [
-          "side",
-          "salad"
+          "sweet",
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Vanilla Scoop",
-        "price": 223,
-        "image": "https://images.unsplash.com/photo-27085326ca7e?w=600",
+        "price": 293,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3536,8 +3470,7 @@
           "fat": 19
         },
         "tags": [
-          "soup",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -3545,8 +3478,8 @@
       },
       {
         "name": "Macaron Assortment",
-        "price": 466,
-        "image": "https://images.unsplash.com/photo-2d84719c19d6?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3557,16 +3490,15 @@
           "fat": 17
         },
         "tags": [
-          "salad",
-          "traditional"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Vanilla Scoop",
-        "price": 74,
-        "image": "https://images.unsplash.com/photo-9f75263a6e63?w=600",
+        "price": 293,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3577,8 +3509,7 @@
           "fat": 21
         },
         "tags": [
-          "gluten-free",
-          "rice"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -3590,7 +3521,7 @@
     "name": "Heavenly Scoops",
     "cuisine": "Ice Cream",
     "rating": 4.8,
-    "image": "https://images.unsplash.com/photo-86b03b207e6b?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
     "location": {
       "latitude": 13.055563,
       "longitude": 80.208669,
@@ -3599,8 +3530,8 @@
     "menu": [
       {
         "name": "Mango Sorbet",
-        "price": 182,
-        "image": "https://images.unsplash.com/photo-c4cf45342760?w=600",
+        "price": 289,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3611,18 +3542,16 @@
           "fat": 13
         },
         "tags": [
-          "popular",
-          "noodles",
-          "dessert",
-          "sweet"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Panna Cotta",
-        "price": 392,
-        "image": "https://images.unsplash.com/photo-426a68407b2b?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3633,18 +3562,16 @@
           "fat": 14
         },
         "tags": [
-          "dessert",
-          "popular",
-          "sweet",
-          "high-protein"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 548,
-        "image": "https://images.unsplash.com/photo-66beb9a15f0b?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3655,10 +3582,9 @@
           "fat": 20
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "vegan"
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.4,
@@ -3667,8 +3593,8 @@
       },
       {
         "name": "Vanilla Scoop",
-        "price": 379,
-        "image": "https://images.unsplash.com/photo-1b43e5d84be2?w=600",
+        "price": 293,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3679,16 +3605,16 @@
           "fat": 11
         },
         "tags": [
-          "traditional",
-          "fried"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8
       },
       {
         "name": "Chocolate Truffle",
-        "price": 280,
-        "image": "https://images.unsplash.com/photo-a323edf673a8?w=600",
+        "price": 129,
+        "image": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3699,10 +3625,10 @@
           "fat": 15
         },
         "tags": [
-          "popular",
-          "noodles",
-          "dessert",
-          "sweet"
+          "sweet",
+          "vegetarian",
+          "mild",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.7,
@@ -3710,8 +3636,8 @@
       },
       {
         "name": "Strawberry Sundae",
-        "price": 79,
-        "image": "https://images.unsplash.com/photo-ca8f2b4cd0d0?w=600",
+        "price": 271,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3722,8 +3648,8 @@
           "fat": 17
         },
         "tags": [
-          "appetizer",
-          "traditional"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -3734,7 +3660,7 @@
     "name": "Amma's Rasoi",
     "cuisine": "South Indian",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-76c473326587?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1567337710282-00832b415979?w=800",
     "location": {
       "latitude": 13.036927,
       "longitude": 80.236039,
@@ -3743,8 +3669,8 @@
     "menu": [
       {
         "name": "Sambar",
-        "price": 184,
-        "image": "https://images.unsplash.com/photo-a806628138ce?w=600",
+        "price": 97,
+        "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3755,16 +3681,16 @@
           "fat": 34
         },
         "tags": [
-          "noodles",
-          "sweet"
+          "traditional",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Medu Vada",
-        "price": 140,
-        "image": "https://images.unsplash.com/photo-797d89b07c3b?w=600",
+        "price": 111,
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -3775,18 +3701,16 @@
           "fat": 17
         },
         "tags": [
-          "salad",
-          "appetizer",
           "spicy",
-          "fried"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Medu Vada",
-        "price": 197,
-        "image": "https://images.unsplash.com/photo-ff66dcd7abc2?w=600",
+        "price": 111,
+        "image": "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3797,18 +3721,16 @@
           "fat": 16
         },
         "tags": [
-          "main",
-          "appetizer",
-          "traditional",
-          "fried"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Sambar",
-        "price": 112,
-        "image": "https://images.unsplash.com/photo-9bd0e720a1b4?w=600",
+        "price": 97,
+        "image": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3819,16 +3741,16 @@
           "fat": 20
         },
         "tags": [
-          "popular",
-          "sweet"
+          "traditional",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Uttapam",
-        "price": 72,
-        "image": "https://images.unsplash.com/photo-d268143670cf?w=600",
+        "price": 117,
+        "image": "https://images.unsplash.com/photo-1630383249896-424e482df921?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3839,8 +3761,7 @@
           "fat": 35
         },
         "tags": [
-          "vegan",
-          "appetizer"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -3848,8 +3769,8 @@
       },
       {
         "name": "Brownie with Ice Cream",
-        "price": 593,
-        "image": "https://images.unsplash.com/photo-0eedb0f4bb92?w=600",
+        "price": 155,
+        "image": "https://images.unsplash.com/photo-1564355808539-22fda35bed7e?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3860,10 +3781,9 @@
           "fat": 20
         },
         "tags": [
-          "dessert",
-          "popular",
           "sweet",
-          "side"
+          "vegetarian",
+          "dessert"
         ],
         "is_vegetarian": true,
         "rating": 4.8
@@ -3874,7 +3794,7 @@
     "name": "Noodle Nest",
     "cuisine": "Chinese",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-e7945ec8d30e?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1552611052-33e04de081de?w=800",
     "location": {
       "latitude": 13.026237,
       "longitude": 80.228277,
@@ -3883,8 +3803,8 @@
     "menu": [
       {
         "name": "Chicken Manchurian",
-        "price": 158,
-        "image": "https://images.unsplash.com/photo-32271307b1de?w=600",
+        "price": 242,
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
         "diet": "non-veg",
         "spicy": "none",
         "nutritional_info": {
@@ -3895,16 +3815,15 @@
           "fat": 9
         },
         "tags": [
-          "gluten-free",
-          "noodles"
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.5
       },
       {
         "name": "Honey Chilli Potato",
-        "price": 546,
-        "image": "https://images.unsplash.com/photo-dbe662644165?w=600",
+        "price": 181,
+        "image": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3915,16 +3834,16 @@
           "fat": 13
         },
         "tags": [
-          "popular",
-          "gluten-free"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.3
       },
       {
         "name": "Chicken Manchurian",
-        "price": 98,
-        "image": "https://images.unsplash.com/photo-cce5dd61f5ff?w=600",
+        "price": 242,
+        "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600",
         "diet": "non-veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -3935,16 +3854,16 @@
           "fat": 21
         },
         "tags": [
-          "popular",
-          "appetizer"
+          "spicy",
+          "high-protein"
         ],
         "is_vegetarian": false,
         "rating": 4.8
       },
       {
         "name": "Schezwan Noodles",
-        "price": 244,
-        "image": "https://images.unsplash.com/photo-646490e59837?w=600",
+        "price": 191,
+        "image": "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -3955,17 +3874,16 @@
           "fat": 31
         },
         "tags": [
-          "breakfast",
-          "main",
-          "noodles"
+          "comfort",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.7
       },
       {
         "name": "Fried Rice",
-        "price": 189,
-        "image": "https://images.unsplash.com/photo-6cfdd131804b?w=600",
+        "price": 221,
+        "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -3976,18 +3894,17 @@
           "fat": 25
         },
         "tags": [
-          "dessert",
-          "rice",
-          "popular",
-          "sweet"
+          "comfort",
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.4
       },
       {
         "name": "Panna Cotta",
-        "price": 391,
-        "image": "https://images.unsplash.com/photo-3e40a8d000c7?w=600",
+        "price": 219,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "hot",
         "nutritional_info": {
@@ -3998,10 +3915,8 @@
           "fat": 16
         },
         "tags": [
-          "popular",
-          "appetizer",
-          "dessert",
-          "sweet"
+          "spicy",
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.5
@@ -4012,7 +3927,7 @@
     "name": "Green Spoon",
     "cuisine": "Healthy",
     "rating": 4.7,
-    "image": "https://images.unsplash.com/photo-ed4a2da96ca4?w=800&h=600&fit=crop",
+    "image": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800",
     "location": {
       "latitude": 13.017682,
       "longitude": 80.244236,
@@ -4021,8 +3936,8 @@
     "menu": [
       {
         "name": "Quinoa Power Bowl",
-        "price": 410,
-        "image": "https://images.unsplash.com/photo-35668469a92a?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -4033,9 +3948,9 @@
           "fat": 8
         },
         "tags": [
-          "main",
-          "healthy",
-          "salad"
+          "vegetarian",
+          "mild",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -4043,8 +3958,8 @@
       },
       {
         "name": "Smoothie Bowl",
-        "price": 574,
-        "image": "https://images.unsplash.com/photo-b0d62f3a4211?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -4055,8 +3970,7 @@
           "fat": 12
         },
         "tags": [
-          "side",
-          "main",
+          "vegetarian",
           "healthy"
         ],
         "is_vegetarian": true,
@@ -4065,8 +3979,8 @@
       },
       {
         "name": "Grilled Chicken Salad",
-        "price": 165,
-        "image": "https://images.unsplash.com/photo-1b81c5436471?w=600",
+        "price": 321,
+        "image": "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=600",
         "diet": "non-veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -4077,18 +3991,17 @@
           "fat": 28
         },
         "tags": [
-          "vegan",
-          "main",
-          "healthy",
-          "fried"
+          "high-protein",
+          "mild",
+          "healthy"
         ],
         "is_vegetarian": false,
         "rating": 4.7
       },
       {
         "name": "Quinoa Power Bowl",
-        "price": 92,
-        "image": "https://images.unsplash.com/photo-bbd62b3b5a3c?w=600",
+        "price": 294,
+        "image": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -4099,10 +4012,9 @@
           "fat": 8
         },
         "tags": [
-          "main",
-          "healthy",
-          "comfort",
-          "sweet"
+          "vegetarian",
+          "mild",
+          "healthy"
         ],
         "is_vegetarian": true,
         "rating": 4.3,
@@ -4111,8 +4023,8 @@
       },
       {
         "name": "Avocado Toast",
-        "price": 376,
-        "image": "https://images.unsplash.com/photo-1fd77ed82e17?w=600",
+        "price": 287,
+        "image": "https://images.unsplash.com/photo-1525351484163-7529414344d8?w=600",
         "diet": "veg",
         "spicy": "medium",
         "nutritional_info": {
@@ -4123,10 +4035,7 @@
           "fat": 11
         },
         "tags": [
-          "bread",
-          "main",
-          "traditional",
-          "healthy"
+          "vegetarian"
         ],
         "is_vegetarian": true,
         "rating": 4.6,
@@ -4134,8 +4043,8 @@
       },
       {
         "name": "Macaron Assortment",
-        "price": 67,
-        "image": "https://images.unsplash.com/photo-0a24cfdd9daa?w=600",
+        "price": 251,
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600",
         "diet": "veg",
         "spicy": "mild",
         "nutritional_info": {
@@ -4146,8 +4055,8 @@
           "fat": 16
         },
         "tags": [
-          "vegan",
-          "rice"
+          "vegetarian",
+          "mild"
         ],
         "is_vegetarian": true,
         "rating": 4.8,
