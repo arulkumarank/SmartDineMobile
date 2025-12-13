@@ -12,6 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { aiAPI, foodsAPI, restaurantsAPI } from '../services/api';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
 import ProfileHeader from '../components/ProfileHeader';
@@ -20,6 +21,7 @@ import { isFuzzyMatch } from '../utils/search';
 
 export default function Home({ navigation }: any) {
   const { isDark, colors } = useTheme();
+  const { user } = useAuth();
   const [question, setQuestion] = useState('');
   const [aiText, setAiText] = useState('');
   const [suggestedFoods, setSuggestedFoods] = useState<Food[]>([]);
@@ -47,13 +49,20 @@ export default function Home({ navigation }: any) {
     try {
       const [foodsRes, restaurantsRes] = await Promise.all([
         foodsAPI.getAll(),
-        restaurantsAPI.getAll()
+        restaurantsAPI.getPersonalized()  // Use personalized endpoint for dietary-aware sorting
       ]);
-      // Randomize the order of foods and restaurants
+      // Randomize foods, but keep restaurants in preference order
       setDiscoverFoods(shuffleArray(foodsRes.foods || []));
-      setDiscoverRestaurants(shuffleArray(restaurantsRes.restaurants || []));
+      setDiscoverRestaurants(restaurantsRes.restaurants || []);  // Keep preference order
     } catch (error) {
       console.error('Failed to load discover data:', error);
+      // Fallback to regular endpoint if personalized fails
+      try {
+        const fallback = await restaurantsAPI.getAll();
+        setDiscoverRestaurants(shuffleArray(fallback.restaurants || []));
+      } catch (e) {
+        console.error('Failed to load fallback restaurants:', e);
+      }
     }
   };
 
@@ -171,7 +180,7 @@ export default function Home({ navigation }: any) {
             <Text style={[styles.branding, themedStyles.title]}>Smart Dine</Text>
             <Text style={[styles.tagline, themedStyles.subtitle]}>AI-Powered Food Discovery</Text>
           </View>
-          <ProfileHeader navigation={navigation} />
+          <ProfileHeader navigation={navigation} username={user?.username} />
         </View >
 
         {/* Search Box - Sticks to top */}

@@ -17,6 +17,13 @@ auth_collection = db["auth"]  # User credentials
 userdetails_collection = db["userdetails"]  # User profiles
 foods_collection = db["foods"]  # Food items
 search_history_collection = db["search_history"]  # Search history
+otp_collection = db["otp_codes"]  # Temporary OTP storage
+
+# RL & Rating Collections
+user_interactions = db["user_interactions"]  # clicks, cart adds, views
+food_ratings = db["food_ratings"]  # individual user ratings per food
+food_scores = db["food_scores"]  # aggregated RL scores per food
 
 # Preload restaurant documents
 docs = list(collection.find({}, {"_id": 0}))
+

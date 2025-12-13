@@ -11,6 +11,7 @@ export interface UserProfile {
     username?: string;  // Optional - backend doesn't return this
     name: string;
     email: string;
+    avatar_index?: number;  // Random avatar (0-7)
     taste_preference?: string | null; // modern, comfort, traditional (legacy)
     taste_preferences?: string[]; // spicy, sweet, sour, savory, mild
     cuisine_preferences?: string[]; // italian, indian, mexican, chinese, etc.
@@ -26,6 +27,8 @@ export interface SignupData {
     username: string;
     email: string;
     password: string;
+    otp?: string;  // Required for OTP-verified signup
+    name?: string;  // User's full name
 }
 
 export interface AuthResponse {

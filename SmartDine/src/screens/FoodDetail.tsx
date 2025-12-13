@@ -11,7 +11,7 @@ import {
     Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { foodsAPI, restaurantsAPI } from '../services/api';
+import { foodsAPI, restaurantsAPI, feedbackAPI } from '../services/api';
 import { useCart } from '../context/CartContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -21,6 +21,8 @@ export default function FoodDetail({ route, navigation }: any) {
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [showCartModal, setShowCartModal] = useState(false);
+    const [userRating, setUserRating] = useState(0);
+    const [ratingSubmitted, setRatingSubmitted] = useState(false);
     const { addToCart } = useCart();
 
     useEffect(() => {
@@ -52,9 +54,17 @@ export default function FoodDetail({ route, navigation }: any) {
         } finally {
             setLoading(false);
         }
+
+        // Track click/view for RL
+        try {
+            await feedbackAPI.trackClick(food.name, food.restaurant);
+            console.log('Click tracked for:', food.name);
+        } catch (e) {
+            console.log('Click tracking failed (not critical)');
+        }
     };
 
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         if (details) {
             addToCart({
                 name: details.name,
@@ -68,6 +78,24 @@ export default function FoodDetail({ route, navigation }: any) {
             setShowCartModal(true);
             // Auto-hide after 2 seconds
             setTimeout(() => setShowCartModal(false), 2000);
+
+            // Track cart add for RL
+            try {
+                await feedbackAPI.trackCartAdd(details.name, details.restaurant);
+            } catch (e) {
+                console.log('Cart tracking failed (not critical)');
+            }
+        }
+    };
+
+    const handleRating = async (rating: number) => {
+        setUserRating(rating);
+        try {
+            await feedbackAPI.rateFood(details.name, rating, details.restaurant);
+            setRatingSubmitted(true);
+            console.log('Rating submitted:', rating, 'for', details.name);
+        } catch (e) {
+            console.error('Rating failed:', e);
         }
     };
 
@@ -263,6 +291,29 @@ export default function FoodDetail({ route, navigation }: any) {
                         </View>
                     </View>
                 )}
+
+                {/* Star Rating Section */}
+                <View style={styles.ratingSection}>
+                    <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Rate This Dish</Text>
+                    <View style={styles.starsContainer}>
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <TouchableOpacity
+                                key={star}
+                                onPress={() => handleRating(star)}
+                                disabled={ratingSubmitted}
+                            >
+                                <Icon
+                                    name={star <= userRating ? 'star' : 'star-outline'}
+                                    size={40}
+                                    color={star <= userRating ? '#FFD700' : colors.textSecondary}
+                                />
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                    {ratingSubmitted && (
+                        <Text style={styles.ratingThanks}>Thanks for rating! ⭐</Text>
+                    )}
+                </View>
 
                 {/* Price & Add to Cart Button */}
                 <View style={[styles.footer, themedStyles.footer]}>
@@ -601,5 +652,21 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700',
         color: '#fff',
+    },
+    // Rating styles
+    ratingSection: {
+        marginBottom: 24,
+        alignItems: 'center',
+    },
+    starsContainer: {
+        flexDirection: 'row',
+        gap: 8,
+        marginTop: 12,
+    },
+    ratingThanks: {
+        marginTop: 12,
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#4CAF50',
     },
 });

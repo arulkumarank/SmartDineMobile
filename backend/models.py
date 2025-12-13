@@ -95,3 +95,21 @@ class SearchHistory(BaseModel):
     user_id: str
     query: str
     timestamp: datetime
+
+
+# OTP Models
+class OTPRequest(BaseModel):
+    email: EmailStr
+
+
+class OTPVerify(BaseModel):
+    email: EmailStr
+    otp: str
+
+
+class SignupWithOTP(BaseModel):
+    username: str
+    email: EmailStr
+    password: str
+    otp: str
+    name: Optional[str] = ""

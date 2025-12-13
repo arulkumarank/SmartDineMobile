@@ -125,6 +125,13 @@ export const restaurantsAPI = {
         );
         return response.data;
     },
+
+    getPersonalized: async (): Promise<RestaurantsResponse> => {
+        const response = await api.get<RestaurantsResponse>(
+            '/restaurants/personalized',
+        );
+        return response.data;
+    },
 };
 
 // AI APIs
@@ -135,6 +142,49 @@ export const aiAPI = {
         });
         return response.data;
     },
+};
+
+// Feedback APIs (RL tracking)
+export const feedbackAPI = {
+    trackClick: async (foodName: string, restaurantName?: string) => {
+        const response = await api.post('/feedback/click', {
+            food_name: foodName,
+            restaurant_name: restaurantName
+        });
+        return response.data;
+    },
+
+    trackCartAdd: async (foodName: string, restaurantName?: string) => {
+        const response = await api.post('/feedback/cart', {
+            food_name: foodName,
+            restaurant_name: restaurantName
+        });
+        return response.data;
+    },
+
+    rateFood: async (foodName: string, rating: number, restaurantName?: string) => {
+        const response = await api.post('/feedback/rate', {
+            food_name: foodName,
+            rating,
+            restaurant_name: restaurantName
+        });
+        return response.data;
+    },
+
+    getSurprise: async () => {
+        const response = await api.get('/feedback/surprise');
+        return response.data;
+    },
+
+    getForYou: async () => {
+        const response = await api.get('/feedback/for-you');
+        return response.data;
+    },
+
+    getTopRated: async (limit: number = 10) => {
+        const response = await api.get(`/feedback/top-rated?limit=${limit}`);
+        return response.data;
+    }
 };
 
 export default api;

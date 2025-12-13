@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     View,
     Text,
@@ -13,6 +13,26 @@ import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { useNotifications } from '../context/NotificationsContext';
 
+// Avatar icons and colors for random profile pictures
+const AVATAR_ICONS = [
+    'account', 'account-cowboy-hat', 'account-tie', 'face-man',
+    'face-woman', 'ninja', 'robot-happy', 'emoticon-cool'
+];
+
+const AVATAR_COLORS = [
+    '#ff6b00', '#4CAF50', '#2196F3', '#9C27B0',
+    '#E91E63', '#00BCD4', '#FF5722', '#673AB7'
+];
+
+// Generate consistent avatar index from username
+const getAvatarIndex = (username: string): number => {
+    let hash = 0;
+    for (let i = 0; i < username.length; i++) {
+        hash = username.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return Math.abs(hash) % AVATAR_ICONS.length;
+};
+
 interface ProfileHeaderProps {
     navigation: any;
     username?: string;
@@ -24,6 +44,11 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const { itemCount } = useCart();
     const { unreadCount } = useNotifications();
+
+    // Get consistent avatar based on username
+    const avatarIndex = useMemo(() => getAvatarIndex(username), [username]);
+    const avatarIcon = AVATAR_ICONS[avatarIndex];
+    const avatarColor = AVATAR_COLORS[avatarIndex];
 
     const handleLogout = async () => {
         try {
@@ -50,12 +75,12 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                 )}
             </TouchableOpacity>
 
-            {/* Profile Bubble */}
+            {/* Profile Bubble with unique avatar */}
             <TouchableOpacity
-                style={styles.profileBubble}
+                style={[styles.profileBubble, { backgroundColor: avatarColor }]}
                 onPress={() => setDropdownVisible(true)}
             >
-                <Icon name="account" size={22} color="#fff" />
+                <Icon name={avatarIcon} size={22} color="#fff" />
             </TouchableOpacity>
 
             {/* Dropdown Modal */}
@@ -72,8 +97,8 @@ export default function ProfileHeader({ navigation, username = 'User' }: Profile
                     <View style={[styles.dropdown, { backgroundColor: colors.surface }]}>
                         {/* User Info */}
                         <View style={styles.userInfo}>
-                            <View style={styles.avatarLarge}>
-                                <Icon name="account" size={32} color="#fff" />
+                            <View style={[styles.avatarLarge, { backgroundColor: avatarColor }]}>
+                                <Icon name={avatarIcon} size={32} color="#fff" />
                             </View>
                             <Text style={[styles.userName, { color: colors.text }]}>{username}</Text>
                         </View>

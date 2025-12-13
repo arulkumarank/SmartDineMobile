@@ -78,7 +78,8 @@ export default function Profile() {
       await profileAPI.update({
         name: profile.name,
         email: profile.email,
-        taste_preference: profile.taste_preference,
+        taste_preferences: profile.taste_preferences,
+        cuisine_preferences: profile.cuisine_preferences,
         dietary_restrictions: profile.dietary_restrictions,
       });
       setAlert({ visible: true, type: 'success', title: 'Success', message: 'Profile updated successfully' });
@@ -104,6 +105,36 @@ export default function Profile() {
     }
   };
 
+  const toggleTastePreference = (value: string) => {
+    const current = profile.taste_preferences || [];
+    if (current.includes(value)) {
+      setProfile({
+        ...profile,
+        taste_preferences: current.filter(item => item !== value),
+      });
+    } else {
+      setProfile({
+        ...profile,
+        taste_preferences: [...current, value],
+      });
+    }
+  };
+
+  const toggleCuisinePreference = (value: string) => {
+    const current = profile.cuisine_preferences || [];
+    if (current.includes(value)) {
+      setProfile({
+        ...profile,
+        cuisine_preferences: current.filter(item => item !== value),
+      });
+    } else {
+      setProfile({
+        ...profile,
+        cuisine_preferences: [...current, value],
+      });
+    }
+  };
+
   // Theme-aware styles
   const themedStyles = {
     container: { backgroundColor: colors.background },
@@ -116,6 +147,7 @@ export default function Profile() {
     input: { color: colors.text },
     chip: { backgroundColor: colors.card, borderColor: colors.border },
     chipText: { color: colors.textSecondary },
+    logoutButton: { backgroundColor: isDark ? colors.card : '#fff5ed', borderColor: isDark ? colors.border : '#ff6b0030' },
   };
 
   if (loading) {
@@ -167,22 +199,43 @@ export default function Profile() {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.label}>Taste Preferences</Text>
+          <Text style={[styles.label, themedStyles.label]}>Taste Preferences (Select Multiple)</Text>
           <View style={styles.chipsContainer}>
             {tasteOptions.map(option => (
               <TouchableOpacity
                 key={option.value}
                 style={[
                   styles.chip,
-                  profile.taste_preference === option.value && styles.chipActive,
+                  profile.taste_preferences?.includes(option.value) && styles.chipActive,
                 ]}
-                onPress={() =>
-                  setProfile({ ...profile, taste_preference: option.value })
-                }>
+                onPress={() => toggleTastePreference(option.value)}>
                 <Text
                   style={[
                     styles.chipText,
-                    profile.taste_preference === option.value && styles.chipTextActive,
+                    profile.taste_preferences?.includes(option.value) && styles.chipTextActive,
+                  ]}>
+                  {option.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={[styles.label, themedStyles.label]}>Cuisine Preferences (Select Multiple)</Text>
+          <View style={styles.chipsContainer}>
+            {cuisineOptions.map(option => (
+              <TouchableOpacity
+                key={option.value}
+                style={[
+                  styles.chip,
+                  profile.cuisine_preferences?.includes(option.value) && styles.chipActive,
+                ]}
+                onPress={() => toggleCuisinePreference(option.value)}>
+                <Text
+                  style={[
+                    styles.chipText,
+                    profile.cuisine_preferences?.includes(option.value) && styles.chipTextActive,
                   ]}>
                   {option.label}
                 </Text>
@@ -230,7 +283,7 @@ export default function Profile() {
           )}
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+        <TouchableOpacity style={[styles.logoutButton, themedStyles.logoutButton]} onPress={logout}>
           <Icon name="logout" size={20} color="#ff6b00" />
           <Text style={styles.logoutButtonText}>Logout</Text>
         </TouchableOpacity>

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routers import restaurants, ai, auth, profile, foods
+from routers import restaurants, ai, auth, profile, foods, feedback
 
 app = FastAPI(title="SmartDine API")
 
@@ -18,6 +18,7 @@ app.include_router(profile.router)
 app.include_router(restaurants.router)
 app.include_router(foods.router)
 app.include_router(ai.router)
+app.include_router(feedback.router)
 
 
 @app.get("/")

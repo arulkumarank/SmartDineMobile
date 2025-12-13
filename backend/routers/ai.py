@@ -71,15 +71,24 @@ def ask_question(data: Question, current_user: dict = Depends(get_current_user))
         queries = [s["query"] for s in search_history]
         search_context = f"\nRecent searches: {', '.join(queries)}\nGive preference to foods similar to these past searches."
     
-    # Build user preferences string
+    # Build user preferences string (use arrays for multi-select fields)
     user_preferences = ""
+    preferences_priority = ""
     if user_profile:
+        taste_prefs = user_profile.get('taste_preferences', []) or []
+        cuisine_prefs = user_profile.get('cuisine_preferences', []) or []
+        dietary_restrictions = user_profile.get('dietary_restrictions', []) or []
+        
         user_preferences = f"""
-Taste Preference: {user_profile.get('taste_preference', 'Not specified')}
-Cuisine Preference: {user_profile.get('cuisine_preference', 'Not specified')}
-Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) or 'None'}
+USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
+- Taste Preferences: {', '.join(taste_prefs) if taste_prefs else 'Not specified'}
+- Cuisine Preferences: {', '.join(cuisine_prefs) if cuisine_prefs else 'Not specified'} 
+- Dietary Restrictions: {', '.join(dietary_restrictions) if dietary_restrictions else 'None'}
 {search_context}
 """
+        # Build priority instruction if user has preferences
+        if taste_prefs or cuisine_prefs:
+            preferences_priority = "\n🎯 HIGHEST PRIORITY: Match the user's taste and cuisine preferences first! Only suggest foods that align with their profile.\n"
     
     # Get food database - with vector search if enabled
     food_docs_str = ""
@@ -100,8 +109,11 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
         
         # Fallback: Use full database - flatten restaurant menus into food items
         if not food_docs_str or not USE_VECTOR_SEARCH:
-            from db import collection
+            from db import collection, food_scores
             restaurants = list(collection.find({}, {"_id": 0}))
+            
+            # Get all RL scores
+            all_scores = {s["food_name"]: s for s in food_scores.find({}, {"_id": 0})}
             
             # Extract all food items from restaurant menus
             all_foods = []
@@ -109,16 +121,22 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
                 restaurant_name = restaurant.get('name', 'Unknown')
                 cuisine = restaurant.get('cuisine', 'Unknown')
                 for item in restaurant.get('menu', []):
+                    food_name = item.get('name', 'Unknown')
+                    score_data = all_scores.get(food_name, {})
+                    
                     all_foods.append({
-                        'name': item.get('name', 'Unknown'),
+                        'name': food_name,
                         'restaurant': restaurant_name,
                         'cuisine': cuisine,
                         'price': item.get('price', 0),
                         'is_vegetarian': item.get('diet', '') == 'veg',
-                        'tags': item.get('tags', [])
+                        'tags': item.get('tags', []),
+                        'base_rating': item.get('rating', 3),
+                        'user_rating': score_data.get('avg_rating', 0),
+                        'rl_score': score_data.get('rl_score', 0)
                     })
             
-            # Deduplicate foods by name - keep only first occurrence (prevents repetitive recommendations)
+            # Deduplicate foods by name - keep only first occurrence
             seen_names = set()
             unique_foods = []
             for f in all_foods:
@@ -126,12 +144,18 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
                     seen_names.add(f['name'].lower())
                     unique_foods.append(f)
             
-            # Build food database string for AI (using unique foods only)
+            # Sort by rating + RL score (rating first priority)
+            unique_foods.sort(
+                key=lambda x: (x['user_rating'] or x['base_rating'], x['rl_score']),
+                reverse=True
+            )
+            
+            # Build food database string for AI (rating info included)
             food_docs_str = "\n".join([
-                f"- {f['name']} ({f['cuisine']}, ₹{f['price']}, {'Veg' if f['is_vegetarian'] else 'Non-Veg'})" 
+                f"- {f['name']} ({f['cuisine']}, ₹{f['price']}, {'Veg' if f['is_vegetarian'] else 'Non-Veg'}, ⭐{f['user_rating'] or f['base_rating']:.1f})" 
                 for f in unique_foods
             ])
-            search_method = f"Full Database ({len(unique_foods)} unique foods)"
+            search_method = f"Full Database ({len(unique_foods)} unique foods, sorted by rating)"
             print(f"📚 Using {len(unique_foods)} unique foods from {len(all_foods)} total items")
             
     except Exception as e:
@@ -148,6 +172,7 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
 USER REQUEST: "{data.question}"
 
 {user_preferences if user_preferences else ""}
+{preferences_priority}
 
 AVAILABLE FOODS:
 {food_docs_str}
