@@ -112,6 +112,16 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
             from db import collection, food_scores
             restaurants = list(collection.find({}, {"_id": 0}))
             
+            # Get user's dietary restrictions for STRICT filtering
+            dietary_restrictions = []
+            if user_profile:
+                dietary_restrictions = [d.lower() for d in user_profile.get('dietary_restrictions', []) or []]
+            
+            is_vegan = 'vegan' in dietary_restrictions
+            is_vegetarian = 'vegetarian' in dietary_restrictions or is_vegan
+            
+            print(f"🥗 Dietary: vegan={is_vegan}, vegetarian={is_vegetarian}")
+            
             # Get all RL scores
             all_scores = {s["food_name"]: s for s in food_scores.find({}, {"_id": 0})}
             
@@ -122,6 +132,12 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
                 cuisine = restaurant.get('cuisine', 'Unknown')
                 for item in restaurant.get('menu', []):
                     food_name = item.get('name', 'Unknown')
+                    is_veg = item.get('diet', '') == 'veg'
+                    
+                    # STRICT DIETARY FILTER - vegans/vegetarians ONLY see veg foods in suggestions
+                    if is_vegetarian and not is_veg:
+                        continue  # Skip non-veg for vegetarian/vegan users
+                    
                     score_data = all_scores.get(food_name, {})
                     
                     all_foods.append({
@@ -129,20 +145,28 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
                         'restaurant': restaurant_name,
                         'cuisine': cuisine,
                         'price': item.get('price', 0),
-                        'is_vegetarian': item.get('diet', '') == 'veg',
+                        'is_vegetarian': is_veg,
                         'tags': item.get('tags', []),
+                        'spicy': item.get('spicy', 'mild'),
                         'base_rating': item.get('rating', 3),
                         'user_rating': score_data.get('avg_rating', 0),
                         'rl_score': score_data.get('rl_score', 0)
                     })
             
-            # Deduplicate foods by name - keep only first occurrence
-            seen_names = set()
-            unique_foods = []
+            # Deduplicate foods by name - keep highest rated version
+            name_to_food = {}
             for f in all_foods:
-                if f['name'].lower() not in seen_names:
-                    seen_names.add(f['name'].lower())
-                    unique_foods.append(f)
+                name_lower = f['name'].lower()
+                if name_lower not in name_to_food:
+                    name_to_food[name_lower] = f
+                else:
+                    # Keep the one with higher rating
+                    existing_rating = name_to_food[name_lower]['user_rating'] or name_to_food[name_lower]['base_rating']
+                    new_rating = f['user_rating'] or f['base_rating']
+                    if new_rating > existing_rating:
+                        name_to_food[name_lower] = f
+            
+            unique_foods = list(name_to_food.values())
             
             # Sort by rating + RL score (rating first priority)
             unique_foods.sort(
@@ -150,13 +174,16 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
                 reverse=True
             )
             
-            # Build food database string for AI (rating info included)
+            # LIMIT to top 30 foods to save tokens
+            top_foods = unique_foods[:30]
+            
+            # Build COMPACT food database string for AI (token efficient!)
             food_docs_str = "\n".join([
-                f"- {f['name']} ({f['cuisine']}, ₹{f['price']}, {'Veg' if f['is_vegetarian'] else 'Non-Veg'}, ⭐{f['user_rating'] or f['base_rating']:.1f})" 
-                for f in unique_foods
+                f"- {f['name']} | {f['cuisine']} | ₹{f['price']} | {'Veg' if f['is_vegetarian'] else 'Non-Veg'} | {f['spicy']}" 
+                for f in top_foods
             ])
-            search_method = f"Full Database ({len(unique_foods)} unique foods, sorted by rating)"
-            print(f"📚 Using {len(unique_foods)} unique foods from {len(all_foods)} total items")
+            search_method = f"Filtered DB ({len(top_foods)} foods, dietary filtered)"
+            print(f"📚 Sending {len(top_foods)} foods to AI (from {len(all_foods)} after dietary filter)")
             
     except Exception as e:
         print(f"❌ Error getting food database: {e}")
@@ -177,47 +204,15 @@ USER REQUEST: "{data.question}"
 AVAILABLE FOODS:
 {food_docs_str}
 
-TASK: Analyze the user's request and recommend 3-5 DIFFERENT foods from the list above.
+TASK: Recommend 3-5 DIFFERENT foods from the list above.
 
-CRITICAL DISAMBIGUATION (read VERY carefully):
-
-☀️ WEATHER/ENVIRONMENT CONTEXT (user wants warming/cooling food, NOT sick!):
-- "feeling cold" / "cold outside" / "cold weather" / "winter" / "chilly out"
-  → User wants WARMING comfort food - NOT SICK!
-  → Recommend: hot soups, biryanis, hot noodles, chai, coffee, warm curries
-  → Message: "Perfect warming foods for the cold weather!"
-- "hot outside" / "summer" / "feeling hot" / "sweating"
-  → User wants COOLING refreshing food
-  → Recommend: cold drinks, ice cream, salads, smoothies, lassi
-
-🤒 ILLNESS CONTEXT (user is actually sick):
-- "I have a cold" / "caught a cold" / "fever" / "flu" / "sick" / "unwell" 
-- "sore throat" / "cough" / "not feeling well" / "headache" / "under the weather"
-  → User is ILL - needs healing foods
-  → Recommend: soups, rice, khichdi, warm drinks, light foods
-  → AVOID: spicy, oily, heavy, fried foods
-  → Message: "Hope you feel better soon! Here are some soothing options."
-
-🌡️ FOOD TEMPERATURE PREFERENCE:
-- "hot food" / "warm meal" / "something hot to eat" / "steaming"
-  → Hot served dishes: curries, biryanis, hot noodles
-- "cold food" / "chilled" / "refreshing food"
-  → Cold items: salads, ice cream, cold drinks
-
-🌶️ SPICE LEVEL (different from temperature!):
-- "spicy" / "hot and spicy" / "with heat" / "masala"
-  → Recommend: dishes with chili, spicy curries, hot wings
-- "mild" / "not spicy" / "no spice" / "plain"
-  → Recommend: comfort food without chilies
-
-OTHER INTENTS:
-- "hungry" / "starving" → filling, hearty dishes
-- "light" / "not too heavy" → salads, soups, light meals  
-- "healthy" / "diet" / "fitness" → low calorie, high protein, nutritious
-- "comfort" / "sad" / "stressed" → classic comfort foods
-- "celebration" / "party" → special dishes, biryanis, pizzas
-- "quick" / "fast" → finger foods, sandwiches
-- Cuisine mentions → match exact cuisine (e.g., "Chinese" → Chinese only)
+CONTEXT RULES:
+- "cold outside/weather/winter" → WARMING foods only (curries, soups, biryanis, noodles). NO ice cream, kulfi, cold drinks!
+- "hot outside/summer" → COOLING foods (salads, ice cream, cold drinks)
+- "sick/fever/flu/cold" → Light healing foods (soups, rice). Avoid spicy/heavy.
+- "spicy" → Hot dishes with chili
+- "healthy/diet" → Low calorie, high protein
+- Cuisine mention → Match that cuisine only
 
 RESPONSE FORMAT (JSON only):
 {{
@@ -225,25 +220,26 @@ RESPONSE FORMAT (JSON only):
   "foods": ["Exact Food Name 1", "Exact Food Name 2", "Exact Food Name 3"]
 }}
 
-RULES:
-1. "foods" array MUST contain EXACT names from the AVAILABLE FOODS list
+STRICT RULES:
+1. "foods" array MUST contain EXACT names from the AVAILABLE FOODS list ONLY
 2. "message" should be warm, short (under 15 words), NO food names in message
-3. For ILLNESS: Be caring - "Get well soon!" / "These will help you recover!"
-4. For TEMPERATURE: Be descriptive - "Perfect hot meals for you!"
-5. If user mentions a cuisine, ONLY recommend from that cuisine
-6. Respect veg/non-veg preferences
-7. Return 3-5 foods maximum
+3. ONLY recommend 3-5 foods maximum
+4. ⚠️ WEATHER LOGIC: If user says "cold outside" or "cold weather":
+   - DO NOT recommend: ice cream, kulfi, cold drinks, lassi, smoothies
+   - DO recommend: hot soups, curries, biryanis, hot noodles, chai, coffee
+5. ⚠️ DIETARY: User preferences are pre-filtered. All foods shown are safe to recommend.
+6. ⚠️ NO REPETITION: Pick DIFFERENT types of dishes, not similar items
 
 Generate JSON response:"""
     
     payload = {
         "model": "llama-3.1-8b-instant",
         "messages": [
-            {"role": "system", "content": "You are SmartDine AI, a food recommendation assistant. Always respond with valid JSON only, no extra text."},
+            {"role": "system", "content": "You are SmartDine AI. Respond with valid JSON only."},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.4,
-        "max_tokens": 300
+        "temperature": 0.3,
+        "max_tokens": 200
     }
 
     # Get API key and headers

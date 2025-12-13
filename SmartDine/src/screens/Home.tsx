@@ -16,6 +16,7 @@ import { useAuth } from '../context/AuthContext';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
 import ProfileHeader from '../components/ProfileHeader';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../components/Skeleton';
 import type { Food, Restaurant } from '../types';
 import { isFuzzyMatch } from '../utils/search';
 
@@ -29,6 +30,7 @@ export default function Home({ navigation }: any) {
   const [discoverFoods, setDiscoverFoods] = useState<Food[]>([]);
   const [discoverRestaurants, setDiscoverRestaurants] = useState<Restaurant[]>([]);
   const [loading, setLoading] = useState(false);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [searched, setSearched] = useState(false);
 
   useEffect(() => {
@@ -63,6 +65,8 @@ export default function Home({ navigation }: any) {
       } catch (e) {
         console.error('Failed to load fallback restaurants:', e);
       }
+    } finally {
+      setInitialLoading(false);
     }
   };
 
@@ -105,6 +109,18 @@ export default function Home({ navigation }: any) {
           )
         );
         console.log(`Matched ${matchedFoods.length} foods from AI suggestions`);
+
+        // DEDUPLICATE: Keep only ONE of each dish name (highest rated)
+        const foodByName = new Map<string, Food>();
+        matchedFoods.forEach((food: Food) => {
+          const nameLower = food.name.toLowerCase();
+          const existing = foodByName.get(nameLower);
+          if (!existing || (food.rating || 0) > (existing.rating || 0)) {
+            foodByName.set(nameLower, food);
+          }
+        });
+        matchedFoods = Array.from(foodByName.values());
+        console.log(`After deduplication: ${matchedFoods.length} unique dishes`);
       }
 
       // Fallback: semantic/fuzzy search if no matches
@@ -262,38 +278,61 @@ export default function Home({ navigation }: any) {
         {/* Discover Food Section */}
         <View style={[styles.discoverSection, themedStyles.discoverSection]}>
           <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Discover Food</Text>
-          <FlatList
-            horizontal
-            data={discoverFoods}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item, index) => `discover-food-${index}`}
-            renderItem={({ item }) => (
-              <View style={styles.foodCardWrapper}>
-                <FoodCard
-                  food={item}
-                  compact
-                  onPress={() => navigation.navigate('FoodDetail', { food: item })}
-                />
-              </View>
-            )}
-            contentContainerStyle={styles.horizontalList}
-          />
+          {initialLoading ? (
+            <FlatList
+              horizontal
+              data={[1, 2, 3, 4]}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => `skeleton-food-${item}`}
+              renderItem={() => (
+                <View style={styles.foodCardWrapper}>
+                  <FoodCardSkeleton />
+                </View>
+              )}
+              contentContainerStyle={styles.horizontalList}
+            />
+          ) : (
+            <FlatList
+              horizontal
+              data={discoverFoods}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item, index) => `discover-food-${index}`}
+              renderItem={({ item }) => (
+                <View style={styles.foodCardWrapper}>
+                  <FoodCard
+                    food={item}
+                    compact
+                    onPress={() => navigation.navigate('FoodDetail', { food: item })}
+                  />
+                </View>
+              )}
+              contentContainerStyle={styles.horizontalList}
+            />
+          )}
         </View>
 
         {/* Discover Restaurants Section - All scroll together */}
         <View style={[styles.restaurantsSection, themedStyles.restaurantsSection]}>
           <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Discover Restaurants</Text>
-          {discoverRestaurants.map((restaurant, index) => (
-            <View key={index} style={styles.restaurantCardWrapper}>
-              <RestaurantCard
-                name={restaurant.name}
-                rating={restaurant.rating || 0}
-                image={restaurant.image || 'https://source.unsplash.com/600x400/?restaurant'}
-                cuisine={restaurant.cuisine}
-                onPress={() => navigation.navigate('Restaurant', restaurant)}
-              />
-            </View>
-          ))}
+          {initialLoading ? (
+            [1, 2, 3].map((item) => (
+              <View key={`skeleton-restaurant-${item}`} style={styles.restaurantCardWrapper}>
+                <RestaurantCardSkeleton />
+              </View>
+            ))
+          ) : (
+            discoverRestaurants.map((restaurant, index) => (
+              <View key={index} style={styles.restaurantCardWrapper}>
+                <RestaurantCard
+                  name={restaurant.name}
+                  rating={restaurant.rating || 0}
+                  image={restaurant.image || 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600'}
+                  cuisine={restaurant.cuisine}
+                  onPress={() => navigation.navigate('Restaurant', restaurant)}
+                />
+              </View>
+            ))
+          )}
         </View>
       </ScrollView >
     </View >
