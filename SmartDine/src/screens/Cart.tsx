@@ -135,7 +135,17 @@ const Cart = ({ navigation }: any) => {
     <View style={[styles.container, themedStyles.container]}>
       {/* Header */}
       <View style={[styles.header, themedStyles.header]}>
-        <Text style={[styles.title, themedStyles.title]}>Your Cart</Text>
+        <View style={styles.headerLeft}>
+          {navigation.canGoBack() && (
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => navigation.goBack()}
+            >
+              <Icon name="arrow-left" size={24} color={colors.text} />
+            </TouchableOpacity>
+          )}
+          <Text style={[styles.title, themedStyles.title]}>Your Cart</Text>
+        </View>
         <TouchableOpacity onPress={clearCart}>
           <Text style={styles.clearText}>Clear All</Text>
         </TouchableOpacity>
@@ -214,6 +224,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#ff4444',
     fontWeight: '600',
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 12,
+    padding: 4,
   },
   listContent: {
     padding: 16,

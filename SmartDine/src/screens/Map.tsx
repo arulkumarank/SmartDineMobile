@@ -87,9 +87,9 @@ export default function Map({ navigation, route }: any) {
 
     if (loading) {
         return (
-            <View style={styles.centerContainer}>
+            <View style={[styles.centerContainer, { backgroundColor: isDark ? colors.background : '#f8f9fa' }]}>
                 <ActivityIndicator size="large" color="#ff6b00" />
-                <Text style={styles.loadingText}>Loading restaurants...</Text>
+                <Text style={[styles.loadingText, { color: colors.textSecondary }]}>Loading restaurants...</Text>
             </View>
         );
     }
@@ -107,15 +107,7 @@ export default function Map({ navigation, route }: any) {
     }
 
     return (
-        <View style={styles.container}>
-            {/* Header - Shows selected restaurant name if available */}
-            <View style={styles.header}>
-                <Icon name="map-marker-radius" size={28} color="#ff6b00" />
-                <Text style={styles.headerTitle}>
-                    {selectedRestaurant ? selectedRestaurant.name : 'Nearby Restaurants'}
-                </Text>
-            </View>
-
+        <View style={[styles.container, { backgroundColor: isDark ? colors.background : '#f8f9fa' }]}>
             {/* Map */}
             <MapView
                 style={styles.map}
@@ -195,9 +187,9 @@ export default function Map({ navigation, route }: any) {
             </MapView>
 
             {/* Restaurant Count Badge */}
-            <View style={styles.badge}>
+            <View style={[styles.badge, { backgroundColor: isDark ? colors.card : '#fff' }]}>
                 <Icon name="store" size={18} color="#ff6b00" />
-                <Text style={styles.badgeText}>{restaurants.length} Restaurants</Text>
+                <Text style={[styles.badgeText, { color: colors.text }]}>{restaurants.length} Restaurants</Text>
             </View>
         </View>
     );
@@ -269,8 +261,7 @@ const styles = StyleSheet.create({
     },
     map: {
         flex: 1,
-        width: width,
-        height: height,
+        width: '100%',
     },
     markerContainer: {
         alignItems: 'center',
@@ -411,11 +402,10 @@ const styles = StyleSheet.create({
     },
     badge: {
         position: 'absolute',
-        top: 130,
-        right: 20,
-        backgroundColor: '#fff',
-        paddingHorizontal: 16,
-        paddingVertical: 10,
+        top: 20,
+        right: 16,
+        paddingHorizontal: 14,
+        paddingVertical: 8,
         borderRadius: 20,
         flexDirection: 'row',
         alignItems: 'center',

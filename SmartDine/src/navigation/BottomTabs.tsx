@@ -20,29 +20,43 @@ const TABS_CONFIG = [
   { name: 'Cart', icon: 'cart-outline', label: 'Cart' },
 ];
 
-// Custom Tab Bar with Enhanced Curve
+// Custom Tab Bar with Enhanced Curve - THEME AWARE
 function CustomTabBar({ state, descriptors, navigation }: any) {
   const { colors, isDark } = useTheme();
 
-  const tabBarBg = colors.surface;
+  const tabBarBg = isDark ? colors.card : '#ffffff';
   const inactiveColor = colors.textSecondary;
+  const borderColor = isDark ? colors.border : '#ffffff';
+  const shadowColor = isDark ? '#000' : '#000';
 
   return (
     <View style={styles.tabBarContainer}>
-      {/* White Background with Curve */}
+      {/* Curved Background with Theme Support */}
       <View style={styles.tabBarBackground}>
-        {/* Left section */}
-        <View style={[styles.leftSection, { backgroundColor: tabBarBg }]} />
+        {/* Left section - more curvy */}
+        <View style={[
+          styles.leftSection,
+          {
+            backgroundColor: tabBarBg,
+            shadowColor: shadowColor,
+          }
+        ]} />
 
-        {/* Center curve cutout */}
+        {/* Center curve cutout - deeper curve */}
         <View style={styles.centerCurve}>
           <View style={[styles.curveLeft, { backgroundColor: tabBarBg }]} />
           <View style={styles.curveGap} />
           <View style={[styles.curveRight, { backgroundColor: tabBarBg }]} />
         </View>
 
-        {/* Right section */}
-        <View style={[styles.rightSection, { backgroundColor: tabBarBg }]} />
+        {/* Right section - more curvy */}
+        <View style={[
+          styles.rightSection,
+          {
+            backgroundColor: tabBarBg,
+            shadowColor: shadowColor,
+          }
+        ]} />
       </View>
 
       {/* Tab Items */}
@@ -72,7 +86,11 @@ function CustomTabBar({ state, descriptors, navigation }: any) {
                 style={styles.centerButtonContainer}
                 activeOpacity={0.7}
               >
-                <View style={[styles.centerButton, isFocused && styles.centerButtonActive]}>
+                <View style={[
+                  styles.centerButton,
+                  { borderColor: tabBarBg },
+                  isFocused && styles.centerButtonActive
+                ]}>
                   <Icon name="star-four-points" size={30} color="#fff" />
                   {/* Small sparkle accent */}
                   <View style={styles.sparkleAccent}>
@@ -115,6 +133,9 @@ export default function BottomTabs() {
       tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{
         headerShown: false,
+        tabBarHideOnKeyboard: true,
+        // Smooth fade animation for tab switches
+        animation: 'fade',
       }}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Search" component={Search} />
@@ -131,91 +152,87 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 75,
+    height: 80,
   },
   tabBarBackground: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    height: 75,
+    height: 80,
     flexDirection: 'row',
     backgroundColor: 'transparent',
   },
   leftSection: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 25,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 0,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
-        shadowOffset: { width: 0, height: -2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 15,
+        shadowOffset: { width: 0, height: -4 },
       },
       android: {
-        elevation: 8,
+        elevation: 12,
       },
     }),
   },
   centerCurve: {
-    width: 100,
+    width: 90,
     flexDirection: 'row',
   },
   curveLeft: {
-    width: 50,
-    backgroundColor: '#ffffff',
-    borderTopRightRadius: 50,
+    width: 45,
+    borderTopRightRadius: 45,
     ...Platform.select({
-      android: { elevation: 8 },
+      android: { elevation: 12 },
     }),
   },
   curveGap: {
     width: 0,
   },
   curveRight: {
-    width: 50,
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 50,
+    width: 45,
+    borderTopLeftRadius: 45,
     ...Platform.select({
-      android: { elevation: 8 },
+      android: { elevation: 12 },
     }),
   },
   rightSection: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    borderTopRightRadius: 25,
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 0,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
-        shadowOffset: { width: 0, height: -2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 15,
+        shadowOffset: { width: 0, height: -4 },
       },
       android: {
-        elevation: 8,
+        elevation: 12,
       },
     }),
   },
   tabItemsContainer: {
     flexDirection: 'row',
-    height: 75,
+    height: 80,
     alignItems: 'center',
     justifyContent: 'space-around',
-    paddingHorizontal: 10,
-    paddingBottom: 10,
+    paddingHorizontal: 8,
+    paddingBottom: 12,
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 8,
+    paddingTop: 10,
   },
   tabLabel: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: '#999',
+    fontSize: 10,
+    fontWeight: '700',
     marginTop: 4,
+    letterSpacing: 0.3,
   },
   tabLabelActive: {
     color: '#ff6b00',
@@ -224,28 +241,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -45,
+    marginTop: -50,
   },
   centerButton: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
+    width: 72,
+    height: 72,
+    borderRadius: 36,
     backgroundColor: '#ff6b00',
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#ff6b00',
     shadowOpacity: 0.6,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 15,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 18,
     borderWidth: 5,
-    borderColor: '#ffffff',
   },
   centerButtonActive: {
-    transform: [{ scale: 1.08 }],
+    transform: [{ scale: 1.1 }],
     shadowOpacity: 0.8,
-    shadowRadius: 22,
-    elevation: 18,
+    shadowRadius: 25,
+    elevation: 22,
   },
   sparkleAccent: {
     position: 'absolute',

@@ -23,13 +23,13 @@ interface ThemeContextType {
 }
 
 const lightColors: ThemeColors = {
-    background: '#f8f9fa',
-    surface: '#ffffff',
-    text: '#1a1a1a',
-    textSecondary: '#666666',
-    border: '#eeeeee',
-    primary: '#ff6b00',
-    card: '#ffffff',
+    background: '#faf8f5',     // Warm cream background (was #f8f9fa - too cold)
+    surface: '#fffbf7',        // Soft ivory surface (was #ffffff - harsh white)
+    text: '#2d2a26',           // Warm dark text (was #1a1a1a)
+    textSecondary: '#6b6560',  // Warm gray (was #666666)
+    border: '#f0ebe5',         // Warm border (was #eeeeee)
+    primary: '#ff6b00',        // Keep primary orange
+    card: '#fffcf8',           // Warm white cards (was #ffffff)
     mapStyle: 'standard',
 };
 

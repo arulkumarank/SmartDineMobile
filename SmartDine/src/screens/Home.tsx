@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   ScrollView,
+  RefreshControl,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { aiAPI, foodsAPI, restaurantsAPI } from '../services/api';
@@ -32,6 +33,8 @@ export default function Home({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [initialLoading, setInitialLoading] = useState(true);
   const [searched, setSearched] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0); // Force FlatList re-render
 
   useEffect(() => {
     loadDiscoverData();
@@ -67,8 +70,24 @@ export default function Home({ navigation }: any) {
       }
     } finally {
       setInitialLoading(false);
+      setRefreshing(false);
     }
   };
+
+  // Pull to refresh handler
+  const onRefresh = useCallback(async () => {
+    setRefreshing(true);
+    // Clear previous search results
+    setSearched(false);
+    setAiText('');
+    setSuggestedFoods([]);
+    setSuggestedRestaurants([]);
+    setQuestion('');
+    // Increment refresh key to force FlatList re-render
+    setRefreshKey(prev => prev + 1);
+    // Reload discover data
+    await loadDiscoverData();
+  }, []);
 
   const handleSearch = async () => {
     if (!question.trim()) return;
@@ -155,7 +174,25 @@ export default function Home({ navigation }: any) {
       }
 
       setSuggestedFoods(matchedFoods.slice(0, 10));
-      setSuggestedRestaurants(allRestaurants.slice(0, 3));
+
+      // Only show restaurants if query is about cuisines/restaurants
+      const cuisineKeywords = ['restaurant', 'cuisine', 'place', 'restaurant', 'dine', 'dining',
+        'indian', 'chinese', 'italian', 'mexican', 'thai', 'japanese', 'korean', 'american',
+        'south indian', 'north indian', 'continental', 'asian', 'mediterranean', 'middle eastern'];
+      const queryLower = question.toLowerCase();
+      const isCuisineQuery = cuisineKeywords.some(keyword => queryLower.includes(keyword));
+
+      if (isCuisineQuery) {
+        // Filter restaurants by matching cuisine
+        const matchedRestaurants = allRestaurants.filter((r: Restaurant) =>
+          r.cuisine && queryLower.includes(r.cuisine.toLowerCase()) ||
+          r.name && queryLower.includes(r.name.toLowerCase())
+        );
+        setSuggestedRestaurants(matchedRestaurants.length > 0 ? matchedRestaurants.slice(0, 3) : allRestaurants.slice(0, 3));
+      } else {
+        // No restaurant cards for food-only queries
+        setSuggestedRestaurants([]);
+      }
 
     } catch (error: any) {
       console.error('Search error:', error);
@@ -189,6 +226,15 @@ export default function Home({ navigation }: any) {
         style={styles.scrollView}
         showsVerticalScrollIndicator={false}
         stickyHeaderIndices={[1]} // Index 1 is the searchBox container
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#ff6b00']}
+            tintColor="#ff6b00"
+            title="Pull to refresh..."
+          />
+        }
       >
         {/* Branding with Profile */}
         < View style={[styles.brandingContainer, themedStyles.brandingContainer]} >
@@ -226,7 +272,6 @@ export default function Home({ navigation }: any) {
         {
           searched && aiText && (
             <View style={[styles.aiMessageBox, { backgroundColor: colors.card, borderColor: colors.border }]}>
-              <Icon name="robot-happy" size={24} color="#ff6b00" style={{ marginRight: 12 }} />
               <Text style={[styles.aiText, themedStyles.aiText]}>{aiText}</Text>
             </View>
           )
@@ -293,10 +338,12 @@ export default function Home({ navigation }: any) {
             />
           ) : (
             <FlatList
+              key={`discover-foods-${refreshKey}`}
               horizontal
               data={discoverFoods}
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item, index) => `discover-food-${index}`}
+              keyExtractor={(item, index) => `food-${item.name}-${item.restaurant}-${index}-${refreshKey}`}
+              extraData={refreshKey}
               renderItem={({ item }) => (
                 <View style={styles.foodCardWrapper}>
                   <FoodCard
@@ -368,13 +415,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#eee',
     shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 3
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8
   },
   searchIcon: { marginRight: 10 },
   input: { flex: 1, fontSize: 15, color: '#333', fontWeight: '500' },
-  searchButton: { backgroundColor: '#ff6b00', borderRadius: 24, width: 44, height: 44, alignItems: 'center', justifyContent: 'center', shadowColor: '#ff6b00', shadowOpacity: 0.3, shadowRadius: 8, elevation: 4 },
+  searchButton: { backgroundColor: '#ff6b00', borderRadius: 24, width: 44, height: 44, alignItems: 'center', justifyContent: 'center', shadowColor: '#ff6b00', shadowOpacity: 0.4, shadowRadius: 12, elevation: 8 },
 
   scrollView: { flex: 1 },
   aiMessageBox: {
@@ -386,9 +434,10 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1,
     shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 3,
+    shadowOpacity: 0.12,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 8,
   },
   aiText: { flex: 1, fontSize: 15, color: '#555', lineHeight: 22 },
   section: { marginTop: 8, marginBottom: 16 },

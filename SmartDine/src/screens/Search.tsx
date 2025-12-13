@@ -16,6 +16,7 @@ import type { Food, Restaurant } from '../types';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';
 import SearchBar from '../components/SearchBar';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../components/Skeleton';
 
 type FilterState = {
   price: string[];
@@ -296,7 +297,26 @@ export default function Search({ navigation }: any) {
           {showFoods ? `${results.foods.length} Foods` : `${results.restaurants.length} Restaurants`}
         </Text>
 
-        {loading && <ActivityIndicator size="large" color="#ff6b00" style={{ marginTop: 40 }} />}
+        {/* Skeleton Loading */}
+        {loading && showFoods && (
+          <View style={styles.skeletonGrid}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <View key={i} style={styles.foodCardWrapper}>
+                <FoodCardSkeleton />
+              </View>
+            ))}
+          </View>
+        )}
+
+        {loading && !showFoods && (
+          <View style={styles.restaurantsList}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <View key={i} style={{ marginBottom: 16 }}>
+                <RestaurantCardSkeleton />
+              </View>
+            ))}
+          </View>
+        )}
 
         {!loading && showFoods && (
           <FlatList
@@ -366,4 +386,5 @@ const styles = StyleSheet.create({
   foodsGrid: { paddingHorizontal: 12, paddingBottom: 120 },
   foodCardWrapper: { width: (Dimensions.get('window').width - 24) / 2, paddingHorizontal: 4, paddingVertical: 6 },
   restaurantsList: { paddingHorizontal: 20, paddingBottom: 120 },
+  skeletonGrid: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 12 },
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -7,21 +7,70 @@ import {
     TouchableOpacity,
     Switch,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme } from '../context/ThemeContext';
 
 const APP_VERSION = '1.0.0';
+const NOTIFICATION_SETTINGS_KEY = '@notification_settings';
 
 export default function Settings({ navigation }: any) {
     const { mode, isDark, colors, setMode } = useTheme();
 
+    // Notification settings state
+    const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+    const [notificationSound, setNotificationSound] = useState(true);
+
+    // Load notification settings on mount
+    useEffect(() => {
+        loadNotificationSettings();
+    }, []);
+
+    const loadNotificationSettings = async () => {
+        try {
+            const settingsStr = await AsyncStorage.getItem(NOTIFICATION_SETTINGS_KEY);
+            if (settingsStr) {
+                const settings = JSON.parse(settingsStr);
+                setNotificationsEnabled(settings.enabled ?? true);
+                setNotificationSound(settings.sound ?? true);
+            }
+        } catch (error) {
+            console.error('Failed to load notification settings:', error);
+        }
+    };
+
+    const saveNotificationSettings = async (enabled: boolean, sound: boolean) => {
+        try {
+            await AsyncStorage.setItem(NOTIFICATION_SETTINGS_KEY, JSON.stringify({
+                enabled,
+                sound,
+            }));
+        } catch (error) {
+            console.error('Failed to save notification settings:', error);
+        }
+    };
+
+    const toggleNotifications = () => {
+        const newValue = !notificationsEnabled;
+        setNotificationsEnabled(newValue);
+        saveNotificationSettings(newValue, notificationSound);
+    };
+
+    const toggleNotificationSound = () => {
+        const newValue = !notificationSound;
+        setNotificationSound(newValue);
+        saveNotificationSettings(notificationsEnabled, newValue);
+    };
+
     interface SettingItem {
         icon: string;
         label: string;
+        description?: string;
         type: 'toggle' | 'navigate' | 'info';
         value?: boolean | string;
         onToggle?: () => void;
         onPress?: () => void;
+        disabled?: boolean;
     }
 
     interface SettingSection {
@@ -50,6 +99,28 @@ export default function Settings({ navigation }: any) {
             ],
         },
         {
+            title: 'Notifications',
+            items: [
+                {
+                    icon: 'bell-outline',
+                    label: 'Surprise Notifications',
+                    description: 'Get daily surprise food recommendations',
+                    type: 'toggle',
+                    value: notificationsEnabled,
+                    onToggle: toggleNotifications,
+                },
+                {
+                    icon: 'volume-high',
+                    label: 'Notification Sound',
+                    description: 'Play sound with notifications',
+                    type: 'toggle',
+                    value: notificationSound,
+                    onToggle: toggleNotificationSound,
+                    disabled: !notificationsEnabled,
+                },
+            ],
+        },
+        {
             title: 'Preferences',
             items: [
                 {
@@ -57,12 +128,6 @@ export default function Settings({ navigation }: any) {
                     label: 'Food Preferences',
                     type: 'navigate',
                     onPress: () => navigation.navigate('Profile'),
-                },
-                {
-                    icon: 'bell-outline',
-                    label: 'Notifications',
-                    type: 'navigate',
-                    onPress: () => { },
                 },
             ],
         },
@@ -127,17 +192,34 @@ export default function Settings({ navigation }: any) {
                                     styles.settingItem,
                                     itemIndex < section.items.length - 1 && styles.itemBorder,
                                     itemIndex < section.items.length - 1 && dynamicStyles.border,
+                                    item.disabled && styles.disabledItem,
                                 ]}
                                 onPress={item.type === 'navigate' ? item.onPress : undefined}
                                 activeOpacity={item.type === 'navigate' ? 0.7 : 1}
+                                disabled={item.disabled}
                             >
                                 <View style={styles.itemLeft}>
-                                    <View style={[styles.iconContainer, { backgroundColor: colors.primary + '20' }]}>
+                                    <View style={[
+                                        styles.iconContainer,
+                                        { backgroundColor: colors.primary + '20' },
+                                        item.disabled && { opacity: 0.4 }
+                                    ]}>
                                         <Icon name={item.icon} size={20} color={colors.primary} />
                                     </View>
-                                    <Text style={[styles.itemLabel, dynamicStyles.text]}>
-                                        {item.label}
-                                    </Text>
+                                    <View style={styles.labelContainer}>
+                                        <Text style={[
+                                            styles.itemLabel,
+                                            dynamicStyles.text,
+                                            item.disabled && { opacity: 0.4 }
+                                        ]}>
+                                            {item.label}
+                                        </Text>
+                                        {item.description && (
+                                            <Text style={[styles.itemDescription, dynamicStyles.textSecondary]}>
+                                                {item.description}
+                                            </Text>
+                                        )}
+                                    </View>
                                 </View>
                                 <View style={styles.itemRight}>
                                     {item.type === 'toggle' && (
@@ -146,6 +228,7 @@ export default function Settings({ navigation }: any) {
                                             onValueChange={item.onToggle}
                                             trackColor={{ false: '#ddd', true: colors.primary + '80' }}
                                             thumbColor={item.value ? colors.primary : '#fff'}
+                                            disabled={item.disabled}
                                         />
                                     )}
                                     {item.type === 'navigate' && (
@@ -228,10 +311,14 @@ const styles = StyleSheet.create({
     itemBorder: {
         borderBottomWidth: 1,
     },
+    disabledItem: {
+        opacity: 0.6,
+    },
     itemLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 14,
+        flex: 1,
     },
     iconContainer: {
         width: 36,
@@ -240,9 +327,16 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    labelContainer: {
+        flex: 1,
+    },
     itemLabel: {
         fontSize: 16,
         fontWeight: '500',
+    },
+    itemDescription: {
+        fontSize: 12,
+        marginTop: 2,
     },
     itemRight: {
         flexDirection: 'row',
@@ -265,3 +359,4 @@ const styles = StyleSheet.create({
         marginTop: 4,
     },
 });
+

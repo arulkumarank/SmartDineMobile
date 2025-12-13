@@ -177,6 +177,10 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
             # LIMIT to top 30 foods to save tokens
             top_foods = unique_foods[:30]
             
+            # SHUFFLE to add variety (AI always picks from top of list)
+            import random
+            random.shuffle(top_foods)
+            
             # Build COMPACT food database string for AI (token efficient!)
             food_docs_str = "\n".join([
                 f"- {f['name']} | {f['cuisine']} | ₹{f['price']} | {'Veg' if f['is_vegetarian'] else 'Non-Veg'} | {f['spicy']}" 
@@ -204,33 +208,29 @@ USER REQUEST: "{data.question}"
 AVAILABLE FOODS:
 {food_docs_str}
 
-TASK: Recommend 3-5 DIFFERENT foods from the list above.
+IMPORTANT: Recommend 3-5 foods that match the user's request.
 
 CONTEXT RULES:
-- "cold outside/weather/winter" → WARMING foods only (curries, soups, biryanis, noodles). NO ice cream, kulfi, cold drinks!
-- "hot outside/summer" → COOLING foods (salads, ice cream, cold drinks)
-- "sick/fever/flu/cold" → Light healing foods (soups, rice). Avoid spicy/heavy.
-- "spicy" → Hot dishes with chili
-- "healthy/diet" → Low calorie, high protein
-- Cuisine mention → Match that cuisine only
+- "cold/winter" → Warm foods (curries, soups, noodles)
+- "hot/summer" → Cool foods (ice cream, cold drinks)
+- "sick" → Light foods (soup, rice)
+- "heavy/bloated" → Light foods (salads, tea, coffee)
+- "tired" → Energizing (coffee, protein)
+- "spicy" → Hot dishes
+- "healthy" → Low calorie, salads
 
 RESPONSE FORMAT (JSON only):
 {{
-  "message": "Short friendly message without mentioning food names",
-  "foods": ["Exact Food Name 1", "Exact Food Name 2", "Exact Food Name 3"]
+  "message": "Short friendly message (no food names)",
+  "foods": ["Food Name 1", "Food Name 2", "Food Name 3"]
 }}
 
-STRICT RULES:
-1. "foods" array MUST contain EXACT names from the AVAILABLE FOODS list ONLY
-2. "message" should be warm, short (under 15 words), NO food names in message
-3. ONLY recommend 3-5 foods maximum
-4. ⚠️ WEATHER LOGIC: If user says "cold outside" or "cold weather":
-   - DO NOT recommend: ice cream, kulfi, cold drinks, lassi, smoothies
-   - DO recommend: hot soups, curries, biryanis, hot noodles, chai, coffee
-5. ⚠️ DIETARY: User preferences are pre-filtered. All foods shown are safe to recommend.
-6. ⚠️ NO REPETITION: Pick DIFFERENT types of dishes, not similar items
+STRICT: 
+- Foods must be EXACT names from the list above
+- Message should be warm, positive, short
+- Pick 3-5 varied foods
 
-Generate JSON response:"""
+Generate JSON:"""
     
     payload = {
         "model": "llama-3.1-8b-instant",
@@ -238,7 +238,7 @@ Generate JSON response:"""
             {"role": "system", "content": "You are SmartDine AI. Respond with valid JSON only."},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.3,
+        "temperature": 0.5,
         "max_tokens": 200
     }
 

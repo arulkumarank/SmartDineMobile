@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthProvider, useAuth } from './src/context/AuthContext';
 import { CartProvider } from './src/context/CartContext';
-import { ThemeProvider } from './src/context/ThemeContext';
+import { ThemeProvider, useTheme } from './src/context/ThemeContext';
 import { NotificationsProvider } from './src/context/NotificationsContext';
 import { ActivityIndicator, View } from 'react-native';
 
@@ -21,39 +21,78 @@ const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
   const { isAuthenticated, isLoading } = useAuth();
+  const { isDark, colors } = useTheme();
+
+  // Theme-aware header options with smooth animations
+  const themedHeaderOptions = {
+    headerStyle: {
+      backgroundColor: colors.surface,
+    },
+    headerTintColor: colors.text,
+    headerTitleStyle: {
+      fontWeight: '700' as const,
+      color: colors.text,
+    },
+    headerShadowVisible: false,
+    headerBackTitleVisible: false,
+    // Smooth morph animation
+    animation: 'fade_from_bottom' as const,
+    animationDuration: 250,
+  };
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
         <ActivityIndicator size="large" color="#ff6b00" />
       </View>
     );
   }
 
+  // Navigation theme for bottom elements
+  const navigationTheme = isDark ? {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: colors.background,
+      card: colors.surface,
+      text: colors.text,
+      primary: '#ff6b00',
+    },
+  } : {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: colors.background,
+      card: colors.surface,
+      text: colors.text,
+      primary: '#ff6b00',
+    },
+  };
+
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navigationTheme}>
       {isAuthenticated ? (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={BottomTabs} />
           <Stack.Screen
             name="Restaurant"
             component={Restaurant}
-            options={{ headerShown: true, title: 'Restaurant Details' }}
+            options={{ headerShown: true, title: 'Restaurant Details', ...themedHeaderOptions }}
           />
           <Stack.Screen
             name="Map"
             component={Map}
-            options={{ headerShown: true, title: 'Location' }}
+            options={{ headerShown: true, title: 'Location', ...themedHeaderOptions }}
           />
           <Stack.Screen
             name="FoodDetail"
             component={FoodDetail}
-            options={{ headerShown: true, title: 'Food Details' }}
+            options={{ headerShown: true, title: 'Food Details', ...themedHeaderOptions }}
           />
           <Stack.Screen
             name="Profile"
             component={Profile}
-            options={{ headerShown: true, title: 'My Profile' }}
+            options={{ headerShown: true, title: 'My Profile', ...themedHeaderOptions }}
           />
           <Stack.Screen
             name="Settings"
@@ -63,7 +102,7 @@ function AppNavigator() {
           <Stack.Screen
             name="Notifications"
             component={Notifications}
-            options={{ headerShown: true, title: 'Notifications' }}
+            options={{ headerShown: true, title: 'Notifications', ...themedHeaderOptions }}
           />
         </Stack.Navigator>
       ) : (
@@ -89,3 +128,4 @@ export default function App() {
     </AuthProvider>
   );
 }
+

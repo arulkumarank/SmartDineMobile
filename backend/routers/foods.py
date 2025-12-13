@@ -2,6 +2,7 @@ from fastapi import APIRouter, Query
 from typing import Optional
 
 from db import collection as restaurants_collection, foods_collection
+from routers.ai import get_api_key, get_headers
 
 router = APIRouter(prefix="/foods", tags=["foods"])
 
@@ -187,14 +188,10 @@ async def get_food_detail(food_name: str, restaurant: str):
     if not food_item:
         return {"error": "Food not found"}
     
-    # Generate AI description
-    groq_api_key = os.getenv("GROQ_API_KEY")
+    # Generate AI description - use rotating API key
+    api_key = get_api_key()
     url = "https://api.groq.com/openai/v1/chat/completions"
-    
-    headers = {
-        "Authorization": f"Bearer {groq_api_key}",
-        "Content-Type": "application/json"
-    }
+    headers = get_headers(api_key)
     
     prompt = f"""
 You are a food expert. Describe {food_name} from {restaurant} in detail.
