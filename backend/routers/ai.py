@@ -4,7 +4,7 @@ import requests
 import os
 from datetime import datetime
 
-from db import docs, response_collection, userdetails_collection, search_history_collection
+from db import response_collection, userdetails_collection, search_history_collection
 from models import Question
 from routers.auth import get_current_user
 
@@ -82,7 +82,7 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
 """
     
     # Get food database - with vector search if enabled
-    docs = ""
+    food_docs_str = ""
     search_method = "Full Database"
     
     try:
@@ -90,65 +90,135 @@ Dietary Restrictions: {', '.join(user_profile.get('dietary_restrictions', [])) o
             # NEW: Use vector search to get only relevant foods
             try:
                 from services.vector_search import search_foods
-                docs = search_foods(data.question, k=5)
+                food_docs_str = search_foods(data.question, k=5)
                 search_method = "Vector Search (5 foods)"
                 print(f"✅ Using vector search for query: '{data.question}'")
             except ImportError as e:
                 print(f"⚠️ Vector search not available: {e}, falling back to full DB")
-                docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in docs])
             except Exception as e:
                 print(f"⚠️ Vector search failed: {e}, falling back to full DB")
-                docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in docs])
         
-        # OLD: Use full database (fallback or default)
-        if not docs or not USE_VECTOR_SEARCH:
-            all_docs = list(docs)
-            docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in all_docs])
-            search_method = f"Full Database ({len(all_docs)} foods)"
-            print(f"📚 Using full database")
+        # Fallback: Use full database - flatten restaurant menus into food items
+        if not food_docs_str or not USE_VECTOR_SEARCH:
+            from db import collection
+            restaurants = list(collection.find({}, {"_id": 0}))
+            
+            # Extract all food items from restaurant menus
+            all_foods = []
+            for restaurant in restaurants:
+                restaurant_name = restaurant.get('name', 'Unknown')
+                cuisine = restaurant.get('cuisine', 'Unknown')
+                for item in restaurant.get('menu', []):
+                    all_foods.append({
+                        'name': item.get('name', 'Unknown'),
+                        'restaurant': restaurant_name,
+                        'cuisine': cuisine,
+                        'price': item.get('price', 0),
+                        'is_vegetarian': item.get('diet', '') == 'veg',
+                        'tags': item.get('tags', [])
+                    })
+            
+            # Deduplicate foods by name - keep only first occurrence (prevents repetitive recommendations)
+            seen_names = set()
+            unique_foods = []
+            for f in all_foods:
+                if f['name'].lower() not in seen_names:
+                    seen_names.add(f['name'].lower())
+                    unique_foods.append(f)
+            
+            # Build food database string for AI (using unique foods only)
+            food_docs_str = "\n".join([
+                f"- {f['name']} ({f['cuisine']}, ₹{f['price']}, {'Veg' if f['is_vegetarian'] else 'Non-Veg'})" 
+                for f in unique_foods
+            ])
+            search_method = f"Full Database ({len(unique_foods)} unique foods)"
+            print(f"📚 Using {len(unique_foods)} unique foods from {len(all_foods)} total items")
             
     except Exception as e:
-        print(f"❌ Error getting food database: {e}, using fallback")
-        # Ultimate fallback - get from MongoDB directly
-        all_docs = list(docs)
-        docs = "\n".join([f"Name: {food['name']}\nRestaurant: {food['restaurant']}\nCuisine: {food['cuisine']}\nPrice: {food['price']}\nVeg: {food.get('is_vegetarian', False)}" for food in all_docs])
-        search_method = "Fallback"
+        print(f"❌ Error getting food database: {e}")
+        import traceback
+        traceback.print_exc()
+        food_docs_str = "Error loading food database"
+        search_method = "Error"
     
     print(f"🔍 Search method used: {search_method}")
     
-    prompt = f"""
-You are SmartDine AI. Recommend food from database.
+    prompt = f"""You are SmartDine AI - a friendly food recommendation assistant.
 
-USER QUERY: {data.question}
+USER REQUEST: "{data.question}"
 
-FOOD DATABASE:
-{docs}
+{user_preferences if user_preferences else ""}
 
-OUTPUT (JSON only):
+AVAILABLE FOODS:
+{food_docs_str}
+
+TASK: Analyze the user's request and recommend 3-5 DIFFERENT foods from the list above.
+
+CRITICAL DISAMBIGUATION (read VERY carefully):
+
+☀️ WEATHER/ENVIRONMENT CONTEXT (user wants warming/cooling food, NOT sick!):
+- "feeling cold" / "cold outside" / "cold weather" / "winter" / "chilly out"
+  → User wants WARMING comfort food - NOT SICK!
+  → Recommend: hot soups, biryanis, hot noodles, chai, coffee, warm curries
+  → Message: "Perfect warming foods for the cold weather!"
+- "hot outside" / "summer" / "feeling hot" / "sweating"
+  → User wants COOLING refreshing food
+  → Recommend: cold drinks, ice cream, salads, smoothies, lassi
+
+🤒 ILLNESS CONTEXT (user is actually sick):
+- "I have a cold" / "caught a cold" / "fever" / "flu" / "sick" / "unwell" 
+- "sore throat" / "cough" / "not feeling well" / "headache" / "under the weather"
+  → User is ILL - needs healing foods
+  → Recommend: soups, rice, khichdi, warm drinks, light foods
+  → AVOID: spicy, oily, heavy, fried foods
+  → Message: "Hope you feel better soon! Here are some soothing options."
+
+🌡️ FOOD TEMPERATURE PREFERENCE:
+- "hot food" / "warm meal" / "something hot to eat" / "steaming"
+  → Hot served dishes: curries, biryanis, hot noodles
+- "cold food" / "chilled" / "refreshing food"
+  → Cold items: salads, ice cream, cold drinks
+
+🌶️ SPICE LEVEL (different from temperature!):
+- "spicy" / "hot and spicy" / "with heat" / "masala"
+  → Recommend: dishes with chili, spicy curries, hot wings
+- "mild" / "not spicy" / "no spice" / "plain"
+  → Recommend: comfort food without chilies
+
+OTHER INTENTS:
+- "hungry" / "starving" → filling, hearty dishes
+- "light" / "not too heavy" → salads, soups, light meals  
+- "healthy" / "diet" / "fitness" → low calorie, high protein, nutritious
+- "comfort" / "sad" / "stressed" → classic comfort foods
+- "celebration" / "party" → special dishes, biryanis, pizzas
+- "quick" / "fast" → finger foods, sandwiches
+- Cuisine mentions → match exact cuisine (e.g., "Chinese" → Chinese only)
+
+RESPONSE FORMAT (JSON only):
 {{
-  "message": "Here are foods for your mood",
-  "foods": ["Food1", "Food2", "Food3"]
+  "message": "Short friendly message without mentioning food names",
+  "foods": ["Exact Food Name 1", "Exact Food Name 2", "Exact Food Name 3"]
 }}
 
-MESSAGE EXAMPLES (NO food names):
-- "Here are foods perfect for your mood"
-- "These traditional dishes will delight you  "
-- "Here are foods matching your taste"
-- "These foods will enhance your mood"
-- "Perfect picks for feeling sick"
-
 RULES:
-- message: Short, NO food names
-- foods: 3-5 EXACT names from database
+1. "foods" array MUST contain EXACT names from the AVAILABLE FOODS list
+2. "message" should be warm, short (under 15 words), NO food names in message
+3. For ILLNESS: Be caring - "Get well soon!" / "These will help you recover!"
+4. For TEMPERATURE: Be descriptive - "Perfect hot meals for you!"
+5. If user mentions a cuisine, ONLY recommend from that cuisine
+6. Respect veg/non-veg preferences
+7. Return 3-5 foods maximum
 
-Generate JSON."""
+Generate JSON response:"""
     
     payload = {
         "model": "llama-3.1-8b-instant",
         "messages": [
+            {"role": "system", "content": "You are SmartDine AI, a food recommendation assistant. Always respond with valid JSON only, no extra text."},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.6
+        "temperature": 0.4,
+        "max_tokens": 300
     }
 
     # Get API key and headers
