@@ -1,4 +1,4 @@
-package com.tempproject
+package com.smartdine
 
 import android.app.Application
 import com.facebook.react.PackageList
