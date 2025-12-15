@@ -11,15 +11,15 @@ import {
   RefreshControl,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { aiAPI, foodsAPI, restaurantsAPI } from '../services/api';
-import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../context/AuthContext';
-import FoodCard from '../components/FoodCard';
-import RestaurantCard from '../components/RestaurantCard';
-import ProfileHeader from '../components/ProfileHeader';
-import { FoodCardSkeleton, RestaurantCardSkeleton } from '../components/Skeleton';
-import type { Food, Restaurant } from '../types';
-import { isFuzzyMatch } from '../utils/search';
+import { aiAPI, foodsAPI, restaurantsAPI } from '../../services/api';
+import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
+import FoodCard from '../../components/FoodCard';
+import RestaurantCard from '../../components/RestaurantCard';
+import ProfileHeader from '../../components/ProfileHeader';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/Skeleton';
+import type { Food, Restaurant } from '../../types';
+import { isFuzzyMatch } from '../../utils/search';
 
 export default function Home({ navigation }: any) {
   const { isDark, colors } = useTheme();
@@ -34,7 +34,7 @@ export default function Home({ navigation }: any) {
   const [initialLoading, setInitialLoading] = useState(true);
   const [searched, setSearched] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0); // Force FlatList re-render
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     loadDiscoverData();
@@ -173,26 +173,16 @@ export default function Home({ navigation }: any) {
         );
       }
 
+      // HOME SCREEN: Always show FOOD first, then restaurants
       setSuggestedFoods(matchedFoods.slice(0, 10));
 
-      // Only show restaurants if query is about cuisines/restaurants
-      const cuisineKeywords = ['restaurant', 'cuisine', 'place', 'restaurant', 'dine', 'dining',
-        'indian', 'chinese', 'italian', 'mexican', 'thai', 'japanese', 'korean', 'american',
-        'south indian', 'north indian', 'continental', 'asian', 'mediterranean', 'middle eastern'];
+      // Also show top matching restaurants (foods appear above)
       const queryLower = question.toLowerCase();
-      const isCuisineQuery = cuisineKeywords.some(keyword => queryLower.includes(keyword));
-
-      if (isCuisineQuery) {
-        // Filter restaurants by matching cuisine
-        const matchedRestaurants = allRestaurants.filter((r: Restaurant) =>
-          r.cuisine && queryLower.includes(r.cuisine.toLowerCase()) ||
-          r.name && queryLower.includes(r.name.toLowerCase())
-        );
-        setSuggestedRestaurants(matchedRestaurants.length > 0 ? matchedRestaurants.slice(0, 3) : allRestaurants.slice(0, 3));
-      } else {
-        // No restaurant cards for food-only queries
-        setSuggestedRestaurants([]);
-      }
+      const matchedRestaurants = allRestaurants.filter((r: Restaurant) =>
+        (r.cuisine && r.cuisine.toLowerCase().includes(queryLower)) ||
+        (r.name && r.name.toLowerCase().includes(queryLower))
+      );
+      setSuggestedRestaurants(matchedRestaurants.slice(0, 3));
 
     } catch (error: any) {
       console.error('Search error:', error);
@@ -449,7 +439,7 @@ const styles = StyleSheet.create({
 
   // Responsive Width for Food Cards
   foodCardWrapper: {
-    width: width * 0.42, // 42% of screen width for compact cards
+    width: width * 0.42,
     marginRight: 12
   },
   restaurantCardWrapper: { marginBottom: 16 },

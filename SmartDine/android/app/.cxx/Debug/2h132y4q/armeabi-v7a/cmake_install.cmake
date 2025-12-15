@@ -51,6 +51,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/rnscreens_autolinked_build/cmake_install.cmake")
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/rnsvg_autolinked_build/cmake_install.cmake")
   include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/RNVectorIconsSpec_autolinked_build/cmake_install.cmake")
+  include("D:/DeltaForge/SmartDine/android/app/.cxx/Debug/2h132y4q/armeabi-v7a/RNCWebViewSpec_autolinked_build/cmake_install.cmake")
 
 endif()
 

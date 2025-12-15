@@ -8,9 +8,9 @@ import {
   Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useCart } from '../context/CartContext';
-import { useTheme } from '../context/ThemeContext';
-import StyledAlert from '../components/StyledAlert';
+import { useCart } from '../../context/CartContext';
+import { useTheme } from '../../context/ThemeContext';
+import StyledAlert from '../../components/StyledAlert';
 
 const Cart = ({ navigation }: any) => {
   const { isDark, colors } = useTheme();
@@ -52,6 +52,7 @@ const Cart = ({ navigation }: any) => {
     itemRestaurant: { color: colors.textSecondary },
     quantity: { color: colors.text },
     quantityButton: { backgroundColor: isDark ? colors.surface : '#fff5ed' },
+    quantityContainer: { backgroundColor: isDark ? colors.surface : '#f5f5f5' },
     billingSummary: { backgroundColor: colors.surface },
     billingTitle: { color: colors.text },
     billingLabel: { color: colors.textSecondary },
@@ -72,7 +73,7 @@ const Cart = ({ navigation }: any) => {
         <Text style={[styles.itemRestaurant, themedStyles.itemRestaurant]}>{item.restaurant}</Text>
         <Text style={styles.itemPrice}>₹{item.price}</Text>
       </View>
-      <View style={styles.quantityContainer}>
+      <View style={[styles.quantityContainer, themedStyles.quantityContainer]}>
         <TouchableOpacity
           style={[styles.quantityButton, themedStyles.quantityButton]}
           onPress={() => updateQuantity(item.cartId, item.quantity - 1)}
@@ -278,7 +279,6 @@ const styles = StyleSheet.create({
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
     borderRadius: 20,
     paddingHorizontal: 8,
     paddingVertical: 4,
@@ -295,7 +295,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
     marginHorizontal: 12,
-    color: '#1a1a1a',
   },
   removeButton: {
     marginLeft: 12,

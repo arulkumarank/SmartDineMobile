@@ -7,15 +7,15 @@ import { ThemeProvider, useTheme } from './src/context/ThemeContext';
 import { NotificationsProvider } from './src/context/NotificationsContext';
 import { ActivityIndicator, View } from 'react-native';
 
-import Login from './src/screens/Login';
-import Signup from './src/screens/Signup';
+import Login from './src/screens/auth/Login';
+import Signup from './src/screens/auth/Signup';
 import BottomTabs from './src/navigation/BottomTabs';
-import Restaurant from './src/screens/Restaurant';
-import Map from './src/screens/Map';
-import FoodDetail from './src/screens/FoodDetail';
-import Profile from './src/screens/Profile';
-import Settings from './src/screens/Settings';
-import Notifications from './src/screens/Notifications';
+import Restaurant from './src/screens/details/Restaurant';
+import Map from './src/screens/main/Map';
+import FoodDetail from './src/screens/details/FoodDetail';
+import Profile from './src/screens/main/Profile';
+import Settings from './src/screens/settings/Settings';
+import Notifications from './src/screens/settings/Notifications';
 
 const Stack = createNativeStackNavigator();
 

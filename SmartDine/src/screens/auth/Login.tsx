@@ -8,9 +8,9 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
-import StyledAlert from '../components/StyledAlert';
+import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import StyledAlert from '../../components/StyledAlert';
 
 export default function Login({ navigation }: any) {
     const { colors } = useTheme();

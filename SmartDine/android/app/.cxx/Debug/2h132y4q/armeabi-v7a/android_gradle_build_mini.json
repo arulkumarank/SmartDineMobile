@@ -7,6 +7,7 @@
     "D:\\DeltaForge\\SmartDine\\node_modules\\react-native-screens\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\DeltaForge\\SmartDine\\node_modules\\react-native-svg\\android\\src\\main\\jni\\CMakeLists.txt",
     "D:\\DeltaForge\\SmartDine\\node_modules\\react-native-vector-icons\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
+    "D:\\DeltaForge\\SmartDine\\node_modules\\react-native-webview\\android\\build\\generated\\source\\codegen\\jni\\CMakeLists.txt",
     "D:\\DeltaForge\\SmartDine\\node_modules\\react-native\\ReactAndroid\\cmake-utils\\default-app-setup\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
@@ -34,13 +35,18 @@
       "abi": "armeabi-v7a",
       "output": "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_safeareacontext.so",
       "runtimeFiles": [
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\5fa135f9220cf0ae1e3ee40cd371125b\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so"
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\066ab4ee048cd2b737a2cef809d0db8a\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so"
       ]
     },
     "react_codegen_RNCConfigSpec::@89f1b79ed4954e2f2cff": {
       "artifactName": "react_codegen_RNCConfigSpec",
+      "abi": "armeabi-v7a",
+      "runtimeFiles": []
+    },
+    "react_codegen_RNCWebViewSpec::@eb48929f9f7453740a6c": {
+      "artifactName": "react_codegen_RNCWebViewSpec",
       "abi": "armeabi-v7a",
       "runtimeFiles": []
     },
@@ -49,9 +55,9 @@
       "abi": "armeabi-v7a",
       "output": "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_rnscreens.so",
       "runtimeFiles": [
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\5fa135f9220cf0ae1e3ee40cd371125b\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so"
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\066ab4ee048cd2b737a2cef809d0db8a\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so"
       ]
     },
     "appmodules::@6890427a1f51a3e7e1df": {
@@ -62,9 +68,9 @@
         "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_safeareacontext.so",
         "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_rnscreens.so",
         "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_rnsvg.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\5fa135f9220cf0ae1e3ee40cd371125b\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so"
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\066ab4ee048cd2b737a2cef809d0db8a\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so"
       ]
     },
     "react_codegen_rnsvg::@4f40eb209d0c0b4a3b65": {
@@ -72,9 +78,9 @@
       "abi": "armeabi-v7a",
       "output": "D:\\DeltaForge\\SmartDine\\android\\app\\build\\intermediates\\cxx\\Debug\\2h132y4q\\obj\\armeabi-v7a\\libreact_codegen_rnsvg.so",
       "runtimeFiles": [
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\1e84847373c8b60ddb3f088099977c2a\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
-        "C:\\Users\\arulk\\.gradle\\caches\\9.0.0\\transforms\\5fa135f9220cf0ae1e3ee40cd371125b\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so"
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\reactnative\\libs\\android.armeabi-v7a\\libreactnative.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\1a605be92e232fc57f5124a2f7631a5e\\transformed\\react-android-0.82.1-debug\\prefab\\modules\\jsi\\libs\\android.armeabi-v7a\\libjsi.so",
+        "C:\\Users\\arulk\\.gradle\\caches\\8.13\\transforms\\066ab4ee048cd2b737a2cef809d0db8a\\transformed\\fbjni-0.7.0\\prefab\\modules\\fbjni\\libs\\android.armeabi-v7a\\libfbjni.so"
       ]
     },
     "react_codegen_RNMapsSpecs::@5748abef1962d24942ec": {

@@ -11,12 +11,11 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { foodsAPI } from '../services/api';
-import { useTheme } from '../context/ThemeContext';
-import type { Food } from '../types';
+import { foodsAPI, profileAPI } from '../../services/api';
+import { useTheme } from '../../context/ThemeContext';
+import type { Food } from '../../types';
 
 const { width } = Dimensions.get('window');
-const SURPRISE_STORAGE_KEY = '@surprise_last_loaded';
 const TAPS_TO_REVEAL = 5;
 
 export default function SurpriseMe({ navigation }: any) {
@@ -25,6 +24,7 @@ export default function SurpriseMe({ navigation }: any) {
     const [loading, setLoading] = useState(false);
     const [revealed, setRevealed] = useState(false);
     const [tapCount, setTapCount] = useState(0);
+    const [userId, setUserId] = useState<string>('');
 
     // Animations
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -85,13 +85,30 @@ export default function SurpriseMe({ navigation }: any) {
         };
     }, [revealed]);
 
-    // Auto-fetch on mount
+    // Get user ID on mount
     useEffect(() => {
-        checkAndLoadSurprise();
+        getUserIdAndLoad();
     }, []);
 
-    const checkAndLoadSurprise = async () => {
+    const getUserIdAndLoad = async () => {
         try {
+            const profile = await profileAPI.getProfile();
+            const userEmail = profile.email || 'default';
+            setUserId(userEmail);
+            checkAndLoadSurprise(userEmail);
+        } catch (error) {
+            console.error('Failed to get user ID:', error);
+            // Fallback to timestamp-based ID
+            const fallbackId = `user_${Date.now()}`;
+            setUserId(fallbackId);
+            checkAndLoadSurprise(fallbackId);
+        }
+    };
+
+    const checkAndLoadSurprise = async (userEmail: string) => {
+        try {
+            // User-specific storage key
+            const SURPRISE_STORAGE_KEY = `@surprise_${userEmail}_last_loaded`;
             const dataStr = await AsyncStorage.getItem(SURPRISE_STORAGE_KEY);
             const today = new Date().toDateString();
 
@@ -152,8 +169,9 @@ export default function SurpriseMe({ navigation }: any) {
 
                 setFood(details);
 
-                // Save to storage
+                // Save to storage (user-specific)
                 const today = new Date().toDateString();
+                const SURPRISE_STORAGE_KEY = `@surprise_${userId}_last_loaded`;
                 await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, JSON.stringify({
                     date: today,
                     food: details,
@@ -194,8 +212,9 @@ export default function SurpriseMe({ navigation }: any) {
             setRevealed(true);
             animateReveal();
 
-            // Save revealed state
+            // Save revealed state (user-specific)
             const today = new Date().toDateString();
+            const SURPRISE_STORAGE_KEY = `@surprise_${userId}_last_loaded`;
             await AsyncStorage.setItem(SURPRISE_STORAGE_KEY, JSON.stringify({
                 date: today,
                 food: food,
@@ -236,27 +255,48 @@ export default function SurpriseMe({ navigation }: any) {
             {/* Celebratory Background */}
             <View style={[styles.gradientBg, themedStyles.gradientBg]} />
 
-            {/* Confetti Elements - Show on reveal */}
+            {/* Carnival Falling Confetti - Show on reveal */}
             {revealed && (
                 <Animated.View
                     style={[
                         styles.confettiContainer,
                         {
                             opacity: confettiAnim,
-                            transform: [{
-                                translateY: confettiAnim.interpolate({
-                                    inputRange: [0, 1],
-                                    outputRange: [-50, 0],
-                                }),
-                            }],
                         },
                     ]}
                 >
-                    <Icon name="star-four-points" size={24} color="#ffeb3b" style={[styles.confetti, { top: 60, left: 30 }]} />
-                    <Icon name="star-four-points" size={18} color="#ff6b00" style={[styles.confetti, { top: 80, right: 50 }]} />
-                    <Icon name="sparkle" size={20} color="#4caf50" style={[styles.confetti, { top: 100, left: width - 60 }]} />
-                    <Icon name="star" size={16} color="#2196f3" style={[styles.confetti, { top: 120, left: 80 }]} />
-                    <Icon name="sparkle" size={22} color="#e91e63" style={[styles.confetti, { top: 140, right: 30 }]} />
+                    {/* Falling confetti pieces */}
+                    {[...Array(15)].map((_, i) => (
+                        <Animated.View
+                            key={i}
+                            style={[
+                                styles.confetti,
+                                {
+                                    left: Math.random() * width,
+                                    transform: [
+                                        {
+                                            translateY: confettiAnim.interpolate({
+                                                inputRange: [0, 1],
+                                                outputRange: [-100, 600 + Math.random() * 200],
+                                            }),
+                                        },
+                                        {
+                                            rotate: confettiAnim.interpolate({
+                                                inputRange: [0, 1],
+                                                outputRange: ['0deg', `${Math.random() * 720}deg`],
+                                            }),
+                                        },
+                                    ],
+                                },
+                            ]}
+                        >
+                            <Icon
+                                name={['star-four-points', 'sparkle', 'star', 'party-popper', 'gift'][Math.floor(Math.random() * 5)]}
+                                size={16 + Math.random() * 12}
+                                color={['#ffeb3b', '#ff6b00', '#4caf50', '#2196f3', '#e91e63', '#9c27b0'][Math.floor(Math.random() * 6)]}
+                            />
+                        </Animated.View>
+                    ))}
                 </Animated.View>
             )}
 

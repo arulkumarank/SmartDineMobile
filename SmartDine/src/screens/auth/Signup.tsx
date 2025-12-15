@@ -8,10 +8,10 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
-import StyledAlert from '../components/StyledAlert';
-import { API_BASE_URL } from '../config/api';
+import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import StyledAlert from '../../components/StyledAlert';
+import { API_BASE_URL } from '../../config/api';
 
 type SignupStep = 'email' | 'otp' | 'details';
 

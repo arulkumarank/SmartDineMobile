@@ -10,13 +10,13 @@ import {
   Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { foodsAPI, restaurantsAPI } from '../services/api';
-import { useTheme } from '../context/ThemeContext';
-import type { Food, Restaurant } from '../types';
-import FoodCard from '../components/FoodCard';
-import RestaurantCard from '../components/RestaurantCard';
-import SearchBar from '../components/SearchBar';
-import { FoodCardSkeleton, RestaurantCardSkeleton } from '../components/Skeleton';
+import { foodsAPI, restaurantsAPI } from '../../services/api';
+import { useTheme } from '../../context/ThemeContext';
+import type { Food, Restaurant } from '../../types';
+import FoodCard from '../../components/FoodCard';
+import RestaurantCard from '../../components/RestaurantCard';
+import SearchBar from '../../components/SearchBar';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/Skeleton';
 
 type FilterState = {
   price: string[];
@@ -32,6 +32,7 @@ export default function Search({ navigation }: any) {
   const [loading, setLoading] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [filters, setFilters] = useState<FilterState>({ price: [], taste: [], dietary: [] });
+  const [searchFilter, setSearchFilter] = useState<'all' | 'food' | 'restaurants'>('all');
 
   const priceOptions = ['₹0-150', '₹150-300', '₹300+'];
   const tasteOptions = ['🌶️ spicy', '🍯 sweet', '🍋 sour', '🧂 savory', '😊 mild'];
@@ -43,7 +44,7 @@ export default function Search({ navigation }: any) {
 
   useEffect(() => {
     applyFilters();
-  }, [filters, query]);
+  }, [filters, query, searchFilter]);
 
   const loadData = async () => {
     setLoading(true);
@@ -178,7 +179,17 @@ export default function Search({ navigation }: any) {
         console.log('Search - Filtered Foods:', filteredFoods.length);
         console.log('Search - Filtered Restaurants:', filteredRestaurants.length);
 
-        setResults({ foods: filteredFoods, restaurants: filteredRestaurants });
+        // Apply searchFilter: Always prioritize FOOD over RESTAURANTS
+        if (searchFilter === 'food') {
+          // Show only foods
+          setResults({ foods: filteredFoods, restaurants: [] });
+        } else if (searchFilter === 'restaurants') {
+          // Show only restaurants  
+          setResults({ foods: [], restaurants: filteredRestaurants });
+        } else {
+          // Show ALL: Foods appear first (priority), then restaurants
+          setResults({ foods: filteredFoods, restaurants: filteredRestaurants });
+        }
       })
       .finally(() => setLoading(false));
   };
@@ -197,7 +208,8 @@ export default function Search({ navigation }: any) {
     scrollViewRef.current?.scrollTo({ y: 0, animated: true });
   };
 
-  const showFoods = query.length > 0 || filters.taste.length > 0;
+  // Determine what to show based on filter selection
+  const showFoods = searchFilter === 'food' || (searchFilter === 'all' && (query.length > 0 || filters.taste.length > 0));
 
   // Theme-aware dynamic styles
   const themedStyles = {
@@ -227,6 +239,51 @@ export default function Search({ navigation }: any) {
             placeholder="Search restaurants or foods..."
             onFocus={handleSearchFocus}
           />
+        </View>
+
+        {/* Search Type Toggle - Food/Restaurants/All */}
+        <View style={styles.searchTypeContainer}>
+          <TouchableOpacity
+            style={[
+              styles.searchTypeButton,
+              searchFilter === 'all' && styles.searchTypeButtonActive,
+              { borderColor: colors.border, backgroundColor: searchFilter === 'all' ? '#ff6b00' : (isDark ? colors.surface : '#fff') }
+            ]}
+            onPress={() => setSearchFilter('all')}
+          >
+            <Text style={[
+              styles.searchTypeText,
+              { color: searchFilter === 'all' ? '#fff' : colors.text }
+            ]}>All</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[
+              styles.searchTypeButton,
+              searchFilter === 'food' && styles.searchTypeButtonActive,
+              { borderColor: colors.border, backgroundColor: searchFilter === 'food' ? '#ff6b00' : (isDark ? colors.surface : '#fff') }
+            ]}
+            onPress={() => setSearchFilter('food')}
+          >
+            <Text style={[
+              styles.searchTypeText,
+              { color: searchFilter === 'food' ? '#fff' : colors.text }
+            ]}>Food</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[
+              styles.searchTypeButton,
+              searchFilter === 'restaurants' && styles.searchTypeButtonActive,
+              { borderColor: colors.border, backgroundColor: searchFilter === 'restaurants' ? '#ff6b00' : (isDark ? colors.surface : '#fff') }
+            ]}
+            onPress={() => setSearchFilter('restaurants')}
+          >
+            <Text style={[
+              styles.searchTypeText,
+              { color: searchFilter === 'restaurants' ? '#fff' : colors.text }
+            ]}>Restaurants</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -294,7 +351,11 @@ export default function Search({ navigation }: any) {
           </View>
         )}
         <Text style={[styles.resultsCount, themedStyles.resultsCount]}>
-          {showFoods ? `${results.foods.length} Foods` : `${results.restaurants.length} Restaurants`}
+          {searchFilter === 'food'
+            ? `${results.foods.length} Foods`
+            : searchFilter === 'restaurants'
+              ? `${results.restaurants.length} Restaurants`
+              : `${results.foods.length} Foods, ${results.restaurants.length} Restaurants`}
         </Text>
 
         {/* Skeleton Loading */}
@@ -387,4 +448,31 @@ const styles = StyleSheet.create({
   foodCardWrapper: { width: (Dimensions.get('window').width - 24) / 2, paddingHorizontal: 4, paddingVertical: 6 },
   restaurantsList: { paddingHorizontal: 20, paddingBottom: 120 },
   skeletonGrid: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 12 },
+
+  // Search Type Toggle
+  searchTypeContainer: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingHorizontal: 20,
+    paddingBottom: 12,
+  },
+  searchTypeButton: {
+    flex: 1,
+    paddingVertical: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchTypeButtonActive: {
+    shadowColor: '#ff6b00',
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 4,
+  },
+  searchTypeText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
