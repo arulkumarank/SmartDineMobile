@@ -16,7 +16,7 @@ bcrypt>=4.1.0
 # HTTP Requests
 requests>=2.31.0
 
-# Vector Search (Optional - for AI-powered semantic search)
+# Vector Search (for AI-powered semantic search)
 numpy>=1.24.0
 sentence-transformers>=2.2.0
 faiss-cpu>=1.7.4
