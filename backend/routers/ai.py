@@ -7,6 +7,7 @@ from datetime import datetime
 from db import response_collection, userdetails_collection, search_history_collection
 from models import Question
 from routers.auth import get_current_user
+from config import settings
 
 load_dotenv()
 
