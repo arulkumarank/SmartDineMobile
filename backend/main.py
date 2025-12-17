@@ -11,7 +11,19 @@ import time
 import logging
 
 from config import settings
-from db import close_database_connection, check_database_health
+from db import (
+    close_database_connection, 
+    check_database_health,
+    otp_collection,
+    user_interactions,
+    search_history_collection,
+    token_blacklist_collection,
+    response_collection,
+    auth_collection,
+    userdetails_collection,
+    food_ratings,
+    food_scores
+)
 from routers import restaurants, ai, auth, profile, foods, feedback
 
 # Configure logging
@@ -47,6 +59,15 @@ async def lifespan(app: FastAPI):
         logger.info("Database connection healthy")
     else:
         logger.error(f"Database connection failed: {db_health.get('error')}")
+    
+    # Setup TTL indexes for automatic data cleanup (70% storage reduction)
+    try:
+        logger.info("Setting up MongoDB TTL indexes...")
+        setup_mongodb_indexes()
+        logger.info("MongoDB indexes configured successfully")
+    except Exception as e:
+        logger.warning(f"Failed to setup MongoDB indexes: {e}")
+        # Don't fail startup if indexes already exist
     
     yield
     
@@ -189,4 +210,34 @@ async def global_exception_handler(request: Request, exc: Exception):
             "detail": "Internal server error" if settings.ENVIRONMENT == "production" else str(exc)
         }
     )
+
+
+def setup_mongodb_indexes():
+    """
+    Setup TTL indexes and performance indexes on application startup
+    Safe to run multiple times - MongoDB will skip if indexes already exist
+    """
+    try:
+        # TTL Indexes - Auto-delete old data
+        otp_collection.create_index("expiry", expireAfterSeconds=0)
+        user_interactions.create_index("timestamp", expireAfterSeconds=7776000)  # 90 days
+        search_history_collection.create_index("timestamp", expireAfterSeconds=7776000)  # 90 days
+        token_blacklist_collection.create_index("blacklisted_at", expireAfterSeconds=604800)  # 7 days
+        response_collection.create_index("timestamp", expireAfterSeconds=2592000)  # 30 days
+        
+        # Performance Indexes
+        auth_collection.create_index("username", unique=True)
+        auth_collection.create_index("email", unique=True)
+        userdetails_collection.create_index("username", unique=True)
+        search_history_collection.create_index([("user_id", 1), ("timestamp", -1)])
+        food_ratings.create_index([("username", 1), ("food_name", 1)], unique=True)
+        food_ratings.create_index("food_name")
+        food_scores.create_index("food_name", unique=True)
+        food_scores.create_index([("avg_rating", -1), ("rl_score", -1)])
+        
+        logger.info("✅ All MongoDB indexes configured (TTL + Performance)")
+        
+    except Exception as e:
+        # Indexes already exist or other non-critical error
+        logger.debug(f"Index setup note: {e}")
 

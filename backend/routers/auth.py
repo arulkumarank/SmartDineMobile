@@ -144,12 +144,12 @@ async def signup(user: SignupWithOTP):
     result = auth_collection.insert_one(user_doc)
     
     # Create empty user profile with avatar
+    # OPTIMIZED: Email removed to avoid duplication (get from auth collection when needed)
     profile_doc = {
         "user_id": str(result.inserted_id),
         "username": user.username,
         "name": user.name or "",
-        "email": user.email,
-        "avatar_index": hash(user.username) % 8,  # Random avatar (0-7)
+        # "email": user.email,  # REMOVED - stored in auth_collection only
         "taste_preferences": [],
         "cuisine_preferences": [],
         "dietary_restrictions": []

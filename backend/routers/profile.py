@@ -9,7 +9,7 @@ router = APIRouter(prefix="/profile", tags=["profile"])
 
 @router.get("", response_model=UserProfile)
 async def get_profile(current_user: dict = Depends(get_current_user)):
-    """Get user profile"""
+    """Get user profile with email from auth collection"""
     profile = userdetails_collection.find_one(
         {"username": current_user["username"]},
         {"_id": 0}
@@ -18,11 +18,12 @@ async def get_profile(current_user: dict = Depends(get_current_user)):
     if not profile:
         raise HTTPException(status_code=404, detail="Profile not found")
     
-    # Return with new fields, defaulting to empty arrays if not present
+    # Get email from current_user (which comes from auth collection)
+    # OPTIMIZED: Email no longer duplicated in userdetails
     return {
         "username": profile.get("username"),
         "name": profile.get("name", ""),
-        "email": profile.get("email", ""),
+        "email": current_user.get("email", ""),  # From auth collection
         "taste_preference": profile.get("taste_preference"),
         "taste_preferences": profile.get("taste_preferences", []),
         "cuisine_preferences": profile.get("cuisine_preferences", []),
@@ -53,15 +54,16 @@ async def update_profile(
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Profile not found")
     
-    # Return updated profile
+    # Return updated profile with email from auth collection
     updated_user = userdetails_collection.find_one({"username": current_user["username"]})
     if not updated_user:
         raise HTTPException(status_code=404, detail="User not found")
 
+    # OPTIMIZED: Get email from auth collection
     return {
         "username": updated_user.get("username"),
         "name": updated_user.get("name", ""),
-        "email": updated_user.get("email", ""),
+        "email": current_user.get("email", ""),  # From auth collection
         "taste_preference": updated_user.get("taste_preference"),
         "taste_preferences": updated_user.get("taste_preferences", []),
         "cuisine_preferences": updated_user.get("cuisine_preferences", []),

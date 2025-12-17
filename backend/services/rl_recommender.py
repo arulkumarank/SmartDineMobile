@@ -49,6 +49,8 @@ def record_interaction(username: str, food_name: str, action: str, value: float 
 def record_rating(username: str, food_name: str, rating: int, restaurant_name: str = None):
     """
     Record user rating for a food item (1-5 stars)
+    
+    OPTIMIZED: No longer stores duplicate rating in user_interactions
     """
     # Upsert rating (one rating per user per food)
     food_ratings.update_one(
@@ -63,8 +65,12 @@ def record_rating(username: str, food_name: str, rating: int, restaurant_name: s
         upsert=True
     )
     
-    # Record as interaction for RL
-    record_interaction(username, food_name, "rate", rating)
+    # REMOVED: Don't duplicate rating in user_interactions
+    # record_interaction(username, food_name, "rate", rating)
+    
+    # Update Q-score directly (without creating interaction record)
+    reward = rating * REWARD_RATING_MULTIPLIER
+    update_food_score(food_name, reward)
     
     # Recalculate food average rating
     recalculate_food_rating(food_name)
