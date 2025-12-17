@@ -20,7 +20,14 @@ requests>=2.31.0
 email-validator>=2.0.0
 pydantic[email]>=2.0.0
 
-# Vector Search (for AI-powered semantic search)
-numpy>=1.24.0
-sentence-transformers>=2.2.0
-faiss-cpu>=1.7.4
+# ========================================
+# 512MB RAM - OPTIMIZED CONFIGURATION
+# Vector search DISABLED (saves 250-400MB)
+# ========================================
+# To enable vector search (requires 1GB+ RAM):
+# 1. Uncomment the lines below
+# 2. Set USE_VECTOR_SEARCH=true in environment
+# 
+# sentence-transformers>=2.2.0
+# faiss-cpu>=1.7.4
+# numpy>=1.24.0

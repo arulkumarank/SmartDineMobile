@@ -59,9 +59,12 @@ class Settings:
     RATE_LIMIT_PER_MINUTE: int = 60
     CACHE_TTL_SECONDS: int = 300  # 5 minutes
     
-    # Vector Search (sensible defaults)
+    
+    # Vector Search (optional - disable to save 200-300MB RAM)
+    USE_VECTOR_SEARCH: bool = os.getenv("USE_VECTOR_SEARCH", "false").lower() == "true"
     VECTOR_INDEX_PATH: str = "services/faiss_index"
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
+    
     
     # Logging (sensible defaults)
     LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")

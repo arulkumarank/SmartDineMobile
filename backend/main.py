@@ -1,6 +1,11 @@
 """
 SmartDine API - Main application entry point
 Production-optimized FastAPI application
+
+Memory-efficient configuration for 512MB RAM:
+- Single worker (WEB_CONCURRENCY=1 set by Render)
+- Vector search disabled by default (enable with USE_VECTOR_SEARCH=true)
+- Lazy loading of heavy dependencies
 """
 from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -59,6 +64,13 @@ async def lifespan(app: FastAPI):
         logger.info("Database connection healthy")
     else:
         logger.error(f"Database connection failed: {db_health.get('error')}")
+    
+    # Log vector search status (memory optimization info)
+    if settings.USE_VECTOR_SEARCH:
+        logger.info("Vector search: ENABLED (requires 1GB+ RAM)")
+    else:
+        logger.info("Vector search: DISABLED (memory-efficient mode, ~400-500MB RAM)")
+        logger.info("To enable: Set USE_VECTOR_SEARCH=true (requires 1GB+ RAM)")
     
     # Setup TTL indexes for automatic data cleanup (70% storage reduction)
     try:
