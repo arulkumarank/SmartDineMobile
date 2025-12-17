@@ -20,14 +20,3 @@ buildscript {
 
 apply plugin: "com.facebook.react.rootproject"
 
-subprojects { subproject ->
-    afterEvaluate {
-        if (subproject.plugins.hasPlugin('com.android.application') ||
-            subproject.plugins.hasPlugin('com.android.library')) {
-            subproject.android {
-                compileSdkVersion rootProject.ext.compileSdkVersion
-                buildToolsVersion rootProject.ext.buildToolsVersion
-            }
-        }
-    }
-}

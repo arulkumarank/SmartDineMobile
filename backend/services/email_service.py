@@ -7,12 +7,11 @@ import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
+from config import settings
 
-load_dotenv()
-
-EMAIL_USER = os.getenv("EMAIL_USER")
-EMAIL_PASS = os.getenv("EMAIL_PASS")
+# Use settings from config.py (EMAIL_USERNAME and EMAIL_PASSWORD)
+EMAIL_USER = settings.EMAIL_USERNAME
+EMAIL_PASS = settings.EMAIL_PASSWORD
 
 
 def generate_otp() -> str:
@@ -36,12 +35,13 @@ def send_otp_email(to_email: str, otp: str) -> bool:
     Returns:
         True if email sent successfully, False otherwise
     """
-    print(f"DEBUG: EMAIL_USER = '{EMAIL_USER}'")
-    print(f"DEBUG: EMAIL_PASS = '{EMAIL_PASS[:4] if EMAIL_PASS else 'None'}...' (length: {len(EMAIL_PASS) if EMAIL_PASS else 0})")
+    print(f"DEBUG: EMAIL_USERNAME = '{EMAIL_USER}'")
+    print(f"DEBUG: EMAIL_PASSWORD = '{EMAIL_PASS[:4] if EMAIL_PASS else 'None'}...' (length: {len(EMAIL_PASS) if EMAIL_PASS else 0})")
     
     if not EMAIL_USER or not EMAIL_PASS:
-        print("ERROR: Email credentials not configured in .env file")
-        print("Required: EMAIL_USER and EMAIL_PASS")
+        print("⚠️  ERROR: Email credentials not configured")
+        print("Required environment variables: EMAIL_USERNAME and EMAIL_PASSWORD")
+        print("For Gmail: https://support.google.com/accounts/answer/185833 (App Password)")
         return False
     
     try:

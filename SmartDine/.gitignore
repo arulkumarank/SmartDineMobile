@@ -47,6 +47,16 @@ android/app/debug/
 *.apk
 *.aab
 
+# Android Build Logs & Reports
+android/**/build/reports/
+android/**/build/outputs/
+android/**/.ninja_log
+android/**/.ninja_deps
+android/**/build/intermediates/
+android/**/build/tmp/
+*.hprof
+gradle-app.setting
+
 # iOS
 ios/build/
 ios/Pods/
@@ -63,6 +73,14 @@ dist/
 out/
 *.bundle
 *.map
+
+# CMake build files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+_deps
 
 # ============ OS Files ============
 .DS_Store
