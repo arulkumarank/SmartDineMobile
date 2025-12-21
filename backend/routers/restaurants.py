@@ -40,18 +40,27 @@ def get_restaurants():
 
 @router.get("/personalized")
 def get_personalized_restaurants(current_user: dict = Depends(get_current_user)):
-    """Get restaurants sorted using VECTOR EMBEDDINGS - fast, no token cost"""
-    from datetime import datetime
+    """
+    Get restaurants sorted by user preferences.
+    Uses MongoDB caching (7 days) to minimize memory usage.
+    Vector search only runs on cache miss (new user or preference change).
+    """
+    from datetime import datetime, timedelta
+    from db import restaurant_cache
+    import gc
     
     username = current_user["username"]
     
-    # Check in-memory cache first (1 hour TTL)
-    user_cache = _restaurant_cache.get(username)
-    if user_cache:
-        cache_time = user_cache.get("timestamp")
-        if cache_time and (datetime.utcnow() - cache_time).seconds < 3600:  # 1 hour
-            print(f"📦 Using cached restaurant order for {username}")
-            return user_cache.get("response", {"restaurants": [], "count": 0})
+    # Check MongoDB cache first (7-day TTL)
+    cached = restaurant_cache.find_one({"username": username})
+    if cached:
+        cache_time = cached.get("created_at")
+        if cache_time and (datetime.utcnow() - cache_time).days < 7:
+            print(f"📦 Using MongoDB cached restaurant order for {username}")
+            return {"restaurants": cached.get("restaurants", []), "count": cached.get("count", 0)}
+    
+    # Cache miss - need to generate personalized order
+    print(f"🔄 Cache miss for {username}, generating personalized order...")
     
     try:
         # Get user profile
@@ -60,45 +69,87 @@ def get_personalized_restaurants(current_user: dict = Depends(get_current_user))
         tastes = user_profile.get("taste_preferences", []) if user_profile else []
         cuisines = user_profile.get("cuisine_preferences", []) if user_profile else []
         
-        # Try vector search first (fastest, no API cost)
-        try:
-            from services.vector_search import search_restaurants_by_preference, initialize_restaurant_search
-            
-            # Get all restaurants from database
-            all_docs = get_restaurant_docs()
-            # Ensure restaurants are indexed
-            restaurants = [
-                doc for doc in all_docs 
-                if doc.get('location') and 
-                   doc['location'].get('latitude') and 
-                   doc['location'].get('longitude')
-            ]
-            
-            # Initialize if needed (one-time cost)
-            initialize_restaurant_search(restaurants)
-            
-            # Vector similarity search
-            sorted_restaurants = search_restaurants_by_preference(dietary, tastes, cuisines)
-            
-            print(f"🔍 Vector search sorted {len(sorted_restaurants)} restaurants")
-            
-            response_data = {"restaurants": sorted_restaurants, "count": len(sorted_restaurants)}
-            
-            # Cache the result
-            _restaurant_cache[username] = {
-                "timestamp": datetime.utcnow(),
-                "response": response_data
-            }
-            
-            return response_data
-            
-        except Exception as vec_error:
-            print(f"⚠️ Vector search failed: {vec_error}, using rule-based")
-            return rule_based_sort(current_user)
-            
+        # Get all restaurants
+        all_docs = get_restaurant_docs()
+        restaurants = [
+            doc for doc in all_docs 
+            if doc.get('location') and 
+               doc['location'].get('latitude') and 
+               doc['location'].get('longitude')
+        ]
+        
+        sorted_restaurants = None
+        
+        # Try vector search if user has preferences
+        if dietary or tastes or cuisines:
+            try:
+                from services.vector_search import search_restaurants_by_preference, initialize_restaurant_search
+                
+                # Initialize and run vector search
+                initialize_restaurant_search(restaurants)
+                sorted_restaurants = search_restaurants_by_preference(dietary, tastes, cuisines)
+                print(f"🔍 Vector search sorted {len(sorted_restaurants)} restaurants")
+                
+                # Force garbage collection to free model memory
+                gc.collect()
+                
+            except Exception as vec_error:
+                print(f"⚠️ Vector search failed: {vec_error}, using rule-based")
+        
+        # Fallback to rule-based sorting
+        if not sorted_restaurants:
+            sorted_restaurants = _rule_based_sort(restaurants, dietary, cuisines)
+            print(f"📊 Rule-based sorted {len(sorted_restaurants)} restaurants")
+        
+        # Cache the result in MongoDB
+        restaurant_cache.update_one(
+            {"username": username},
+            {
+                "$set": {
+                    "username": username,
+                    "restaurants": sorted_restaurants,
+                    "count": len(sorted_restaurants),
+                    "created_at": datetime.utcnow()
+                }
+            },
+            upsert=True
+        )
+        print(f"💾 Cached restaurant order for {username}")
+        
+        return {"restaurants": sorted_restaurants, "count": len(sorted_restaurants)}
+        
     except Exception as e:
         print(f"⚠️ Personalized restaurants failed: {e}")
         return rule_based_sort(current_user)
+
+
+def _rule_based_sort(restaurants: list, dietary: list, cuisines: list) -> list:
+    """Internal rule-based sorting helper"""
+    is_vegan = "vegan" in [d.lower() for d in dietary]
+    is_vegetarian = "vegetarian" in [d.lower() for d in dietary] or is_vegan
+    
+    for restaurant in restaurants:
+        score = 0
+        if is_vegetarian:
+            veg_score = calculate_veg_score(restaurant)
+            score += veg_score * 100
+            if veg_score >= 0.8:
+                score += 50
+        
+        restaurant_cuisine = restaurant.get("cuisine", "").lower()
+        for pref in cuisines:
+            if pref.lower() in restaurant_cuisine:
+                score += 20
+        
+        score += restaurant.get("rating", 3) * 5
+        restaurant["_score"] = score
+    
+    restaurants.sort(key=lambda x: x.get("_score", 0), reverse=True)
+    
+    for r in restaurants:
+        r.pop("_score", None)
+    
+    return restaurants
 
 
 

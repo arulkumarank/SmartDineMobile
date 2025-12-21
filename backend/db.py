@@ -126,6 +126,9 @@ user_interactions = db["user_interactions"]  # clicks, cart adds, views
 food_ratings = db["food_ratings"]  # individual user ratings per food
 food_scores = db["food_scores"]  # aggregated RL scores per food
 
+# Personalization Cache (7-day TTL)
+restaurant_cache = db["restaurant_cache"]  # cached personalized restaurant orders
+
 # Lazy loading for restaurant documents (only load when needed)
 _docs_cache = None
 

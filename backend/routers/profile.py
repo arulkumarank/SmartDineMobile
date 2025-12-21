@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 
 from models import UserProfile, UserProfileUpdate
-from db import userdetails_collection, search_history_collection
+from db import userdetails_collection, search_history_collection, restaurant_cache
 from routers.auth import get_current_user
 
 router = APIRouter(prefix="/profile", tags=["profile"])
@@ -53,6 +53,12 @@ async def update_profile(
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Profile not found")
+    
+    # CACHE INVALIDATION: Clear cached restaurant order when preferences change
+    preference_fields = ["dietary_restrictions", "cuisine_preferences", "taste_preferences"]
+    if any(field in update_data for field in preference_fields):
+        restaurant_cache.delete_one({"username": current_user["username"]})
+        print(f"🗑️ Cleared restaurant cache for {current_user['username']} - preferences changed")
     
     # Return updated profile with email from auth collection
     updated_user = userdetails_collection.find_one({"username": current_user["username"]})
