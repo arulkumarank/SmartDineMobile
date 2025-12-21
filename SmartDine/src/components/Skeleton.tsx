@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
     foodCard: {
-        width: 160,
+        width: '100%',
+        minHeight: 200,
         marginRight: 12,
         borderRadius: 16,
         overflow: 'hidden',

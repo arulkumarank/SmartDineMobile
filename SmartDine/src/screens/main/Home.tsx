@@ -314,18 +314,17 @@ export default function Home({ navigation }: any) {
         <View style={[styles.discoverSection, themedStyles.discoverSection]}>
           <Text style={[styles.sectionTitle, themedStyles.sectionTitle]}>Discover Food</Text>
           {initialLoading ? (
-            <FlatList
+            <ScrollView
               horizontal
-              data={[1, 2, 3, 4]}
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => `skeleton-food-${item}`}
-              renderItem={() => (
-                <View style={styles.foodCardWrapper}>
+              contentContainerStyle={styles.horizontalList}
+            >
+              {[1, 2, 3, 4].map((item) => (
+                <View key={`skeleton-food-${item}`} style={styles.foodCardWrapper}>
                   <FoodCardSkeleton />
                 </View>
-              )}
-              contentContainerStyle={styles.horizontalList}
-            />
+              ))}
+            </ScrollView>
           ) : (
             <FlatList
               key={`discover-foods-${refreshKey}`}

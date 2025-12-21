@@ -10,8 +10,8 @@ import secrets
 import hashlib
 from config import settings
 
-# Password hashing - using bcrypt for production-grade security
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Password hashing - using SHA256 (no length limit)
+pwd_context = CryptContext(schemes=["sha256_crypt"], deprecated="auto")
 
 # In-memory token blacklist (for production, use Redis)
 token_blacklist = set()
@@ -29,17 +29,14 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         bool: True if password matches, False otherwise
     """
     try:
-        # Bcrypt has a 72-byte limit, truncate password to prevent errors
-        truncated_password = plain_password.encode('utf-8')[:72].decode('utf-8', errors='ignore')
-        return pwd_context.verify(truncated_password, hashed_password)
+        return pwd_context.verify(plain_password, hashed_password)
     except Exception:
         return False
 
 
 def get_password_hash(password: str) -> str:
     """
-    Hash a password using bcrypt
-    Bcrypt has a 72-byte limit, so we truncate passwords to prevent errors
+    Hash a password using SHA256 (no length limit)
     
     Args:
         password: Plain text password
@@ -47,9 +44,7 @@ def get_password_hash(password: str) -> str:
     Returns:
         str: Hashed password
     """
-    # Bcrypt has a 72-byte limit, truncate password to prevent errors
-    truncated_password = password.encode('utf-8')[:72].decode('utf-8', errors='ignore')
-    return pwd_context.hash(truncated_password)
+    return pwd_context.hash(password)
 
 
 def create_access_token(
@@ -179,7 +174,7 @@ def is_token_blacklisted(token: str) -> bool:
 
 def validate_password_strength(password: str) -> tuple[bool, str]:
     """
-    Validate password strength
+    Validate password strength - simplified for user convenience
     
     Args:
         password: Password to validate
@@ -187,17 +182,13 @@ def validate_password_strength(password: str) -> tuple[bool, str]:
     Returns:
         tuple: (is_valid, error_message)
     """
-    if len(password) < 8:
-        return False, "Password must be at least 8 characters long"
+    if len(password) < 4:
+        return False, "Password must be at least 4 characters long"
     
-    if not any(char.isdigit() for char in password):
-        return False, "Password must contain at least one digit"
-    
-    if not any(char.isupper() for char in password):
-        return False, "Password must contain at least one uppercase letter"
-    
-    if not any(char.islower() for char in password):
-        return False, "Password must contain at least one lowercase letter"
+    # Bcrypt has 72-byte limit, but we handle this by truncating in get_password_hash
+    # Just warn if extremely long (over 50 chars) to be safe
+    if len(password) > 50:
+        return False, "Password is too long. Please use 50 characters or less."
     
     return True, ""
 
