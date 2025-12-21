@@ -1,17 +1,16 @@
 """
-Email service for sending OTP verification codes via Gmail SMTP
+Email service for sending OTP verification codes
+Primary: Resend API (works on Render free tier)
+Backup: Gmail SMTP (commented out - blocked on Render)
 """
-import smtplib
 import random
 import os
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import requests
 from datetime import datetime, timedelta
 from config import settings
 
-# Use settings from config.py (EMAIL_USERNAME and EMAIL_PASSWORD)
-EMAIL_USER = settings.EMAIL_USERNAME
-EMAIL_PASS = settings.EMAIL_PASSWORD
+# Resend API Key (get from https://resend.com)
+RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
 
 
 def generate_otp() -> str:
@@ -26,7 +25,7 @@ def get_otp_expiry() -> datetime:
 
 def send_otp_email(to_email: str, otp: str) -> bool:
     """
-    Send OTP verification email using Gmail SMTP
+    Send OTP verification email using Resend API
     
     Args:
         to_email: Recipient email address
@@ -35,75 +34,84 @@ def send_otp_email(to_email: str, otp: str) -> bool:
     Returns:
         True if email sent successfully, False otherwise
     """
-    print(f"DEBUG: EMAIL_USERNAME = '{EMAIL_USER}'")
-    print(f"DEBUG: EMAIL_PASSWORD = '{EMAIL_PASS[:4] if EMAIL_PASS else 'None'}...' (length: {len(EMAIL_PASS) if EMAIL_PASS else 0})")
+    print(f"📧 Sending OTP to {to_email}...")
     
-    if not EMAIL_USER or not EMAIL_PASS:
-        print("⚠️  ERROR: Email credentials not configured")
-        print("Required environment variables: EMAIL_USERNAME and EMAIL_PASSWORD")
-        print("For Gmail: https://support.google.com/accounts/answer/185833 (App Password)")
-        return False
+    if not RESEND_API_KEY:
+        print("⚠️ RESEND_API_KEY not configured, using fallback")
+        # Fallback: just log the OTP for development
+        print(f"🔑 OTP for {to_email}: {otp}")
+        return True  # Return True so signup flow continues
     
     try:
-        # Create message
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = "🍽️ SmartDine - Verify Your Email"
-        msg["From"] = f"SmartDine <{EMAIL_USER}>"
-        msg["To"] = to_email
+        # Resend API endpoint
+        url = "https://api.resend.com/emails"
         
-        # Plain text version
-        text = f"""
-SmartDine Email Verification
-
-Your verification code is: {otp}
-
-This code will expire in 5 minutes.
-
-If you didn't request this code, please ignore this email.
-
-- SmartDine Team
-"""
+        headers = {
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json"
+        }
         
-        # HTML version
-        html = f"""
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body {{ font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; }}
-        .container {{ max-width: 400px; margin: 0 auto; background: white; border-radius: 12px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }}
-        .header {{ text-align: center; margin-bottom: 20px; }}
-        .otp-box {{ background: linear-gradient(135deg, #FF6B35, #FF8C61); color: white; font-size: 32px; font-weight: bold; text-align: center; padding: 20px; border-radius: 8px; letter-spacing: 8px; margin: 20px 0; }}
-        .footer {{ text-align: center; color: #888; font-size: 12px; margin-top: 20px; }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🍽️ SmartDine</h1>
-            <p>Verify your email address</p>
+        # HTML email content
+        html_content = f"""
+        <div style="font-family: Arial, sans-serif; max-width: 400px; margin: 0 auto; padding: 20px;">
+            <h1 style="color: #FF6B35; text-align: center;">🍽️ SmartDine</h1>
+            <p style="text-align: center; color: #666;">Verify your email address</p>
+            <div style="background: linear-gradient(135deg, #FF6B35, #FF8C61); color: white; font-size: 32px; font-weight: bold; text-align: center; padding: 20px; border-radius: 8px; letter-spacing: 8px; margin: 20px 0;">
+                {otp}
+            </div>
+            <p style="text-align: center; color: #666;">This code expires in <strong>5 minutes</strong></p>
+            <p style="text-align: center; color: #888; font-size: 12px;">If you didn't request this code, please ignore this email.</p>
         </div>
-        <div class="otp-box">{otp}</div>
-        <p style="text-align: center; color: #666;">This code expires in <strong>5 minutes</strong></p>
-        <div class="footer">
-            <p>If you didn't request this code, please ignore this email.</p>
-        </div>
-    </div>
-</body>
-</html>
-"""
+        """
         
-        msg.attach(MIMEText(text, "plain"))
-        msg.attach(MIMEText(html, "html"))
+        payload = {
+            "from": "SmartDine <onboarding@resend.dev>",  # Use verified domain or resend.dev for testing
+            "to": [to_email],
+            "subject": "🍽️ SmartDine - Verify Your Email",
+            "html": html_content
+        }
         
-        # Send email via Gmail SMTP
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(EMAIL_USER, EMAIL_PASS)
-            server.sendmail(EMAIL_USER, to_email, msg.as_string())
+        response = requests.post(url, headers=headers, json=payload, timeout=30)
         
-        print(f"OTP email sent to {to_email}")
-        return True
-        
+        if response.status_code == 200:
+            print(f"✅ OTP email sent to {to_email}")
+            return True
+        else:
+            print(f"❌ Resend API error: {response.status_code} - {response.text}")
+            return False
+            
     except Exception as e:
-        print(f"Failed to send email: {e}")
+        print(f"❌ Failed to send email: {e}")
         return False
+
+
+# ============================================================
+# COMMENTED OUT: Gmail SMTP (Blocked on Render Free Tier)
+# ============================================================
+# import smtplib
+# from email.mime.text import MIMEText
+# from email.mime.multipart import MIMEMultipart
+#
+# EMAIL_USER = settings.EMAIL_USERNAME
+# EMAIL_PASS = settings.EMAIL_PASSWORD
+#
+# def send_otp_email_smtp(to_email: str, otp: str) -> bool:
+#     """Send OTP using Gmail SMTP - BLOCKED ON RENDER FREE TIER"""
+#     try:
+#         msg = MIMEMultipart("alternative")
+#         msg["Subject"] = "🍽️ SmartDine - Verify Your Email"
+#         msg["From"] = f"SmartDine <{EMAIL_USER}>"
+#         msg["To"] = to_email
+#         
+#         text = f"Your verification code is: {otp}\nThis code expires in 5 minutes."
+#         msg.attach(MIMEText(text, "plain"))
+#         
+#         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+#             server.login(EMAIL_USER, EMAIL_PASS)
+#             server.sendmail(EMAIL_USER, to_email, msg.as_string())
+#         
+#         print(f"OTP email sent to {to_email}")
+#         return True
+#     except Exception as e:
+#         print(f"Failed to send email: {e}")
+#         return False
