@@ -7,8 +7,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTheme } from '../context/ThemeContext';
-import { useNotifications, Notification } from '../context/NotificationsContext';
+import { useTheme } from '../../context/ThemeContext';
+import { useNotifications, Notification } from '../../context/NotificationsContext';
 
 const iconConfig = {
     success: { name: 'check-circle', color: '#4CAF50' },

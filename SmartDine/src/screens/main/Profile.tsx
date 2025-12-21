@@ -9,11 +9,11 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
-import { profileAPI } from '../services/api';
-import type { UserProfile } from '../types';
-import StyledAlert from '../components/StyledAlert';
+import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
+import { profileAPI } from '../../services/api';
+import type { UserProfile } from '../../types';
+import StyledAlert from '../../components/StyledAlert';
 
 export default function Profile() {
   const { isDark, colors } = useTheme();

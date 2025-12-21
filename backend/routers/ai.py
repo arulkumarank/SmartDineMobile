@@ -7,6 +7,7 @@ from datetime import datetime
 from db import response_collection, userdetails_collection, search_history_collection
 from models import Question
 from routers.auth import get_current_user
+from config import settings
 
 load_dotenv()
 
@@ -46,7 +47,7 @@ def get_headers(api_key):
 
 
 # Vector search feature flag
-USE_VECTOR_SEARCH = os.getenv("USE_VECTOR_SEARCH", "false").lower() == "true"
+USE_VECTOR_SEARCH = settings.USE_VECTOR_SEARCH
 
 
 @router.post("/ask")
@@ -174,8 +175,8 @@ USER PROFILE (PRIORITY #1 - MUST MATCH THESE):
                 reverse=True
             )
             
-            # LIMIT to top 30 foods to save tokens
-            top_foods = unique_foods[:30]
+            # LIMIT to top 15 foods to save tokens (optimized for Groq free tier)
+            top_foods = unique_foods[:15]
             
             # SHUFFLE to add variety (AI always picks from top of list)
             import random

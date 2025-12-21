@@ -41,6 +41,16 @@ android/app/debug/
 *.apk
 *.aab
 
+# Android Build Logs & Reports
+android/**/build/reports/
+android/**/build/outputs/
+android/**/.ninja_log
+android/**/.ninja_deps
+android/**/build/intermediates/
+android/**/build/tmp/
+*.hprof
+gradle-app.setting
+
 # Signing keys (NEVER commit these!)
 *.jks
 *.keystore
@@ -68,9 +78,24 @@ ios/xcuserdata/
 *.hmap
 *.ipa
 *.dSYM.zip
+*.dSYM
 
-# CocoaPods
-Podfile.lock
+# General build
+build/
+dist/
+out/
+*.bundle
+*.map
+
+# ============ OS Files ============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
 
 # ============ IDE & Editors ============
 # VSCode

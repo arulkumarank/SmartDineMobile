@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, Query
 from typing import Optional
-from db import docs, userdetails_collection
+from db import get_restaurant_docs, userdetails_collection
 from routers.auth import get_current_user
 
 router = APIRouter(prefix="/restaurants", tags=["restaurants"])
@@ -22,9 +22,11 @@ def calculate_veg_score(restaurant: dict) -> float:
 def get_restaurants():
     """Get all restaurants with location data for map display"""
     try:
+        # Get all restaurants from database
+        all_docs = get_restaurant_docs()
         # Filter restaurants that have valid location data
         restaurants_with_location = [
-            doc for doc in docs 
+            doc for doc in all_docs 
             if doc.get('location') and 
                doc['location'].get('latitude') and 
                doc['location'].get('longitude')
@@ -62,9 +64,11 @@ def get_personalized_restaurants(current_user: dict = Depends(get_current_user))
         try:
             from services.vector_search import search_restaurants_by_preference, initialize_restaurant_search
             
+            # Get all restaurants from database
+            all_docs = get_restaurant_docs()
             # Ensure restaurants are indexed
             restaurants = [
-                doc for doc in docs 
+                doc for doc in all_docs 
                 if doc.get('location') and 
                    doc['location'].get('latitude') and 
                    doc['location'].get('longitude')
@@ -107,8 +111,10 @@ def rule_based_sort(current_user: dict):
     is_vegan = "vegan" in [d.lower() for d in dietary_restrictions]
     is_vegetarian = "vegetarian" in [d.lower() for d in dietary_restrictions] or is_vegan
     
+    # Get all restaurants from database
+    all_docs = get_restaurant_docs()
     restaurants = [
-        doc for doc in docs 
+        doc for doc in all_docs 
         if doc.get('location') and 
            doc['location'].get('latitude') and 
            doc['location'].get('longitude')

@@ -9,10 +9,10 @@ import {
   Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { restaurantsAPI } from '../services/api';
-import { useTheme } from '../context/ThemeContext';
-import FoodCard from '../components/FoodCard';
-import type { Food } from '../types';
+import { restaurantsAPI } from '../../services/api';
+import { useTheme } from '../../context/ThemeContext';
+import FoodCard from '../../components/FoodCard';
+import type { Food } from '../../types';
 
 export default function Restaurant({ route, navigation }: any) {
   const { isDark, colors } = useTheme();

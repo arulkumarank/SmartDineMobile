@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
-import Search from '../screens/Search';
-import SurpriseMe from '../screens/SurpriseMe';
-import Map from '../screens/Map';
-import Cart from '../screens/Cart';
+import Home from '../screens/main/Home';
+import Search from '../screens/main/Search';
+import SurpriseMe from '../screens/main/SurpriseMe';
+import Map from '../screens/main/Map';
+import Cart from '../screens/main/Cart';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { View, StyleSheet, TouchableOpacity, Platform, Text } from 'react-native';
 import { useCart } from '../context/CartContext';

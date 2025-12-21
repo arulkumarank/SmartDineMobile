@@ -11,9 +11,9 @@ import {
     Animated,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { foodsAPI, restaurantsAPI, feedbackAPI } from '../services/api';
-import { useCart } from '../context/CartContext';
-import { useTheme } from '../context/ThemeContext';
+import { foodsAPI, restaurantsAPI, feedbackAPI } from '../../services/api';
+import { useCart } from '../../context/CartContext';
+import { useTheme } from '../../context/ThemeContext';
 
 export default function FoodDetail({ route, navigation }: any) {
     const { isDark, colors } = useTheme();
