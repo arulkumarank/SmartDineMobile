@@ -16,16 +16,29 @@ import type { Food } from '../../types';
 
 export default function Restaurant({ route, navigation }: any) {
   const { isDark, colors } = useTheme();
-  const restaurant = route?.params || {
+
+  // Handle different navigation patterns:
+  // - From Map: { restaurant: {...} }
+  // - From Home/Other: params is the restaurant directly
+  const params = route?.params || {};
+  const restaurant = params.restaurant || params || {
     name: 'Restaurant Name',
     cuisine: 'Cuisine',
     rating: 4.5,
     image: 'https://source.unsplash.com/600x400/?restaurant',
-    location: {
-      address: '123 Main St',
-      latitude: 0,
-      longitude: 0,
-    },
+    location: null,
+  };
+
+  // Generate address from coordinates if not available
+  const getAddress = () => {
+    if (restaurant.location?.address) {
+      return restaurant.location.address;
+    }
+    // Fallback: show coordinates or restaurant name
+    if (restaurant.location?.latitude && restaurant.location?.longitude) {
+      return `${restaurant.name}, Chennai`;
+    }
+    return 'View on Map';
   };
 
   const [menuItems, setMenuItems] = useState<Food[]>([]);
@@ -131,15 +144,14 @@ export default function Restaurant({ route, navigation }: any) {
           <Text style={[styles.cuisine, themedStyles.cuisine]}>• {restaurant.cuisine}</Text>
         </View>
 
-        {restaurant.location && (
-          <TouchableOpacity
-            style={[styles.addressContainer, themedStyles.addressContainer]}
-            onPress={handleAddressClick}>
-            <Icon name="map-marker" size={20} color="#ff6b00" />
-            <Text style={[styles.address, themedStyles.address]}>{restaurant.location.address}</Text>
-            <Icon name="chevron-right" size={20} color={colors.textSecondary} />
-          </TouchableOpacity>
-        )}
+        {/* Address section - always show with fallback */}
+        <TouchableOpacity
+          style={[styles.addressContainer, themedStyles.addressContainer]}
+          onPress={handleAddressClick}>
+          <Icon name="map-marker" size={20} color="#ff6b00" />
+          <Text style={[styles.address, themedStyles.address]}>{getAddress()}</Text>
+          <Icon name="chevron-right" size={20} color={colors.textSecondary} />
+        </TouchableOpacity>
 
         <Text style={[styles.menuTitle, themedStyles.menuTitle]}>Menu</Text>
 
