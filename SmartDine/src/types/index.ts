@@ -65,7 +65,10 @@ export interface Food {
 export interface Location {
     latitude: number;
     longitude: number;
-    address: string;
+    address?: string;
+    // MongoDB GeoJSON format support
+    coordinates?: [number, number]; // [longitude, latitude]
+    type?: 'Point';
 }
 
 export interface Restaurant {

@@ -82,6 +82,12 @@ export const profileAPI = {
         return response.data;
     },
 
+    // Alias for backward compatibility
+    getProfile: async (): Promise<UserProfile> => {
+        const response = await api.get<UserProfile>(API_ENDPOINTS.PROFILE);
+        return response.data;
+    },
+
     update: async (data: Partial<UserProfile>) => {
         const response = await api.put(API_ENDPOINTS.PROFILE, data);
         return response.data;

@@ -32,7 +32,7 @@ export default function Map({ navigation, route }: any) {
             if (data.type === 'markerClick') {
                 const restaurant = restaurants.find(r => r.name === data.restaurantName);
                 if (restaurant) {
-                    navigation.navigate('RestaurantDetail', { restaurant });
+                    navigation.navigate('Restaurant', { restaurant });
                 }
             }
         } catch (e) {
