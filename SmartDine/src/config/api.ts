@@ -1,6 +1,5 @@
-// API Configuration
-// Using ADB reverse port forwarding (phone connected via USB + mobile hotspot)
-export const API_BASE_URL = 'http://localhost:8000';
+// API Configuration - Production (Render)
+export const API_BASE_URL = 'https://smartdinemobile.onrender.com';
 
 // API Endpoints
 export const API_ENDPOINTS = {
