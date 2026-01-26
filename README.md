@@ -29,14 +29,14 @@ DeltaForge/
 │   │   │       └── Notifications.tsx   # Notification center
 │   │   │
 │   │   ├── components/                 # Reusable UI components
-│   │   │   ├── FoodCard.tsx            # Food item card component
-│   │   │   ├── RestaurantCard.tsx      # Restaurant card component
-│   │   │   ├── SearchBar.tsx           # Search input component
-│   │   │   ├── ProfileHeader.tsx       # Profile header with dropdown
-│   │   │   ├── Skeleton.tsx            # Loading skeleton screens
-│   │   │   ├── StyledAlert.tsx         # Custom alert component
-│   │   │   ├── cards/                  # Specialized card components
+│   │   │   ├── cards/                  # Card components
+│   │   │   │   ├── FoodCard.tsx        # Food item card component
+│   │   │   │   └── RestaurantCard.tsx  # Restaurant card component
 │   │   │   ├── common/                 # Common UI elements
+│   │   │   │   ├── SearchBar.tsx       # Search input component
+│   │   │   │   ├── ProfileHeader.tsx   # Profile header with dropdown
+│   │   │   │   ├── Skeleton.tsx        # Loading skeleton screens
+│   │   │   │   └── StyledAlert.tsx     # Custom alert component
 │   │   │   └── layout/                 # Layout components
 │   │   │
 │   │   ├── navigation/
@@ -48,14 +48,28 @@ DeltaForge/
 │   │   │   ├── CartContext.tsx         # Shopping cart state
 │   │   │   └── NotificationsContext.tsx # Notifications state
 │   │   │
+
 │   │   ├── services/
 │   │   │   └── api.ts                  # API integration layer
+│   │   │
+│   │   ├── hooks/                      # Custom React hooks
+│   │   │
+│   │   ├── assets/                     # Static resources
+│   │   │   ├── images/                 # Image files
+│   │   │   └── fonts/                  # Custom fonts
+│   │   │
+│   │   ├── styles/                     # Global styles and themes
+│   │   │
+│   │   ├── constants/                  # App-wide constants
 │   │   │
 │   │   ├── types/
 │   │   │   └── index.ts                # TypeScript type definitions
 │   │   │
-│   │   └── utils/                      # Helper functions
+│   │   ├── utils/                      # Helper functions
+│   │   │
+│   │   └── App.tsx                     # Main application component
 │   │
+│   ├── index.js                        # Entry point
 │   ├── android/                        # Android native configuration
 │   │   ├── app/
 │   │   │   ├── build.gradle            # App-level Gradle config
@@ -476,11 +490,25 @@ npx react-native run-android
 ## Project Structure Details
 
 ### Frontend (SmartDine/src)
-- **screens/**: Main app screens (Home, Search, Profile, Restaurant, FoodDetail, Cart, Login, etc.)
-- **components/**: Reusable UI components (FoodCard, RestaurantCard, Header, etc.)
+- **App.tsx**: Main application component with navigation setup (moved to src/)
+- **screens/**: Main app screens organized by feature
+  - **auth/**: Login and Signup screens
+  - **main/**: Home, Search, Profile, Cart, Map, SurpriseMe
+  - **details/**: FoodDetail and Restaurant detail views
+  - **settings/**: Settings and Notifications screens
+- **components/**: Reusable UI components organized into subfolders
+  - **cards/**: FoodCard, RestaurantCard
+  - **common/**: SearchBar, ProfileHeader, Skeleton, StyledAlert
+  - **layout/**: Layout components
 - **navigation/**: Navigation configuration and stack navigators
 - **context/**: Global state providers (AuthContext, ThemeContext, CartContext, NotificationContext)
 - **services/**: API integration layer for backend communication
+- **hooks/**: Custom React hooks (ready for future custom hooks)
+- **assets/**: Static resources
+  - **images/**: Image files
+  - **fonts/**: Custom fonts
+- **styles/**: Global styles and theme definitions
+- **constants/**: App-wide constants (colors, dimensions, API endpoints)
 - **types/**: TypeScript interfaces and type definitions
 - **utils/**: Utility functions and helpers
 

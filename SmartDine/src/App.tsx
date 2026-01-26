@@ -1,21 +1,21 @@
 import React from 'react';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthProvider, useAuth } from './src/context/AuthContext';
-import { CartProvider } from './src/context/CartContext';
-import { ThemeProvider, useTheme } from './src/context/ThemeContext';
-import { NotificationsProvider } from './src/context/NotificationsContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { NotificationsProvider } from './context/NotificationsContext';
 import { ActivityIndicator, View } from 'react-native';
 
-import Login from './src/screens/auth/Login';
-import Signup from './src/screens/auth/Signup';
-import BottomTabs from './src/navigation/BottomTabs';
-import Restaurant from './src/screens/details/Restaurant';
-import Map from './src/screens/main/Map';
-import FoodDetail from './src/screens/details/FoodDetail';
-import Profile from './src/screens/main/Profile';
-import Settings from './src/screens/settings/Settings';
-import Notifications from './src/screens/settings/Notifications';
+import Login from './screens/auth/Login';
+import Signup from './screens/auth/Signup';
+import BottomTabs from './navigation/BottomTabs';
+import Restaurant from './screens/details/Restaurant';
+import Map from './screens/main/Map';
+import FoodDetail from './screens/details/FoodDetail';
+import Profile from './screens/main/Profile';
+import Settings from './screens/settings/Settings';
+import Notifications from './screens/settings/Notifications';
 
 const Stack = createNativeStackNavigator();
 
