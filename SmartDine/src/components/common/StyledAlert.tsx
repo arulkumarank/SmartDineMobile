@@ -7,8 +7,8 @@ import {
     StyleSheet,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useTheme } from '../context/ThemeContext';
-import { useNotifications } from '../context/NotificationsContext';
+import { useTheme } from '../../context/ThemeContext';
+import { useNotifications } from '../../context/NotificationsContext';
 
 type AlertType = 'success' | 'error' | 'warning' | 'info';
 

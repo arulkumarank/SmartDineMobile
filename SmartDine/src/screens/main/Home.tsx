@@ -14,10 +14,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { aiAPI, foodsAPI, restaurantsAPI } from '../../services/api';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
-import FoodCard from '../../components/FoodCard';
-import RestaurantCard from '../../components/RestaurantCard';
-import ProfileHeader from '../../components/ProfileHeader';
-import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/Skeleton';
+import FoodCard from '../../components/cards/FoodCard';
+import RestaurantCard from '../../components/cards/RestaurantCard';
+import ProfileHeader from '../../components/common/ProfileHeader';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/common/Skeleton';
 import type { Food, Restaurant } from '../../types';
 import { isFuzzyMatch } from '../../utils/search';
 

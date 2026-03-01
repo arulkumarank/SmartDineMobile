@@ -13,10 +13,10 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { foodsAPI, restaurantsAPI } from '../../services/api';
 import { useTheme } from '../../context/ThemeContext';
 import type { Food, Restaurant } from '../../types';
-import FoodCard from '../../components/FoodCard';
-import RestaurantCard from '../../components/RestaurantCard';
-import SearchBar from '../../components/SearchBar';
-import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/Skeleton';
+import FoodCard from '../../components/cards/FoodCard';
+import RestaurantCard from '../../components/cards/RestaurantCard';
+import SearchBar from '../../components/common/SearchBar';
+import { FoodCardSkeleton, RestaurantCardSkeleton } from '../../components/common/Skeleton';
 
 type FilterState = {
   price: string[];

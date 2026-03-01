@@ -13,7 +13,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import { profileAPI } from '../../services/api';
 import type { UserProfile } from '../../types';
-import StyledAlert from '../../components/StyledAlert';
+import StyledAlert from '../../components/common/StyledAlert';
 
 export default function Profile() {
   const { isDark, colors } = useTheme();

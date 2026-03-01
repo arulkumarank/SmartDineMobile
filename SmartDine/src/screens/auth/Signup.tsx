@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import StyledAlert from '../../components/StyledAlert';
+import StyledAlert from '../../components/common/StyledAlert';
 import { API_BASE_URL } from '../../config/api';
 
 type SignupStep = 'email' | 'otp' | 'details';

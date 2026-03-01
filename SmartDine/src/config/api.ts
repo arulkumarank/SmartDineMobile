@@ -1,5 +1,5 @@
 // API Configuration - Production (Render)
-export const API_BASE_URL = 'https://smartdinemobile.onrender.com';
+export const API_BASE_URL = 'http://54.252.244.89:8000';
 
 // API Endpoints
 export const API_ENDPOINTS = {

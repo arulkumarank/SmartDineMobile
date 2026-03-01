@@ -10,7 +10,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useCart } from '../../context/CartContext';
 import { useTheme } from '../../context/ThemeContext';
-import StyledAlert from '../../components/StyledAlert';
+import StyledAlert from '../../components/common/StyledAlert';
 
 const Cart = ({ navigation }: any) => {
   const { isDark, colors } = useTheme();
