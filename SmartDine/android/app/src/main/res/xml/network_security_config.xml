@@ -6,6 +6,7 @@
         <domain includeSubdomains="true">localhost</domain>
         <domain includeSubdomains="true">127.0.0.1</domain>
         <domain includeSubdomains="true">54.252.244.89</domain>
+        <domain includeSubdomains="true">13.201.21.44</domain>
     </domain-config>
     
     <!-- For production, you should use HTTPS only -->
