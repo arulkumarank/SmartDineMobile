@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Allow cleartext (HTTP) traffic for local development -->
-    <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">10.203.12.54</domain>
-        <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">127.0.0.1</domain>
-        <domain includeSubdomains="true">54.252.244.89</domain>
-        <domain includeSubdomains="true">13.201.21.44</domain>
-    </domain-config>
-    
-    <!-- For production, you should use HTTPS only -->
-    <base-config cleartextTrafficPermitted="false" />
+    <!-- Allow cleartext (HTTP) for development - EC2 uses HTTP -->
+    <base-config cleartextTrafficPermitted="true" />
 </network-security-config>

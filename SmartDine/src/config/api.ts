@@ -1,5 +1,5 @@
 // API Configuration - Production (Render)
-export const API_BASE_URL = 'http://13.201.21.44:8000/';
+export const API_BASE_URL = 'http://13.201.21.44:8000';
 
 // API Endpoints
 export const API_ENDPOINTS = {

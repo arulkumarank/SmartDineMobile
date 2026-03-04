@@ -116,7 +116,7 @@ export const foodsAPI = {
     },
 
     getDetail: async (foodName: string, restaurant: string) => {
-        const response = await api.post(`${API_BASE_URL}/foods/detail`, null, {
+        const response = await api.post(`/foods/detail`, null, {
             params: { food_name: foodName, restaurant }
         });
         return response.data;
